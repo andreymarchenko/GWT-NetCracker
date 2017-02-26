@@ -33,26 +33,15 @@ public class property implements EntryPoint {
    * This is the entry point method.
    */
   public void onModuleLoad() {
-/*
-    DockLayoutPanel p = new DockLayoutPanel(Style.Unit.EM);
-    p.addNorth(new HTML("north"), 5);
-    p.addSouth(new HTML("south"), 5);
-    p.addEast(new HTML("east"), 5);
-    p.addWest(new HTML("west"), 5);
-    p.add(new HTML("center"));
 
-    RootLayoutPanel rp = RootLayoutPanel.get();
-    rp.add(p);
-*/
     //RootBinder helloWorld = new RootBinder();
     //helloWorld.setName("World (div element)");
     //RootPanel.getBodyElement().appendChild(helloWorld.getElement());
 
-    View helloWidgetPanel = new View();
-    helloWidgetPanel.setStyleName("helloWidgetPanel");
-//    helloWidgetPanel.getListBox().setStyleName("listBoxStyle");
+    View view = new View();
+    view.setStyleName("helloWidgetPanel");
 
-    RootPanel.get("panelId").add(helloWidgetPanel);
+    RootPanel.get("panelId").add(view);
 
     /*
     final Button sendButton = new Button( messages.sendButton() );

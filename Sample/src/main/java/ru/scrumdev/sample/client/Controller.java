@@ -3,13 +3,14 @@ package ru.scrumdev.sample.client;
 public class Controller {
     private DataModel dataModel;
 
-    public Controller() {}
+    public Controller() {
+    }
 
-    public void setDataModel(DataModel dataModel) {
+    public Controller(DataModel dataModel) {
         this.dataModel = dataModel;
     }
 
-    public void setDataModel() {
-        dataModel = new DataModel();
+    public void setDataModel(DataModel dataModel) {
+        this.dataModel = dataModel;
     }
 }

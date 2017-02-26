@@ -9,9 +9,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.Window;
 import ru.scrumdev.sample.client.Controller;
-
-import javax.swing.*;
-import java.awt.*;
+import ru.scrumdev.sample.client.DataModel;
 
 public class View extends Composite {
     interface MainPanelUiBinder extends UiBinder<Widget, View> {
@@ -39,8 +37,8 @@ public class View extends Composite {
     Label time;
     @UiField
     Label date;
-    private Controller controller;
 
+    private Controller controller;
 
     public Controller getController() {
         return controller;
@@ -54,7 +52,8 @@ public class View extends Composite {
         initWidget(ourUiBinder.createAndBindUi(this));
 
         controller = new Controller();
-        controller.setDataModel();
+        DataModel dataModel= new DataModel();
+        controller.setDataModel(dataModel);
 
         leftPanel.getElement().getStyle().setBorderColor("Gray");
         leftPanel.getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
@@ -94,19 +93,5 @@ public class View extends Composite {
         time.getElement().getStyle().setPaddingLeft(15, Style.Unit.PX);
         date.getElement().getStyle().setPaddingTop(40, Style.Unit.PX);
         date.getElement().getStyle().setPaddingLeft(15, Style.Unit.PX);
-
-        //label.getElement().getStyle().setColor("Red");
-        //label.getElement().getStyle().setPaddingTop(100, Style.Unit.PX);
-        //label.getElement().getStyle().setPaddingLeft(50, Style.Unit.PX);
-// button = new Button();
-//           for (String name : names) {
-//            listBox.addItem(name);
-        //       }
     }
-
-//    public ListBox getListBox() {
-//        return listBox;
-//    }
-//    public Button getButton() {return button;}
-
 }
