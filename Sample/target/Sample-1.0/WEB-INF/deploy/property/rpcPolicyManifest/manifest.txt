@@ -1,0 +1,3 @@
+# Module property
+# RPC service class, partial path of RPC policy file
+ru.scrumdev.sample.client.GreetingService, C5192B680967299FC07E5D448E047815.gwt.rpc

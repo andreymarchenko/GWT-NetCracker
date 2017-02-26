@@ -1,0 +1,6 @@
+-------------------------------------------------------------------------------
+Test set: ru.scrumdev.sample.client.GwtTestproperty
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 28.704 sec
+testGreetingService(ru.scrumdev.sample.client.GwtTestproperty)  Time elapsed: 28.592 sec
+testFieldVerifier(ru.scrumdev.sample.client.GwtTestproperty)  Time elapsed: 0.053 sec
