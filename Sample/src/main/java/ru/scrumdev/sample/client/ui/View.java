@@ -48,12 +48,12 @@ public class View extends Composite {
         this.controller = controller;
     }
 
-    public View() {
+    public View(){
         initWidget(ourUiBinder.createAndBindUi(this));
 
         controller = new Controller();
-        DataModel dataModel= new DataModel();
-        controller.setDataModel(dataModel);
+        //DataModel dataModel= new DataModel();
+        //controller.setDataModel(dataModel);
 
         leftPanel.getElement().getStyle().setBorderColor("Gray");
         leftPanel.getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);

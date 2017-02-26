@@ -8,7 +8,7 @@ public class DataModel {
     private Event event;
 
     public DataModel() {
-        event = new Event();
+        this.event = new Event();
     }
 
     public DataModel(Event event) {

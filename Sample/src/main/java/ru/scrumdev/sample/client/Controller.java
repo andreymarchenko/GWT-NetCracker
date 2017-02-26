@@ -4,6 +4,7 @@ public class Controller {
     private DataModel dataModel;
 
     public Controller() {
+        this.dataModel = new DataModel();
     }
 
     public Controller(DataModel dataModel) {

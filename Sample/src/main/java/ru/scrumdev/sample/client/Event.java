@@ -11,11 +11,6 @@ public class Event {
     private List<Image> images;
 
     public Event() {
-        id = 0;
-        description = "";
-        date = new Date(15102015);
-        name = "";
-        images.add(new Image(0, ""));
     }
 
     public Event(int id, String description, Date date, String name, List<Image> images) {
