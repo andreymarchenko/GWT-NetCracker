@@ -1,5 +1,6 @@
 package ru.scrumdev.sample.client;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,17 +9,25 @@ public class Event {
     private String description;
     private Date date;
     private String name;
-    private List<Image> images;
+    private String time;
+    private ArrayList<Image> images;
 
-    public Event() {
+    public String getTime() {
+        return time;
     }
 
-    public Event(int id, String description, Date date, String name, List<Image> images) {
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public Event(int id, String description, Date date, String name, ArrayList<Image> images, String time) {
         this.id = id;
         this.description = description;
         this.date = date;
         this.name = name;
         this.images = images;
+        this.time = time;
+
     }
 
     public int getId() {
@@ -57,7 +66,7 @@ public class Event {
         return images;
     }
 
-    public void setImages(List<Image> images) {
+    public void setImages(ArrayList<Image> images) {
         this.images = images;
     }
 }

@@ -9,6 +9,7 @@
             </g:FlowPanel>
             <g:FlowPanel ui:field="leftInnerPanel2">
                 <g:Label text="Left Inner Panel 2"/>
+                <g:Button ui:field="updateButton" text="Update data"/>
             </g:FlowPanel>
         </g:FlowPanel>
 

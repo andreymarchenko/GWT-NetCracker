@@ -1,19 +1,9 @@
 package ru.scrumdev.sample.client;
 
-import java.util.Date;
-import java.util.List;
-
 public class DataModel {
 
+    private Presenter presenter;
     private Event event;
-
-    public DataModel() {
-        this.event = new Event();
-    }
-
-    public DataModel(Event event) {
-        this.event = event;
-    }
 
     public Event getEvent() {
         return event;
@@ -21,5 +11,14 @@ public class DataModel {
 
     public void setEvent(Event event) {
         this.event = event;
+        presenter.notify(event);
+    }
+
+    public Presenter getPresenter() {
+        return presenter;
+    }
+
+    public void setPresenter(Presenter presenter) {
+        this.presenter = presenter;
     }
 }

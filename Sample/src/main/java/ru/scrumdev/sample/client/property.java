@@ -10,38 +10,49 @@ import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.event.dom.client.KeyUpHandler;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
 public class property implements EntryPoint {
-  /**
-   * The message displayed to the user when the server cannot be reached or
-   * returns an error.
-   */
-  private static final String SERVER_ERROR = "An error occurred while "
-          + "attempting to contact the server. Please check your network "
-          + "connection and try again.";
+    /**
+     * The message displayed to the user when the server cannot be reached or
+     * returns an error.
+     */
+    private static final String SERVER_ERROR = "An error occurred while "
+            + "attempting to contact the server. Please check your network "
+            + "connection and try again.";
 
-  /**
-   * Create a remote service proxy to talk to the server-side Greeting service.
-   */
-  private final GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
+    /**
+     * Create a remote service proxy to talk to the server-side Greeting service.
+     */
+    private final GreetingServiceAsync greetingService = GWT.create(GreetingService.class);
 
-  private final Messages messages = GWT.create(Messages.class);
+    private final Messages messages = GWT.create(Messages.class);
 
-  /**
-   * This is the entry point method.
-   */
-  public void onModuleLoad() {
+    /**
+     * This is the entry point method.
+     */
+    public void onModuleLoad() {
 
-    //RootBinder helloWorld = new RootBinder();
-    //helloWorld.setName("World (div element)");
-    //RootPanel.getBodyElement().appendChild(helloWorld.getElement());
+        final View view = new View();
+        view.setStyleName("helloWidgetPanel");
 
-    View view = new View();
-    view.setStyleName("helloWidgetPanel");
+        ArrayList<Image> list = new ArrayList<>();
+        Image img = new Image(1, " ");
+        list.add(img);
+        final Event event = new Event(1, "Some Discription", new Date(2017, 02, 28), "First event", list, "21.00");
 
-    RootPanel.get("panelId").add(view);
+        view.getUpdateButton().addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent clickEvent) {
+                view.getPresenter().loadData(event);
+            }
+        });
+
+        RootPanel.get("panelId").add(view);
 
     /*
     final Button sendButton = new Button( messages.sendButton() );
@@ -99,28 +110,29 @@ public class property implements EntryPoint {
       }
     });
 */
-    // Create a handler for the sendButton and nameField
-    class MyHandler implements ClickHandler, KeyUpHandler {
-      /**
-       * Fired when the user clicks on the sendButton.
-       */
 
-      public void onClick(ClickEvent event) {
-        // sendNameToServer();
-      }
+        // Create a handler for the sendButton and nameField
+        class MyHandler implements ClickHandler, KeyUpHandler {
+            /**
+             * Fired when the user clicks on the sendButton.
+             */
 
-      /**
-       * Fired when the user types in the nameField.
-       */
-      public void onKeyUp(KeyUpEvent event) {
-        if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
-          // sendNameToServer();
-        }
-      }
+            public void onClick(ClickEvent event) {
+                // sendNameToServer();
+            }
 
-      /**
-       * Send the name from the nameField to the server and wait for a response.
-       */
+            /**
+             * Fired when the user types in the nameField.
+             */
+            public void onKeyUp(KeyUpEvent event) {
+                if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
+                    // sendNameToServer();
+                }
+            }
+
+            /**
+             * Send the name from the nameField to the server and wait for a response.
+             */
       /*
       private void sendNameToServer() {
         // First, we validate the input.
@@ -132,7 +144,7 @@ public class property implements EntryPoint {
         }
         */
 
-      // Then, we send the input to the server.
+            // Then, we send the input to the server.
       /*
       sendButton.setEnabled(false);
         textToServerLabel.setText(textToServer);
@@ -163,6 +175,6 @@ public class property implements EntryPoint {
     sendButton.addClickHandler(handler);
     nameField.addKeyUpHandler(handler);
     */
+        }
     }
-  }
 }
