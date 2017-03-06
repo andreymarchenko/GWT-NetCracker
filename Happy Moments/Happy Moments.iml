@@ -24,6 +24,7 @@
         <setting name="gwtSdkType" value="maven" />
         <setting name="webFacet" value="Web" />
         <packaging>
+          <module name="ru.scrumdev.sample.index" enabled="false" />
           <module name="ru.scrumdev.sample.propertyJUnit" enabled="false" />
         </packaging>
       </configuration>

@@ -2,11 +2,17 @@ package ru.scrumdev.sample.client.ui;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
-import ru.scrumdev.sample.client.Presenter;
+import com.google.gwt.user.client.ui.Image;
+import ru.scrumdev.sample.client.*;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 public class View extends Composite {
     interface MainPanelUiBinder extends UiBinder<Widget, View> {
@@ -52,6 +58,20 @@ public class View extends Composite {
         presenter = new Presenter();
         presenter.setView(this);
         setUI();
+    }
+
+    public void updateUI() {
+        ArrayList<ru.scrumdev.sample.client.Image> list = new ArrayList<>();
+        ru.scrumdev.sample.client.Image img = new ru.scrumdev.sample.client.Image(1, "C:\\GWT-NetCracker\\Happy Moments\\src\\main\\resources\\ru\\scrumdev\\sample\\1.png");
+        list.add(img);
+        final Event event = new Event(1, "Some Discription", new Date(2017, 02, 28), "First event", list, "21.00");
+
+        updateButton.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent clickEvent) {
+                getPresenter().loadData(event);
+            }
+        });
     }
 
     public void setUI() {
