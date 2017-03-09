@@ -1,17 +1,10 @@
 package ru.scrumdev.sample.client;
 
 import com.google.gwt.user.client.ui.*;
+import com.google.inject.Injector;
 import ru.scrumdev.sample.client.ui.View;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.KeyCodes;
-import com.google.gwt.event.dom.client.KeyUpEvent;
-import com.google.gwt.event.dom.client.KeyUpHandler;
-
-import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -37,7 +30,9 @@ public class Main implements EntryPoint {
      */
     public void onModuleLoad() {
 
-        final View view = new View();
+        //View view = new View();
+        Injector injector = GWT.create(Injector.class);
+        View view = injector.getInstance(View.class);
         view.setStyleName("helloWidgetPanel");
         view.updateUI();
 

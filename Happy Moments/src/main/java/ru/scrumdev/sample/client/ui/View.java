@@ -8,9 +8,9 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
-import com.google.gwt.user.client.ui.Image;
 import ru.scrumdev.sample.client.*;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -53,10 +53,10 @@ public class View extends Composite {
 
     private Presenter presenter;
 
+    @Inject
     public View() {
         initWidget(ourUiBinder.createAndBindUi(this));
-        presenter = new Presenter();
-        presenter.setView(this);
+        presenter = new Presenter(this);
         setUI();
     }
 

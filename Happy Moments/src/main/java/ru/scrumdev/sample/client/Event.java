@@ -12,14 +12,6 @@ public class Event {
     private String time;
     private ArrayList<Image> images;
 
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
     public Event(int id, String description, Date date, String name, ArrayList<Image> images, String time) {
         this.id = id;
         this.description = description;
@@ -27,7 +19,14 @@ public class Event {
         this.name = name;
         this.images = images;
         this.time = time;
+    }
 
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public int getId() {

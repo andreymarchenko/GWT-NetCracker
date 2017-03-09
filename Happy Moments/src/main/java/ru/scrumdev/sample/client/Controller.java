@@ -1,6 +1,8 @@
 package ru.scrumdev.sample.client;
 
+
 public class Controller {
+
     private DataModel dataModel;
 
     public Controller(DataModel dataModel) {
