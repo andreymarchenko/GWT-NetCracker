@@ -1,7 +1,7 @@
 package ru.scrumdev.sample.client;
 
 import com.google.gwt.user.client.ui.*;
-import com.google.inject.Injector;
+import ru.scrumdev.sample.client.modules.Injector;
 import ru.scrumdev.sample.client.ui.View;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
@@ -29,9 +29,8 @@ public class HappyMomentsEntryPoint implements EntryPoint {
      * This is the entry point method.
      */
     public void onModuleLoad() {
-
-        View view = new View();
         Injector injector = GWT.create(Injector.class);
+        View view = new View();
         //View view = injector.getInstance(View.class);
         view.setStyleName("helloWidgetPanel");
         view.updateUI();

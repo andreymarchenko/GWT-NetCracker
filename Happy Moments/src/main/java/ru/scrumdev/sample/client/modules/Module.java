@@ -11,6 +11,9 @@ import ru.scrumdev.sample.client.ui.View;
 public class Module extends AbstractGinModule {
     @Override
     protected void configure() {
-
+        bind(Presenter.class).in(Singleton.class);
+        bind(Controller.class).in(Singleton.class);
+        bind(DataModel.class).in(Singleton.class);
+        bind(View.class).in(Singleton.class);
     }
 }
