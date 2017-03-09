@@ -12,7 +12,7 @@
   <name>GWT Maven Archetype</name>
 
   <properties>
-    <!-- Convenience Main to set the GWT version -->
+    <!-- Convenience HappyMomentsEntryPoint to set the GWT version -->
     <gwtVersion>2.7.0</gwtVersion>
 
     <!-- GWT needs at least java 1.6 -->
@@ -62,13 +62,15 @@
       <artifactId>sisu-guice</artifactId>
       <version>3.1.0</version>
     </dependency>
+
+    <dependency>
+      <groupId>com.google.gwt.inject</groupId>
+      <artifactId>gin</artifactId>
+      <version>2.1.2</version>
+    </dependency>
   </dependencies>
 
-  <dependency>
-    <groupId>com.google.gwt.inject</groupId>
-    <artifactId>gin</artifactId>
-    <version>2.1.2</version>
-  </dependency>
+
 
   <build>
     <!-- Output classes directly into the webapp, so that IDEs and "mvn process-classes" update them in DevMode -->

@@ -9,7 +9,7 @@ import com.google.gwt.core.client.GWT;
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
  */
-public class Main implements EntryPoint {
+public class HappyMomentsEntryPoint implements EntryPoint {
     /**
      * The message displayed to the user when the server cannot be reached or
      * returns an error.
@@ -30,9 +30,9 @@ public class Main implements EntryPoint {
      */
     public void onModuleLoad() {
 
-        //View view = new View();
+        View view = new View();
         Injector injector = GWT.create(Injector.class);
-        View view = injector.getInstance(View.class);
+        //View view = injector.getInstance(View.class);
         view.setStyleName("helloWidgetPanel");
         view.updateUI();
 

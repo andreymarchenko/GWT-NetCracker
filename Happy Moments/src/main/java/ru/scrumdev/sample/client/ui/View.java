@@ -56,7 +56,7 @@ public class View extends Composite {
     @Inject
     public View() {
         initWidget(ourUiBinder.createAndBindUi(this));
-        presenter = new Presenter(this);
+        //presenter = new Presenter(this);
         setUI();
     }
 

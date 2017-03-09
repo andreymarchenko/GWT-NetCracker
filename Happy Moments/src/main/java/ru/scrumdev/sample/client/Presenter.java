@@ -10,11 +10,14 @@ public class Presenter {
     private View view;
 
     @Inject
-    public Presenter(View view) {
+    public Presenter(View view, Controller controller, DataModel dataModel) {
         this.view = view;
-        dataModel = new DataModel();
+        this.controller = controller;
+        this.dataModel = dataModel;
+    }
+
+    public void setPresenter() {
         dataModel.setPresenter(this);
-        controller = new Controller(dataModel);
     }
 
     public void loadData(Event event) {

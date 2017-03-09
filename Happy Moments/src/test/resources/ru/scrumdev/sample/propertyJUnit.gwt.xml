@@ -4,6 +4,8 @@
   <inherits name='ru.scrumdev.sample.property' />
     <inherits name="com.google.gwt.user.UI"/>
   <inherits name="com.google.gwt.user.UI"/>
+    <inherits name="com.google.gwt.inject.Inject"/>
+  <inherits name="com.google.gwt.inject.Inject"/>
 
   <!-- Specify the path to any remote services.                   -->
   <servlet path="/property/greet" class="ru.scrumdev.sample.server.GreetingServiceImpl" />

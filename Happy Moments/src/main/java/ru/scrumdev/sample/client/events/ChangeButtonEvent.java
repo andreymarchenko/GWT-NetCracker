@@ -3,7 +3,7 @@ package ru.scrumdev.sample.client.events;
 import com.google.gwt.event.shared.GwtEvent;
 import ru.scrumdev.sample.client.eventHandlers.ChangeButtonStateHandler;
 
-public class ChangeButtonState extends GwtEvent<ChangeButtonStateHandler>{
+public class ChangeButtonEvent extends GwtEvent<ChangeButtonStateHandler>{
 
     public static Type<ChangeButtonStateHandler> TYPE = new Type<ChangeButtonStateHandler>();
 

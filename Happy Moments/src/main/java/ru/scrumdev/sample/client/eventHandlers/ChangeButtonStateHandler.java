@@ -1,7 +1,7 @@
 package ru.scrumdev.sample.client.eventHandlers;
 import com.google.gwt.event.shared.EventHandler;
-import ru.scrumdev.sample.client.events.ChangeButtonState;
+import ru.scrumdev.sample.client.events.ChangeButtonEvent;
 
 public interface ChangeButtonStateHandler extends EventHandler{
-    void onChangeButtonState(ChangeButtonState event);
+    void onChangeButtonState(ChangeButtonEvent event);
 }
