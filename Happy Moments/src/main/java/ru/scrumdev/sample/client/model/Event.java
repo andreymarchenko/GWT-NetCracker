@@ -1,4 +1,4 @@
-package ru.scrumdev.sample.client;
+package ru.scrumdev.sample.client.model;
 
 import java.util.ArrayList;
 import java.util.Date;

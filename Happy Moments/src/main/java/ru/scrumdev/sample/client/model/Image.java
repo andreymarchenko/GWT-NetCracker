@@ -1,4 +1,4 @@
-package ru.scrumdev.sample.client;
+package ru.scrumdev.sample.client.model;
 
 public class Image {
 

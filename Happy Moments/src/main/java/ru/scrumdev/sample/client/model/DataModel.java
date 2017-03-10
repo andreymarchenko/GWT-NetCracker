@@ -1,4 +1,6 @@
-package ru.scrumdev.sample.client;
+package ru.scrumdev.sample.client.model;
+
+import ru.scrumdev.sample.client.presenter.Presenter;
 
 import javax.inject.Inject;
 
@@ -7,14 +9,14 @@ public class DataModel {
     private Presenter presenter;
     private Event event;
 
-    public Event getEvent() {
-        return event;
-    }
-
     @Inject
     public void DataModel(Presenter presenter, Event event) {
         this.presenter = presenter;
         this.event = event;
+    }
+
+    public Event getEvent() {
+        return event;
     }
 
     public void setEvent(Event event) {

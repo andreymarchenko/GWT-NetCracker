@@ -1,19 +1,19 @@
 package ru.scrumdev.sample.client.events;
 
 import com.google.gwt.event.shared.GwtEvent;
-import ru.scrumdev.sample.client.eventHandlers.ChangeButtonStateHandler;
+import ru.scrumdev.sample.client.eventHandlers.ChangeButtonEventHandler;
 
-public class ChangeButtonEvent extends GwtEvent<ChangeButtonStateHandler>{
+public class ChangeButtonEvent extends GwtEvent<ChangeButtonEventHandler>{
 
-    public static Type<ChangeButtonStateHandler> TYPE = new Type<ChangeButtonStateHandler>();
+    public static Type<ChangeButtonEventHandler> TYPE = new Type<ChangeButtonEventHandler>();
 
     @Override
-    public Type<ChangeButtonStateHandler> getAssociatedType() {
+    public Type<ChangeButtonEventHandler> getAssociatedType() {
         return TYPE;
     }
 
     @Override
-    protected void dispatch(ChangeButtonStateHandler changeButtonStateHandler) {
+    protected void dispatch(ChangeButtonEventHandler changeButtonStateHandler) {
         changeButtonStateHandler.onChangeButtonState(this);
     }
 }

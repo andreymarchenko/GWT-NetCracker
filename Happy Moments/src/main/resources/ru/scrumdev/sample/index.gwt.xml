@@ -1,7 +1,6 @@
 <module rename-to='property'>
   <!-- Inherit the core Web Toolkit stuff.                        -->
 
-  <inherits name='com.google.gwt.inject.Inject'/>
 
   <inherits name='com.google.gwt.user.User' />
   <!-- Inherit the default GWT style sheet.  You can change       -->
@@ -9,11 +8,11 @@
   <!-- any one of the following lines.                            -->
   <inherits name='com.google.gwt.user.theme.standard.Standard' />
 
+
   <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
   <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
-
   <!-- Other module inherits                                      -->
-
+  <inherits name='com.google.gwt.inject.Inject'/>
   <!-- Specify the app entry point class.                         -->
   <entry-point class='ru.scrumdev.sample.client.HappyMomentsEntryPoint' />
 

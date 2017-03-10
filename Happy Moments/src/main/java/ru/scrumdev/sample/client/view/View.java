@@ -1,4 +1,4 @@
-package ru.scrumdev.sample.client.ui;
+package ru.scrumdev.sample.client.view;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
@@ -8,7 +8,9 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
-import ru.scrumdev.sample.client.*;
+import ru.scrumdev.sample.client.model.*;
+import ru.scrumdev.sample.client.model.Image;
+import ru.scrumdev.sample.client.presenter.Presenter;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.Date;
@@ -53,14 +55,20 @@ public class View extends Composite {
     private Presenter presenter;
 
     @Inject
-    public View() {
+    public View(Presenter presenter) {
+        this.presenter = presenter;
+    }
+
+    public void createUI() {
         initWidget(ourUiBinder.createAndBindUi(this));
         setUI();
+        RootPanel.get("panelId").add(this);
+        updateUI();
     }
 
     public void updateUI() {
-        ArrayList<ru.scrumdev.sample.client.Image> list = new ArrayList<>();
-        ru.scrumdev.sample.client.Image img = new ru.scrumdev.sample.client.Image(1, "C:\\GWT-NetCracker\\Happy Moments\\src\\main\\resources\\ru\\scrumdev\\sample\\1.png");
+        ArrayList<ru.scrumdev.sample.client.model.Image> list = new ArrayList<>();
+        Image img = new Image(1, "C:\\GWT-NetCracker\\Happy Moments\\src\\main\\resources\\ru\\scrumdev\\sample\\1.png");
         list.add(img);
         final Event event = new Event(1, "Some Discription", new Date(2017, 02, 28), "First event", list, "21.00");
 
@@ -134,10 +142,6 @@ public class View extends Composite {
 
     public Presenter getPresenter() {
         return presenter;
-    }
-
-    public void setPresenter(Presenter presenter) {
-        this.presenter = presenter;
     }
 
     public Label getName() {
