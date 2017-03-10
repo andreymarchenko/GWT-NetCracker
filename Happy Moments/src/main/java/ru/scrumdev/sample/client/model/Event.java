@@ -12,6 +12,8 @@ public class Event {
     private String time;
     private ArrayList<Image> images;
 
+    public Event() {}
+
     public Event(int id, String description, Date date, String name, ArrayList<Image> images, String time) {
         this.id = id;
         this.description = description;
