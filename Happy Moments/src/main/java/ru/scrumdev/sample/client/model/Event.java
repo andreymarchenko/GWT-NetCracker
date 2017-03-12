@@ -12,7 +12,17 @@ public class Event {
     private String time;
     private ArrayList<Image> images;
 
-    public Event() {}
+    public Event() {
+        this.id = 1;
+        this.description = "Some Discription";
+        this.date = new Date();
+        this.name = "First Event";
+        ArrayList<ru.scrumdev.sample.client.model.Image> list = new ArrayList<>();
+        Image img = new Image(1, "C:\\GWT-NetCracker\\Happy Moments\\src\\main\\resources\\ru\\scrumdev\\sample\\1.png");
+        list.add(img);
+        this.images = list;
+        this.time = "21.00";
+    }
 
     public Event(int id, String description, Date date, String name, ArrayList<Image> images, String time) {
         this.id = id;
