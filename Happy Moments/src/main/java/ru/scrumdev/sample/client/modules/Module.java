@@ -14,7 +14,7 @@ public class Module extends AbstractGinModule {
     @Override
     protected void configure() {
         bind(EventBus.class).to(SimpleEventBus.class).in(Singleton.class);
-        bind(Presenter.class).in(Singleton.class);
+        bind(Presenter.class).asEagerSingleton();
         bind(Controller.class).in(Singleton.class);
         bind(DataModel.class).in(Singleton.class);
         bind(View.class).in(Singleton.class);

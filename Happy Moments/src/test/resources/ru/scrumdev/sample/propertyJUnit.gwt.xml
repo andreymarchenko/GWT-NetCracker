@@ -6,8 +6,9 @@
   <inherits name="com.google.gwt.user.UI"/>
     <inherits name="com.google.gwt.inject.Inject"/>
   <inherits name="com.google.gwt.inject.Inject"/>
+    <inherits name="com.google.gwt.maps.GoogleMaps"/>
 
-  <!-- Specify the path to any remote services.                   -->
+    <!-- Specify the path to any remote services.                   -->
   <servlet path="/property/greet" class="ru.scrumdev.sample.server.GreetingServiceImpl" />
 
 </module>

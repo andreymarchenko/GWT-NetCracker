@@ -5,10 +5,13 @@ import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.maps.client.MapOptions;
+import com.google.gwt.maps.client.geom.LatLng;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
+import ru.scrumdev.sample.client.model.Event;
 import ru.scrumdev.sample.client.presenter.Presenter;
 
 import javax.inject.Inject;
@@ -49,14 +52,16 @@ public class View extends Composite {
     Label eventDate;
     @UiField
     Button updateButton;
-
-    private Presenter presenter;
     private EventBus eventBus;
+    private Presenter presenter;
 
     @Inject
-    public View(Presenter presenter, EventBus eventBus) {
-        this.presenter = presenter;
+    public View(EventBus eventBus) {
         this.eventBus = eventBus;
+    }
+
+    public void setPresenter(Presenter presenter) {
+        this.presenter = presenter;
     }
 
     public void createUI() {
@@ -126,35 +131,10 @@ public class View extends Composite {
         date.getElement().getStyle().setPaddingLeft(15, Style.Unit.PX);
     }
 
-    public Label getName() {
-        return name;
-    }
-
-    public void setName(Label name) {
-        this.name = name;
-    }
-
-    public Label getDescription() {
-        return description;
-    }
-
-    public void setDescription(Label description) {
-        this.description = description;
-    }
-
-    public Label getTime() {
-        return time;
-    }
-
-    public void setTime(Label time) {
-        this.time = time;
-    }
-
-    public Label getDate() {
-        return date;
-    }
-
-    public void setDate(Label date) {
-        this.date = date;
+    public void updateFields(Event event) {
+        this.name.setText(event.getName());
+        this.description.setText(event.getDescription());
+        this.date.setText(event.getDate().toString());
+        this.time.setText(event.getTime());
     }
 }
