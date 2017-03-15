@@ -1,9 +1,8 @@
-package ru.scrumdev.sample.client.model;
+package ru.scrumdev.sample.client.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-//Вынести в пакет entiti
 public class Event {
     private int id;
     private String description;
@@ -17,7 +16,7 @@ public class Event {
         this.description = "Some Discription";
         this.date = new Date();
         this.name = "First Event";
-        ArrayList<ru.scrumdev.sample.client.model.Image> list = new ArrayList<>();
+        ArrayList<Image> list = new ArrayList<>();
         Image img = new Image(1, "C:\\GWT-NetCracker\\Happy Moments\\src\\main\\resources\\ru\\scrumdev\\sample\\1.png");
         list.add(img);
         this.images = list;

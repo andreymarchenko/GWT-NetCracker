@@ -8,7 +8,6 @@ import ru.scrumdev.sample.client.controller.Controller;
 import ru.scrumdev.sample.client.events.ChangeDataEvent;
 import ru.scrumdev.sample.client.events.ChangeDataEventHandler;
 import ru.scrumdev.sample.client.model.DataModel;
-import ru.scrumdev.sample.client.model.Event;
 import ru.scrumdev.sample.client.view.View;
 
 import javax.inject.Inject;

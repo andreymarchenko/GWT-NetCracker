@@ -1,13 +1,10 @@
 package ru.scrumdev.sample.client.controller;
 
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.event.shared.HandlerRegistration;
 import ru.scrumdev.sample.client.commands.LoadDataCommand;
 import ru.scrumdev.sample.client.commands.LoadDataCommandHandler;
-import ru.scrumdev.sample.client.events.ChangeDataEvent;
-import ru.scrumdev.sample.client.events.ChangeDataEventHandler;
 import ru.scrumdev.sample.client.model.DataModel;
-import ru.scrumdev.sample.client.model.Event;
+import ru.scrumdev.sample.client.entity.Event;
 import ru.scrumdev.sample.client.presenter.Presenter;
 
 import javax.inject.Inject;

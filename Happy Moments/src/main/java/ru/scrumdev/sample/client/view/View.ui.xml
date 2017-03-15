@@ -3,10 +3,8 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'>
 
     <g:HorizontalPanel>
-        <g:FlowPanel ui:field="leftPanel">
             <g:FlowPanel ui:field="mapPanel">
             </g:FlowPanel>
-        </g:FlowPanel>
         <g:FlowPanel ui:field="rightPanel">
             <g:FlowPanel ui:field="imagePanel">
                 <g:Label text="Image panel"/>

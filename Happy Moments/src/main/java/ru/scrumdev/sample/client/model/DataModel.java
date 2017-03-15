@@ -2,6 +2,7 @@ package ru.scrumdev.sample.client.model;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.HandlerRegistration;
+import ru.scrumdev.sample.client.entity.Event;
 import ru.scrumdev.sample.client.events.ChangeDataEvent;
 import ru.scrumdev.sample.client.events.ChangeDataEventHandler;
 

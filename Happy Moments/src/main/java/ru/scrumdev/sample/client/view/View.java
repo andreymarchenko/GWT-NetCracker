@@ -11,13 +11,12 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 import ru.scrumdev.sample.client.maps.BasicMapWidget;
-import ru.scrumdev.sample.client.model.Event;
+import ru.scrumdev.sample.client.entity.Event;
 import ru.scrumdev.sample.client.presenter.Presenter;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
 
-import com.google.gwt.maps.client.LoadApi;
 import com.google.gwt.maps.client.LoadApi.LoadLibrary;
 
 public class View extends Composite {
@@ -26,8 +25,6 @@ public class View extends Composite {
 
     private static MainPanelUiBinder ourUiBinder = GWT.create(MainPanelUiBinder.class);
 
-    @UiField
-    FlowPanel leftPanel;
     @UiField
     FlowPanel mapPanel;
     @UiField
@@ -115,10 +112,6 @@ public class View extends Composite {
     }
 
     public void setUI() {
-        leftPanel.getElement().getStyle().setBorderColor("Gray");
-        leftPanel.getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
-        leftPanel.getElement().getStyle().setWidth(Window.getClientWidth() / 1.5, Style.Unit.PX);
-        leftPanel.getElement().getStyle().setHeight(Window.getClientHeight() - 7, Style.Unit.PX);
 
         mapPanel.getElement().getStyle().setBorderColor("Gray");
         mapPanel.getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
