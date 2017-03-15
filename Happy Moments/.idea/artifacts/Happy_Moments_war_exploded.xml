@@ -15,6 +15,8 @@
           <element id="library" level="project" name="Maven: com.google.gwt.inject:gin:2.1.2" />
           <element id="library" level="project" name="Maven: com.google.inject:guice:3.0" />
           <element id="library" level="project" name="Maven: com.google.inject.extensions:guice-assistedinject:3.0" />
+          <element id="library" level="project" name="Maven: com.github.branflake2267:gwt-maps-api:3.10.0-alpha-7" />
+          <element id="library" level="project" name="Maven: com.google.gwt.google-apis:gwt-ajaxloader:1.1.0" />
         </element>
       </element>
       <element id="directory" name="META-INF">

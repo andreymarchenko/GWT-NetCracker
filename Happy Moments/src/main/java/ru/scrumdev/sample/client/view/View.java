@@ -5,16 +5,20 @@ import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.maps.client.MapOptions;
-import com.google.gwt.maps.client.geom.LatLng;
+import com.google.gwt.maps.client.LoadApi;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
+import ru.scrumdev.sample.client.maps.BasicMapWidget;
 import ru.scrumdev.sample.client.model.Event;
 import ru.scrumdev.sample.client.presenter.Presenter;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
+
+import com.google.gwt.maps.client.LoadApi;
+import com.google.gwt.maps.client.LoadApi.LoadLibrary;
 
 public class View extends Composite {
     interface MainPanelUiBinder extends UiBinder<Widget, View> {
@@ -24,8 +28,6 @@ public class View extends Composite {
 
     @UiField
     FlowPanel leftPanel;
-    @UiField
-    FlowPanel searchPanel;
     @UiField
     FlowPanel mapPanel;
     @UiField
@@ -67,6 +69,7 @@ public class View extends Composite {
     public void createUI() {
         initWidget(ourUiBinder.createAndBindUi(this));
         setUI();
+        loadMapApi();
         RootPanel.get("panelId").add(this);
     }
 
@@ -79,21 +82,48 @@ public class View extends Composite {
         });
     }
 
+    private void loadMapApi() {
+        boolean sensor = true;
+
+        // load all the libs for use in the maps
+        ArrayList<LoadLibrary> loadLibraries = new ArrayList<LoadApi.LoadLibrary>();
+        loadLibraries.add(LoadLibrary.ADSENSE);
+        loadLibraries.add(LoadLibrary.DRAWING);
+        loadLibraries.add(LoadLibrary.GEOMETRY);
+        loadLibraries.add(LoadLibrary.PANORAMIO);
+        loadLibraries.add(LoadLibrary.PLACES);
+        loadLibraries.add(LoadLibrary.WEATHER);
+        loadLibraries.add(LoadLibrary.VISUALIZATION);
+
+        Runnable onLoad = new Runnable() {
+            @Override
+            public void run() {
+                draw();
+            }
+        };
+
+        LoadApi.go(onLoad, loadLibraries, sensor);
+    }
+
+    public void draw() {
+        BasicMapWidget wMap = new BasicMapWidget();
+        addMapWidget(wMap);
+    }
+
+    private void addMapWidget(Widget widget) {
+        mapPanel.add(widget);
+    }
+
     public void setUI() {
         leftPanel.getElement().getStyle().setBorderColor("Gray");
         leftPanel.getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
         leftPanel.getElement().getStyle().setWidth(Window.getClientWidth() / 1.5, Style.Unit.PX);
         leftPanel.getElement().getStyle().setHeight(Window.getClientHeight() - 7, Style.Unit.PX);
 
-        searchPanel.getElement().getStyle().setBorderColor("Gray");
-        searchPanel.getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
-        searchPanel.getElement().getStyle().setWidth(Window.getClientWidth() / 1.5, Style.Unit.PX);
-        searchPanel.getElement().getStyle().setHeight(Window.getClientHeight() / 13.0, Style.Unit.PX);
-
         mapPanel.getElement().getStyle().setBorderColor("Gray");
         mapPanel.getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
         mapPanel.getElement().getStyle().setWidth(Window.getClientWidth() / 1.5, Style.Unit.PX);
-        mapPanel.getElement().getStyle().setHeight((1.0 - 1.0 / 13.0) * Window.getClientHeight() - 16, Style.Unit.PX);
+        mapPanel.getElement().getStyle().setHeight(Window.getClientHeight() - 7, Style.Unit.PX);
 
         rightPanel.getElement().getStyle().setBorderColor("Gray");
         rightPanel.getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);

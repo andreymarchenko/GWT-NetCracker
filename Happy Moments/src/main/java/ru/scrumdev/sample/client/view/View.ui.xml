@@ -4,15 +4,9 @@
 
     <g:HorizontalPanel>
         <g:FlowPanel ui:field="leftPanel">
-            <g:FlowPanel ui:field="searchPanel">
-                <g:Label text="Search panel"/>
-            </g:FlowPanel>
             <g:FlowPanel ui:field="mapPanel">
-                <g:Label text="Map panel"/>
-                <g:Button ui:field="updateButton" text="Update data"/>
             </g:FlowPanel>
         </g:FlowPanel>
-
         <g:FlowPanel ui:field="rightPanel">
             <g:FlowPanel ui:field="imagePanel">
                 <g:Label text="Image panel"/>
@@ -26,6 +20,7 @@
                 <g:Label ui:field="time"/>
                 <g:Label ui:field="eventDate" text="Date"/>
                 <g:Label ui:field="date"/>
+                <g:Button ui:field="updateButton" text="Update data"/>
             </g:FlowPanel>
         </g:FlowPanel>
 

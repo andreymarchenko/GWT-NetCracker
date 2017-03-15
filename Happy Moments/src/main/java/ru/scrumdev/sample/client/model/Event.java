@@ -3,7 +3,7 @@ package ru.scrumdev.sample.client.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+//Вынести в пакет entiti
 public class Event {
     private int id;
     private String description;

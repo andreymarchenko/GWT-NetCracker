@@ -39,7 +39,6 @@ public class Presenter {
                 view.updateFields(dataModel.getEvent());
             }
         });
-        controller.bind();
     }
 
     public HandlerRegistration addLoadDataHandler(final LoadDataCommandHandler handler) {
@@ -47,8 +46,7 @@ public class Presenter {
     }
 
     public void loadData() {
-        //controller.setDataToModel(new Event());
         eventBus.fireEvent(LoadDataCommand.create());
-    } //Create command
+    }
 
 }

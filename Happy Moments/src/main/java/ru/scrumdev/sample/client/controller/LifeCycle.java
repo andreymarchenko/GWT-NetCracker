@@ -1,9 +1,11 @@
 package ru.scrumdev.sample.client.controller;
 
+import com.google.gwt.maps.client.LoadApi;
 import ru.scrumdev.sample.client.presenter.Presenter;
 import ru.scrumdev.sample.client.view.View;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 
 public class LifeCycle {
     private View view;

@@ -19,23 +19,24 @@ public class Controller {
     private Presenter presenter;
 
     @Inject
-    public Controller(DataModel dataModel,
+    public Controller(final DataModel dataModel,
                       EventBus eventBus) {
         this.dataModel = dataModel;
         this.eventBus = eventBus;
-    }
-
-    public void setPresenter(Presenter presenter) {
-        this.presenter = presenter;
+        bind();
     }
 
     public void bind() {
-        presenter.addLoadDataHandler(new LoadDataCommandHandler() {
+        eventBus.addHandler(LoadDataCommand.TYPE, new LoadDataCommandHandler() {
             @Override
             public void onLoadData(LoadDataCommand loadDataCommand) {
                 dataModel.setEvent(new Event());
             }
         });
+    }
+
+    public void setPresenter(Presenter presenter) {
+        this.presenter = presenter;
     }
 
     public void setDataToModel(Event event) {
