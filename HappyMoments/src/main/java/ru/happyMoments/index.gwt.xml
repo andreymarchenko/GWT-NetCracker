@@ -10,7 +10,6 @@
     <!-- Specify the app entry point class.                   -->
     <entry-point class='ru.happyMoments.client.entryPoint.HappyMoments'/>
 
-
     <!-- Specify the app servlets.                   -->
     <servlet path='/HappyMomentsService' class='ru.happyMoments.server.HappyMomentsServiceImpl'/>
 

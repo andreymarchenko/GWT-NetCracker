@@ -5,7 +5,7 @@
         <g:FlowPanel ui:field="mapPanel"></g:FlowPanel>
         <g:FlowPanel ui:field="rightPanel">
             <g:FlowPanel ui:field="imagePanel">
-                <g:Label text="Image panel"/>
+                <g:Image ui:field="image"/>
             </g:FlowPanel>
             <g:FlowPanel ui:field="infoPanel">
                 <g:Label ui:field="eventName" text="Name"/>
