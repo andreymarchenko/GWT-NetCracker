@@ -1,2 +1,0 @@
-# Module ru.scrumdev.sample.propertyJUnit.JUnit
-# RPC service class, partial path of RPC policy file

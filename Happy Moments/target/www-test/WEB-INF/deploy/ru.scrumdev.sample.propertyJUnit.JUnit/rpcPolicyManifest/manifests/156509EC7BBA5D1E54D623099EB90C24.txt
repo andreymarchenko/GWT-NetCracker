@@ -1,2 +1,0 @@
-serviceClass: ru.scrumdev.sample.client.GreetingService
-path: C5192B680967299FC07E5D448E047815.gwt.rpc
