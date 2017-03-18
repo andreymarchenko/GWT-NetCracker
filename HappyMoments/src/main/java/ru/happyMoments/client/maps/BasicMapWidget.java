@@ -1,9 +1,5 @@
 package ru.happyMoments.client.maps;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Style;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.maps.client.MapOptions;
 import com.google.gwt.maps.client.MapTypeId;
 import com.google.gwt.maps.client.MapWidget;
@@ -29,128 +25,59 @@ import com.google.gwt.maps.client.overlays.InfoWindowOptions;
 import com.google.gwt.maps.client.overlays.Marker;
 import com.google.gwt.maps.client.overlays.MarkerOptions;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import ru.happyMoments.client.presenter.Presenter;
+
+import javax.inject.Inject;
+import java.util.ArrayList;
 
 public class BasicMapWidget extends Composite {
 
     private final VerticalPanel pWidget;
     private MapWidget mapWidget;
-
-    private Marker markerBasic;
-    private Marker markerBouncing;
-    private Marker markerDrop;
+    private ArrayList<Marker> markers;
 
     public BasicMapWidget() {
         pWidget = new VerticalPanel();
         initWidget(pWidget);
-        draw();
-    }
-
-    private void draw() {
-        Button addBounceMarkerButton = new Button("Add Marker with Bounce");
-        addBounceMarkerButton.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                if (markerBouncing != null) {
-                    markerBouncing.clear();
-                }
-                drawMarkerWithBounceAnimation();
-            }
-        });
-
-        Button addDropMarkerButton = new Button("Add Marker with Drop");
-        addDropMarkerButton.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                if (markerDrop != null) {
-                    markerDrop.clear();
-                }
-                drawMarkerWithDropAnimation();
-            }
-        });
-
-        Button stopAnimationsButton = new Button("Stop Animations");
-        stopAnimationsButton.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                if (markerBasic != null) {
-                    markerBasic.setAnimation(Animation.STOPANIMATION);
-                }
-                if (markerBouncing != null) {
-                    markerBouncing.setAnimation(Animation.STOPANIMATION);
-                }
-                if (markerDrop != null) {
-                    markerDrop.setAnimation(Animation.STOPANIMATION);
-                }
-            }
-        });
-
-        Button startAnimationsButton = new Button("Start Animations");
-        startAnimationsButton.addClickHandler(new ClickHandler() {
-            public void onClick(ClickEvent event) {
-                if (markerBasic != null) {
-                    markerBasic.setAnimation(Animation.BOUNCE);
-                }
-                if (markerBouncing != null) {
-                    markerBouncing.setAnimation(Animation.BOUNCE);
-                }
-                if (markerDrop != null) {
-                    markerDrop.setAnimation(Animation.DROP);
-                }
-            }
-        });
         drawMap();
         drawMapAds();
-        drawBasicMarker();
     }
 
-    private void drawBasicMarker() {
-        LatLng center = LatLng.newInstance(47.8, -121.4);
-        MarkerOptions options = MarkerOptions.newInstance();
-        options.setPosition(center);
-        options.setTitle("Hello World");
-
-        markerBasic = Marker.newInstance(options);
-        markerBasic.setMap(mapWidget);
-
-        markerBasic.addClickHandler(new ClickMapHandler() {
-            @Override
-            public void onEvent(ClickMapEvent event) {
-                drawInfoWindow(markerBasic, event.getMouseEvent());
-            }
-        });
+    private void stopAnimation() {
+        for (Marker m : markers) {
+            m.setAnimation(Animation.STOPANIMATION);
+        }
     }
 
-    private void drawMarkerWithBounceAnimation() {
-        LatLng center = LatLng.newInstance(46.33, -113.81);
+    private void drawMarkerWithDropAnimation(double latitude, double longitude) {
         MarkerOptions options = MarkerOptions.newInstance();
-        options.setPosition(center);
-        options.setTitle("Hi I'm marker 2. Thanks for clicking on me.");
-        options.setAnimation(Animation.BOUNCE);
-
-        markerBouncing = Marker.newInstance(options);
-        markerBouncing.setMap(mapWidget);
-    }
-
-    private void drawMarkerWithDropAnimation() {
-        LatLng center = LatLng.newInstance(56.1937, 44.0027);
-        MarkerOptions options = MarkerOptions.newInstance();
-        options.setPosition(center);
+        options.setPosition(LatLng.newInstance(latitude, longitude));
         options.setTitle("Thanks for clicking on me.");
         options.setAnimation(Animation.DROP);
 
-        markerDrop = Marker.newInstance(options);
-        markerDrop.setMap(mapWidget);
+        final Marker marker = Marker.newInstance(options);
+        marker.setMap(mapWidget);
+
+        marker.addClickHandler(new ClickMapHandler() {
+            @Override
+            public void onEvent(ClickMapEvent event) {
+                marker.setAnimation(Animation.BOUNCE);
+                //drawInfoWindow(marker, event.getMouseEvent());
+            }
+        });
+        markers.add(marker);
     }
 
     protected void drawInfoWindow(Marker marker, MouseEvent mouseEvent) {
+
         if (marker == null || mouseEvent == null) {
             return;
         }
 
         HTML html = new HTML("You clicked on: " + mouseEvent.getLatLng().getToString());
-
         InfoWindowOptions options = InfoWindowOptions.newInstance();
         options.setContent(html);
         InfoWindow iw = InfoWindow.newInstance(options);
@@ -167,16 +94,12 @@ public class BasicMapWidget extends Composite {
         mapWidget = new MapWidget(opts);
         pWidget.add(mapWidget);
         mapWidget.setSize(Double.toString(Window.getClientWidth() / 1.36),
-                          Double.toString(Window.getClientHeight() - 20));
+                Double.toString(Window.getClientHeight() - 20));
         mapWidget.addClickHandler(new ClickMapHandler() {
             @Override
             public void onEvent(ClickMapEvent event) {
-                if (markerDrop != null) {
-                    markerDrop.clear();
-                }
-                drawMarkerWithDropAnimation();
-                // TODO fix the event getting, getting ....
-                GWT.log("clicked on latlng=" + event.getMouseEvent().getLatLng());
+                drawMarkerWithDropAnimation(event.getMouseEvent().getLatLng().getLatitude(),
+                        event.getMouseEvent().getLatLng().getLongitude());
             }
         });
     }

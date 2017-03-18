@@ -11,7 +11,6 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 import javax.inject.Inject;
-import java.awt.*;
 import java.util.ArrayList;
 import com.google.gwt.maps.client.LoadApi.LoadLibrary;
 import com.google.gwt.user.client.ui.Button;
@@ -60,6 +59,15 @@ public class View extends Composite {
     private EventBus eventBus;
     private Presenter presenter;
 
+    private static final double MAP_PANEL_WIDTH_REDUCTION = 1.36;
+    private static final double MAP_PANEL_HEIGHT_REDUCTION = 20;
+    private static final double RIGHT_PANEL_WIDTH_REDUCTION = 0.25;
+    private static final double IMAGE_PANEL_HEIGHT_REDUCTION = 2.5;
+    private static final double INFO_PANEL_HEIGHT_REDUCTION = 0.55;
+    private static final double TOP_PADDING_UPPER_ELEMENT = 30;
+    private static final double TOP_PADDING_LOWER_ELEMENT = 30;
+    private static final double TOP_PADDING_LEFT = 30;
+
     @Inject
     public View(EventBus eventBus) {
         this.eventBus = eventBus;
@@ -83,8 +91,8 @@ public class View extends Composite {
                 presenter.loadData();
                 image.setUrl("http://www.google.com/images/logo.gif");
                 image.setVisibleRect(-35, -80,
-                        (int)(0.25 * Window.getClientWidth()),
-                        (int)(Window.getClientHeight() / 2.5));
+                        (int) (0.25 * Window.getClientWidth()),
+                        (int) (Window.getClientHeight() / 2.5));
                 imagePanel.add(image);
             }
         });
@@ -123,41 +131,42 @@ public class View extends Composite {
     }
 
     public void setUI() {
-        mapPanel.getElement().getStyle().setWidth(Window.getClientWidth() / 1.36, Style.Unit.PX);
-        mapPanel.getElement().getStyle().setHeight(Window.getClientHeight() - 20, Style.Unit.PX);
 
-        rightPanel.getElement().getStyle().setWidth(0.25 * Window.getClientWidth(), Style.Unit.PX);
-        rightPanel.getElement().getStyle().setHeight(Window.getClientHeight() - 20, Style.Unit.PX);
+        mapPanel.getElement().getStyle().setWidth(Window.getClientWidth() / MAP_PANEL_WIDTH_REDUCTION, Style.Unit.PX);
+        mapPanel.getElement().getStyle().setHeight(Window.getClientHeight() - MAP_PANEL_HEIGHT_REDUCTION, Style.Unit.PX);
+
+        rightPanel.getElement().getStyle().setWidth(RIGHT_PANEL_WIDTH_REDUCTION * Window.getClientWidth(), Style.Unit.PX);
+        rightPanel.getElement().getStyle().setHeight(Window.getClientHeight() - MAP_PANEL_HEIGHT_REDUCTION, Style.Unit.PX);
 
         imagePanel.getElement().getStyle().setBorderColor("Gray");
         imagePanel.getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
-        imagePanel.getElement().getStyle().setWidth(0.25 * Window.getClientWidth(), Style.Unit.PX);
-        imagePanel.getElement().getStyle().setHeight(Window.getClientHeight() / 2.5, Style.Unit.PX);
+        imagePanel.getElement().getStyle().setWidth(RIGHT_PANEL_WIDTH_REDUCTION * Window.getClientWidth(), Style.Unit.PX);
+        imagePanel.getElement().getStyle().setHeight(Window.getClientHeight() / IMAGE_PANEL_HEIGHT_REDUCTION, Style.Unit.PX);
 
         infoPanel.getElement().getStyle().setBorderColor("Gray");
         infoPanel.getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
-        infoPanel.getElement().getStyle().setWidth(0.25 * Window.getClientWidth(), Style.Unit.PX);
-        infoPanel.getElement().getStyle().setHeight(3.0 / 5.0 * Window.getClientHeight() - 31, Style.Unit.PX);
+        infoPanel.getElement().getStyle().setWidth(RIGHT_PANEL_WIDTH_REDUCTION * Window.getClientWidth(), Style.Unit.PX);
+        infoPanel.getElement().getStyle().setHeight(INFO_PANEL_HEIGHT_REDUCTION * Window.getClientHeight(), Style.Unit.PX);
 
-        eventName.getElement().getStyle().setPaddingTop(30, Style.Unit.PX);
-        eventName.getElement().getStyle().setPaddingLeft(15, Style.Unit.PX);
-        name.getElement().getStyle().setPaddingTop(15, Style.Unit.PX);
-        name.getElement().getStyle().setPaddingLeft(15, Style.Unit.PX);
+        eventName.getElement().getStyle().setPaddingTop(TOP_PADDING_UPPER_ELEMENT, Style.Unit.PX);
+        eventName.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);
+        name.getElement().getStyle().setPaddingTop(TOP_PADDING_LOWER_ELEMENT, Style.Unit.PX);
+        name.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);
 
-        eventDescription.getElement().getStyle().setPaddingTop(30, Style.Unit.PX);
-        eventDescription.getElement().getStyle().setPaddingLeft(15, Style.Unit.PX);
-        description.getElement().getStyle().setPaddingTop(15, Style.Unit.PX);
-        description.getElement().getStyle().setPaddingLeft(15, Style.Unit.PX);
+        eventDescription.getElement().getStyle().setPaddingTop(TOP_PADDING_UPPER_ELEMENT, Style.Unit.PX);
+        eventDescription.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);
+        description.getElement().getStyle().setPaddingTop(TOP_PADDING_LOWER_ELEMENT, Style.Unit.PX);
+        description.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);
 
-        eventTime.getElement().getStyle().setPaddingTop(30, Style.Unit.PX);
-        eventTime.getElement().getStyle().setPaddingLeft(15, Style.Unit.PX);
-        time.getElement().getStyle().setPaddingTop(15, Style.Unit.PX);
-        time.getElement().getStyle().setPaddingLeft(15, Style.Unit.PX);
+        eventTime.getElement().getStyle().setPaddingTop(TOP_PADDING_UPPER_ELEMENT, Style.Unit.PX);
+        eventTime.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);
+        time.getElement().getStyle().setPaddingTop(TOP_PADDING_LOWER_ELEMENT, Style.Unit.PX);
+        time.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);
 
-        eventDate.getElement().getStyle().setPaddingTop(30, Style.Unit.PX);
-        eventDate.getElement().getStyle().setPaddingLeft(15, Style.Unit.PX);
-        date.getElement().getStyle().setPaddingTop(15, Style.Unit.PX);
-        date.getElement().getStyle().setPaddingLeft(15, Style.Unit.PX);
+        eventDate.getElement().getStyle().setPaddingTop(TOP_PADDING_UPPER_ELEMENT, Style.Unit.PX);
+        eventDate.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);
+        date.getElement().getStyle().setPaddingTop(TOP_PADDING_LOWER_ELEMENT, Style.Unit.PX);
+        date.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);
     }
 
     public void updateFields(Event event) {
