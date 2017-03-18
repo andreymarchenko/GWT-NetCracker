@@ -25,9 +25,11 @@ public class DataModel {
     }
 
     public void setEvent(Event event) {
-        //Сюда проверку на эвент
-        this.event = event;
-        eventBus.fireEvent(ChangeDataEvent.create());
+        if (event == null) return;
+        else {
+            this.event = event;
+            eventBus.fireEvent(ChangeDataEvent.create());
+        }
     }
 
     public Event getEvent() {

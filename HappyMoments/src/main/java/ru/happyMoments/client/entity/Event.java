@@ -14,11 +14,11 @@ public class Event {
 
     public Event() {
         this.id = 1;
-        this.description = "Some Discription";
+        this.description = "Some description";
         this.date = new Date();
         this.name = "First Event";
         ArrayList<Image> list = new ArrayList<>();
-        Image img = new Image(1, "C:\\GWT-NetCracker\\Happy Moments\\src\\main\\resources\\ru\\scrumdev\\sample\\1.png");
+        Image img = new Image(1, " ");
         list.add(img);
         this.images = list;
         this.time = "21.00";
