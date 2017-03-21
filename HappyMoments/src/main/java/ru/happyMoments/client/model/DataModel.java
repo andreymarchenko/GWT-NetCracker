@@ -25,6 +25,7 @@ public class DataModel {
     }
 
     public void setEvent(Event event) {
+        //Проверка на эвент, который уже выбран + тест
         if (event == null) return;
         else {
             this.event = event;

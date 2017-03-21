@@ -10,21 +10,25 @@ public class Event {
     private Date date;
     private String name;
     private String time;
-    private ArrayList<Image> images;
+    private List<Image> images;
 
     public Event() {
         this.id = 1;
         this.description = "Some description";
         this.date = new Date();
         this.name = "First Event";
-        ArrayList<Image> list = new ArrayList<>();
-        Image img = new Image(1, " ");
+        List<Image> list = new ArrayList<>();
+        Image img = new Image(1, "http://www.google.com/images/logo.gif");
         list.add(img);
         this.images = list;
         this.time = "21.00";
     }
-
-    public Event(int id, String description, Date date, String name, ArrayList<Image> images, String time) {
+    public Event(int id,
+                 String description,
+                 Date date,
+                 String name,
+                 List<Image> images,
+                 String time) {
         this.id = id;
         this.description = description;
         this.date = date;

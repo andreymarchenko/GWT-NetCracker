@@ -18,7 +18,6 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import ru.happyMoments.client.entity.Event;
-import ru.happyMoments.client.maps.BasicMapWidget;
 import ru.happyMoments.client.presenter.Presenter;
 
 public class View extends Composite {
@@ -89,11 +88,6 @@ public class View extends Composite {
             @Override
             public void onClick(ClickEvent clickEvent) {
                 presenter.loadData();
-                image.setUrl("http://www.google.com/images/logo.gif");
-                image.setVisibleRect(-35, -80,
-                        (int) (0.25 * Window.getClientWidth()),
-                        (int) (Window.getClientHeight() / 2.5));
-                imagePanel.add(image);
             }
         });
     }
@@ -123,6 +117,7 @@ public class View extends Composite {
 
     public void draw() {
         BasicMapWidget wMap = new BasicMapWidget();
+        wMap.setPresenter(presenter);
         addMapWidget(wMap);
     }
 
@@ -174,5 +169,10 @@ public class View extends Composite {
         this.description.setText(event.getDescription());
         this.date.setText(event.getDate().toString());
         this.time.setText(event.getTime());
+        image.setUrl(event.getImages().get(0).getUrl());
+        image.setVisibleRect(-35, -80,
+                (int) (0.25 * Window.getClientWidth()),
+                (int) (Window.getClientHeight() / 2.5));
+        imagePanel.add(image);
     }
 }

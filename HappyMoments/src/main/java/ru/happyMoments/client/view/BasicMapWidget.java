@@ -1,4 +1,4 @@
-package ru.happyMoments.client.maps;
+package ru.happyMoments.client.view;
 
 import com.google.gwt.maps.client.MapOptions;
 import com.google.gwt.maps.client.MapTypeId;
@@ -32,15 +32,18 @@ import ru.happyMoments.client.presenter.Presenter;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.List;
 
 public class BasicMapWidget extends Composite {
 
     private final VerticalPanel pWidget;
     private MapWidget mapWidget;
-    private ArrayList<Marker> markers;
+    private List<Marker> markers;
+    private Presenter presenter;
 
     public BasicMapWidget() {
         pWidget = new VerticalPanel();
+        markers = new ArrayList<>();
         initWidget(pWidget);
         drawMap();
         drawMapAds();
@@ -52,22 +55,32 @@ public class BasicMapWidget extends Composite {
         }
     }
 
+    public void setPresenter(Presenter presenter) {
+        this.presenter = presenter;
+    }
+
     private void drawMarkerWithDropAnimation(double latitude, double longitude) {
         MarkerOptions options = MarkerOptions.newInstance();
         options.setPosition(LatLng.newInstance(latitude, longitude));
         options.setTitle("Thanks for clicking on me.");
         options.setAnimation(Animation.DROP);
 
+        stopAnimation();
         final Marker marker = Marker.newInstance(options);
         marker.setMap(mapWidget);
+        markers.add(marker);
 
         marker.addClickHandler(new ClickMapHandler() {
             @Override
             public void onEvent(ClickMapEvent event) {
+
                 marker.setAnimation(Animation.BOUNCE);
+                presenter.loadData();
+
                 //drawInfoWindow(marker, event.getMouseEvent());
             }
         });
+
         markers.add(marker);
     }
 

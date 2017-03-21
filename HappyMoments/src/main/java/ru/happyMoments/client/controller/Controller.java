@@ -13,8 +13,6 @@ public class Controller {
 
     private final DataModel dataModel;
     private EventBus eventBus;
-    private Presenter presenter;
-
     @Inject
     public Controller(final DataModel dataModel,
                       EventBus eventBus) {
@@ -30,13 +28,5 @@ public class Controller {
                 dataModel.setEvent(new Event());
             }
         });
-    }
-
-    public void setPresenter(Presenter presenter) {
-        this.presenter = presenter;
-    }
-
-    public void setDataToModel(Event event) {
-        this.dataModel.setEvent(event);
     }
 }

@@ -8,6 +8,7 @@ import ru.happyMoments.client.controller.Controller;
 import ru.happyMoments.client.controller.LifeCycle;
 import ru.happyMoments.client.model.DataModel;
 import ru.happyMoments.client.presenter.Presenter;
+import ru.happyMoments.client.view.BasicMapWidget;
 import ru.happyMoments.client.view.View;
 
 public class Module extends AbstractGinModule {

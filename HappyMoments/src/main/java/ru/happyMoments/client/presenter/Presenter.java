@@ -28,7 +28,6 @@ public class Presenter {
         this.view = view;
         this.eventBus = eventBus;
         view.setPresenter(this);
-        controller.setPresenter(this);
     }
 
     public void bind() {
