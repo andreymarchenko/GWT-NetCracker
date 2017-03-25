@@ -10,6 +10,6 @@ import javax.ws.rs.*;
 public interface EndPoint extends RestService {
 
     @GET
-    @Path("")
-    void loadEvent(MethodCallback<EventDto> callback);
+    @Path("/events")
+    void loadEvent(MethodCallback callback);
 }
