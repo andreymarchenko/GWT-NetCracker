@@ -3,12 +3,19 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
+
     <servlet>
-        <servlet-name>ru.happyMoments.HappyMoments HappyMomentsService</servlet-name>
-        <servlet-class>ru.happyMoments.server.HappyMomentsServiceImpl</servlet-class>
+        <servlet-name>RestApi</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>happyMoments.server.service</param-value>
+        </init-param>
     </servlet>
+
     <servlet-mapping>
-        <servlet-name>ru.happyMoments.HappyMoments HappyMomentsService</servlet-name>
-        <url-pattern>/HappyMoments/HappyMomentsService</url-pattern>
+        <servlet-name>RestApi</servlet-name>
+        <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
+
 </web-app>

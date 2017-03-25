@@ -1,9 +1,7 @@
 package ru.happyMoments.client.presenter;
 
 import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.event.shared.HandlerRegistration;
 import ru.happyMoments.client.commands.LoadDataCommand;
-import ru.happyMoments.client.commands.LoadDataCommandHandler;
 import ru.happyMoments.client.controller.Controller;
 import ru.happyMoments.client.events.ChangeDataEvent;
 import ru.happyMoments.client.events.ChangeDataEventHandler;
@@ -34,13 +32,9 @@ public class Presenter {
         dataModel.addDataChangedEventHandler(new ChangeDataEventHandler() {
             @Override
             public void onChangeData(ChangeDataEvent changeDataEvent) {
-                view.updateFields(dataModel.getEvent());
+                view.updateFields(dataModel.getEventDto());
             }
         });
-    }
-
-    public HandlerRegistration addLoadDataHandler(final LoadDataCommandHandler handler) {
-        return eventBus.addHandler(LoadDataCommand.TYPE, handler);
     }
 
     public void loadData() {

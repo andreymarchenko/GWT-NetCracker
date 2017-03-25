@@ -1,36 +1,37 @@
 package ru.happyMoments.client.entity;
 
 import org.junit.Test;
+import ru.happyMoments.shared.dto.EventDto;
 
 import static org.junit.Assert.*;
 
-public class EventTest {
+public class EventDtoTest {
     @Test
     public void getTime() throws Exception {
-        Event event = new Event();
-        String time = event.getTime();
+        EventDto eventDto = new EventDto();
+        String time = eventDto.getTime();
         assertEquals("21.00", time);
     }
 
     @Test
     public void getId() throws Exception {
-        Event event = new Event();
-        int id = event.getId();
+        EventDto eventDto = new EventDto();
+        int id = eventDto.getId();
         assertEquals(1, id);
     }
 
     @Test
     public void getDescription() throws Exception {
-        Event event = new Event();
-        String desc = event.getDescription();
+        EventDto eventDto = new EventDto();
+        String desc = eventDto.getDescription();
         assertEquals("Some description", desc);
     }
 
     @Test
     public void getName() throws Exception {
-        Event event = new Event();
-        String name = event.getName();
-        assertEquals("First Event", name);
+        EventDto eventDto = new EventDto();
+        String name = eventDto.getName();
+        assertEquals("First EventDto", name);
     }
 
 }

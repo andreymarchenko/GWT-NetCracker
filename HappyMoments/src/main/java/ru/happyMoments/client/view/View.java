@@ -17,7 +17,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
-import ru.happyMoments.client.entity.Event;
+import ru.happyMoments.shared.dto.EventDto;
 import ru.happyMoments.client.presenter.Presenter;
 
 public class View extends Composite {
@@ -164,12 +164,12 @@ public class View extends Composite {
         date.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);
     }
 
-    public void updateFields(Event event) {
-        this.name.setText(event.getName());
-        this.description.setText(event.getDescription());
-        this.date.setText(event.getDate().toString());
-        this.time.setText(event.getTime());
-        image.setUrl(event.getImages().get(0).getUrl());
+    public void updateFields(EventDto eventDto) {
+        this.name.setText(eventDto.getName());
+        this.description.setText(eventDto.getDescription());
+        this.date.setText(eventDto.getDate().toString());
+        this.time.setText(eventDto.getTime());
+        image.setUrl(eventDto.getImages().get(0).getUrl());
         image.setVisibleRect(-35, -80,
                 (int) (0.25 * Window.getClientWidth()),
                 (int) (Window.getClientHeight() / 2.5));

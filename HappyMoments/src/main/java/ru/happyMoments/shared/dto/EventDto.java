@@ -1,34 +1,38 @@
-package ru.happyMoments.client.entity;
+package ru.happyMoments.shared.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Event {
+public class EventDto implements Serializable{
     private int id;
     private String description;
     private Date date;
     private String name;
     private String time;
-    private List<Image> images;
+    private List<ImageDto> images;
 
-    public Event() {
+    public EventDto() {
         this.id = 1;
         this.description = "Some description";
         this.date = new Date();
-        this.name = "First Event";
-        List<Image> list = new ArrayList<>();
-        Image img = new Image(1, "http://www.google.com/images/logo.gif");
+        this.name = "First EventDto";
+        List<ImageDto> list = new ArrayList<>();
+        ImageDto img = new ImageDto(1, "http://www.google.com/images/logo.gif");
         list.add(img);
         this.images = list;
         this.time = "21.00";
     }
-    public Event(int id,
-                 String description,
-                 Date date,
-                 String name,
-                 List<Image> images,
-                 String time) {
+
+    public EventDto(@JsonProperty("id") int id,
+                    @JsonProperty("description") String description,
+                    @JsonProperty("date") Date date,
+                    @JsonProperty("name") String name,
+                    @JsonProperty("images") List<ImageDto> images,
+                    @JsonProperty("time") String time) {
         this.id = id;
         this.description = description;
         this.date = date;
@@ -77,11 +81,11 @@ public class Event {
         this.name = name;
     }
 
-    public List<Image> getImages() {
+    public List<ImageDto> getImages() {
         return images;
     }
 
-    public void setImages(ArrayList<Image> images) {
+    public void setImages(ArrayList<ImageDto> images) {
         this.images = images;
     }
 }
