@@ -14,7 +14,7 @@ public class EventTest {
     public void constructor() throws Exception {
         Date date = new Date(21122007);
         ArrayList<Image> list = new ArrayList<Image>(1);
-        Event event = new Event(3, "This is first event", new Date(), "First Event", list, "18:00");
+        Event event = new Event(3, "This is first event", new Date(21122007), "First Event", list, "18:00");
 
         assertEquals(3 , event.getId());
         assertEquals("This is first event" , event.getDescription());

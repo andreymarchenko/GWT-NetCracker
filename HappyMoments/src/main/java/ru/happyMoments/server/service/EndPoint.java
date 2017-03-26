@@ -1,5 +1,7 @@
 package ru.happyMoments.server.service;
 
+import ru.happyMoments.server.dto.EventDto;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -10,5 +12,5 @@ public interface EndPoint {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public void loadEvent();
+    public EventDto loadEvent();
 }
