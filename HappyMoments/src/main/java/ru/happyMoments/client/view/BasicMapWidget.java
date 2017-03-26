@@ -28,11 +28,14 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import ru.happyMoments.client.entity.Event;
+import ru.happyMoments.client.entity.Image;
 import ru.happyMoments.client.presenter.Presenter;
 
-import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 public class BasicMapWidget extends Composite {
 
@@ -47,6 +50,9 @@ public class BasicMapWidget extends Composite {
         initWidget(pWidget);
         drawMap();
         drawMapAds();
+        drawMarkerWithDropAnimation(56.32867, 44.00205);
+        drawMarkerWithDropAnimation(56.322, 44.098);
+        drawMarkerWithDropAnimation(56.331, 44.008);
     }
 
     private void stopAnimation() {
@@ -75,7 +81,12 @@ public class BasicMapWidget extends Composite {
             public void onEvent(ClickMapEvent event) {
 
                 marker.setAnimation(Animation.BOUNCE);
-                presenter.loadData();
+                List<Image> list = new ArrayList<>();
+                Image img = new Image(1, "http://www.google.com/images/logo.gif");
+                list.add(img);
+
+                presenter.loadData(new Event(markers.size(),
+                        "Some description", new Date(), "Some name", list, "22:00"));
 
                 //drawInfoWindow(marker, event.getMouseEvent());
             }

@@ -1,4 +1,4 @@
-package ru.happyMoments.shared.dto;
+package ru.happyMoments.server.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;

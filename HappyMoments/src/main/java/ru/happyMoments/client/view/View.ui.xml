@@ -19,7 +19,6 @@
                 <g:Label ui:field="time"/>
                 <g:Label ui:field="eventDate" text="Date"/>
                 <g:Label ui:field="date"/>
-                <g:Button ui:field="updateButton" text="Update data"/>
             </g:FlowPanel>
         </g:FlowPanel>
     </g:HorizontalPanel>

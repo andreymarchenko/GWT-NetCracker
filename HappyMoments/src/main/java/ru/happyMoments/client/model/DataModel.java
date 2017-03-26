@@ -2,7 +2,7 @@ package ru.happyMoments.client.model;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.HandlerRegistration;
-import ru.happyMoments.shared.dto.EventDto;
+import ru.happyMoments.client.entity.Event;
 import ru.happyMoments.client.events.ChangeDataEvent;
 import ru.happyMoments.client.events.ChangeDataEventHandler;
 
@@ -10,13 +10,13 @@ import javax.inject.Inject;
 
 public class DataModel {
 
-    private EventDto eventDto;
+    private Event event;
     private EventBus eventBus;
 
     @Inject
-    public void DataModel(EventDto eventDto,
+    public void DataModel(Event event,
                           EventBus eventBus) {
-        this.eventDto = eventDto;
+        this.event = event;
         this.eventBus = eventBus;
     }
 
@@ -24,16 +24,15 @@ public class DataModel {
         return eventBus.addHandler(ChangeDataEvent.TYPE, handler);
     }
 
-    public void setEventDto(EventDto eventDto) {
-        //Проверка на эвент, который уже выбран + тест
-        if (eventDto == null) return;
+    public void setEvent(Event event) {
+        if (event.equals(this.event)) return;
         else {
-            this.eventDto = eventDto;
+            this.event = event;
             eventBus.fireEvent(ChangeDataEvent.create());
         }
     }
 
-    public EventDto getEventDto() {
-        return eventDto;
+    public Event getEvent() {
+        return event;
     }
 }

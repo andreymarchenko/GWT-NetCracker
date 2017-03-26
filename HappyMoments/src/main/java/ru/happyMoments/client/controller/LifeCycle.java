@@ -19,6 +19,5 @@ public class LifeCycle {
     public void start() {
         view.createUI();
         presenter.bind();
-        view.bind();
     }
 }

@@ -1,38 +1,35 @@
-package ru.happyMoments.shared.dto;
+package ru.happyMoments.client.entity;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class EventDto implements Serializable{
+public class Event{
     private int id;
     private String description;
     private Date date;
     private String name;
     private String time;
-    private List<ImageDto> images;
+    private List<Image> images;
 
-    public EventDto() {
+    public Event() {
         this.id = 1;
         this.description = "Some description";
         this.date = new Date();
-        this.name = "First EventDto";
-        List<ImageDto> list = new ArrayList<>();
-        ImageDto img = new ImageDto(1, "http://www.google.com/images/logo.gif");
+        this.name = "First Event";
+        List<Image> list = new ArrayList<>();
+        Image img = new Image(1, "http://www.google.com/images/logo.gif");
         list.add(img);
         this.images = list;
         this.time = "21.00";
     }
 
-    public EventDto(@JsonProperty("id") int id,
-                    @JsonProperty("description") String description,
-                    @JsonProperty("date") Date date,
-                    @JsonProperty("name") String name,
-                    @JsonProperty("images") List<ImageDto> images,
-                    @JsonProperty("time") String time) {
+    public Event(int id,
+                 String description,
+                 Date date,
+                 String name,
+                 List<Image> images,
+                 String time) {
         this.id = id;
         this.description = description;
         this.date = date;
@@ -81,11 +78,11 @@ public class EventDto implements Serializable{
         this.name = name;
     }
 
-    public List<ImageDto> getImages() {
+    public List<Image> getImages() {
         return images;
     }
 
-    public void setImages(ArrayList<ImageDto> images) {
+    public void setImages(ArrayList<Image> images) {
         this.images = images;
     }
 }
