@@ -1,4 +1,4 @@
-package ru.happyMoments.server.dto;
+package ru.happyMoments.shared.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import ru.happyMoments.client.entity.Image;
@@ -14,15 +14,15 @@ public class EventDto implements Serializable{
     private Date date;
     private String name;
     private String time;
-    private List<Image> images;
+    private List<ImageDto> images;
 
     public EventDto() {
         this.id = 1;
         this.description = "Some description";
         this.date = new Date();
         this.name = "First Event";
-        List<Image> list = new ArrayList<>();
-        Image img = new Image(1, "http://www.google.com/images/logo.gif");
+        List<ImageDto> list = new ArrayList<>();
+        ImageDto img = new ImageDto(1, "http://www.google.com/images/logo.gif");
         list.add(img);
         this.images = list;
         this.time = "21.00";
@@ -32,7 +32,7 @@ public class EventDto implements Serializable{
                     @JsonProperty("description") String description,
                     @JsonProperty("date") Date date,
                     @JsonProperty("name") String name,
-                    @JsonProperty("images") List<Image> images,
+                    @JsonProperty("images") List<ImageDto> images,
                     @JsonProperty("time") String time) {
         this.id = id;
         this.description = description;
@@ -82,11 +82,19 @@ public class EventDto implements Serializable{
         this.name = name;
     }
 
-    public List<Image> getImages() {
-        return images;
+    @Override
+    public String toString() {
+        return "EventDto{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", date=" + date +
+                ", name='" + name + '\'' +
+                ", time='" + time + '\'' +
+                ", images=" + images +
+                '}';
     }
 
-    public void setImages(ArrayList<Image> images) {
-        this.images = images;
+    public List<ImageDto> getImages() {
+        return images;
     }
 }

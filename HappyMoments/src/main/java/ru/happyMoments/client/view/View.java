@@ -52,6 +52,8 @@ public class View extends Composite {
     Label eventDate;
     @UiField
     Image image;
+    @UiField
+    Label label;
 
     private EventBus eventBus;
     private Presenter presenter;
@@ -111,6 +113,10 @@ public class View extends Composite {
 
     private void addMapWidget(Widget widget) {
         mapPanel.add(widget);
+    }
+
+    public Label getLabel() {
+        return label;
     }
 
     public void setUI() {

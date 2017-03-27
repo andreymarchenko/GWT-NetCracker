@@ -19,6 +19,7 @@
                 <g:Label ui:field="time"/>
                 <g:Label ui:field="eventDate" text="Date"/>
                 <g:Label ui:field="date"/>
+                <g:Label ui:field="label"/>
             </g:FlowPanel>
         </g:FlowPanel>
     </g:HorizontalPanel>

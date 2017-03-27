@@ -1,10 +1,12 @@
 package ru.happyMoments.client.controller;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
 import ru.happyMoments.client.commands.LoadDataCommand;
 import ru.happyMoments.client.commands.LoadDataCommandHandler;
 import ru.happyMoments.client.entity.Event;
 import ru.happyMoments.client.model.DataModel;
+import ru.happyMoments.client.service.EndPoint;
 
 import javax.inject.Inject;
 
@@ -12,6 +14,8 @@ public class Controller {
 
     private final DataModel dataModel;
     private EventBus eventBus;
+
+
 
     @Inject
     public Controller(final DataModel dataModel,

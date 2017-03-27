@@ -2,6 +2,7 @@ package ru.happyMoments.client.service;
 
 import org.fusesource.restygwt.client.MethodCallback;
 import org.fusesource.restygwt.client.RestService;
+import ru.happyMoments.shared.dto.EventDto;
 
 import javax.ws.rs.*;
 
@@ -10,5 +11,5 @@ public interface EndPoint extends RestService {
 
     @GET
     @Path("/events")
-    void loadEvent(MethodCallback callback);
+    void loadEvent(MethodCallback<EventDto> callback);
 }

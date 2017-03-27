@@ -5,6 +5,7 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import ru.happyMoments.client.entity.Event;
 import ru.happyMoments.client.events.ChangeDataEvent;
 import ru.happyMoments.client.events.ChangeDataEventHandler;
+import ru.happyMoments.shared.dto.EventDto;
 
 import javax.inject.Inject;
 
@@ -31,6 +32,10 @@ public class DataModel {
             eventBus.fireEvent(ChangeDataEvent.create());
         }
     }
+
+    public void setEvent(EventDto event) {
+            eventBus.fireEvent(ChangeDataEvent.create());
+        }
 
     public Event getEvent() {
         return event;
