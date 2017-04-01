@@ -1,8 +1,6 @@
 package ru.happyMoments.shared.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import ru.happyMoments.client.entity.Image;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,32 +12,30 @@ public class EventDto implements Serializable{
     private Date date;
     private String name;
     private String time;
-    private List<ImageDto> images;
+    private ImageDto image;
+    private double latitude;
+    private double longitude;
 
     public EventDto() {
-        this.id = 1;
-        this.description = "Some description";
-        this.date = new Date();
-        this.name = "First Event";
-        List<ImageDto> list = new ArrayList<>();
-        ImageDto img = new ImageDto(1, "http://www.google.com/images/logo.gif");
-        list.add(img);
-        this.images = list;
-        this.time = "21.00";
+
     }
 
     public EventDto(@JsonProperty("id") int id,
                     @JsonProperty("description") String description,
                     @JsonProperty("date") Date date,
                     @JsonProperty("name") String name,
-                    @JsonProperty("images") List<ImageDto> images,
-                    @JsonProperty("time") String time) {
+                    @JsonProperty("image") ImageDto image,
+                    @JsonProperty("time") String time,
+                    @JsonProperty("latitude") double latitude,
+                    @JsonProperty("longitude") double longitude) {
         this.id = id;
         this.description = description;
         this.date = date;
         this.name = name;
-        this.images = images;
+        this.image = image;
         this.time = time;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public String getTime() {
@@ -90,11 +86,19 @@ public class EventDto implements Serializable{
                 ", date=" + date +
                 ", name='" + name + '\'' +
                 ", time='" + time + '\'' +
-                ", images=" + images +
+                ", images=" + image +
                 '}';
     }
 
-    public List<ImageDto> getImages() {
-        return images;
+    public ImageDto getImage() {
+        return image;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
     }
 }

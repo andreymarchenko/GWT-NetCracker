@@ -3,24 +3,26 @@ package ru.happyMoments.client.view;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.dom.client.Style;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.maps.client.LoadApi;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
+
 import javax.inject.Inject;
 import java.util.ArrayList;
+import java.util.List;
+
 import com.google.gwt.maps.client.LoadApi.LoadLibrary;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
-import ru.happyMoments.client.entity.Event;
 import ru.happyMoments.client.presenter.Presenter;
+import ru.happyMoments.shared.dto.EventDto;
+import ru.happyMoments.shared.dto.LightEventDto;
 
 public class View extends Composite {
+
     interface MainPanelUiBinder extends UiBinder<Widget, View> {
     }
 
@@ -57,6 +59,7 @@ public class View extends Composite {
 
     private EventBus eventBus;
     private Presenter presenter;
+    private BasicMapWidget wMap;
 
     private static final double MAP_PANEL_WIDTH_REDUCTION = 1.36;
     private static final double MAP_PANEL_HEIGHT_REDUCTION = 20;
@@ -76,13 +79,6 @@ public class View extends Composite {
         this.presenter = presenter;
     }
 
-    public void createUI() {
-        initWidget(ourUiBinder.createAndBindUi(this));
-        setUI();
-        loadMapApi();
-        RootPanel.get("root").add(this);
-    }
-
     private void loadMapApi() {
         boolean sensor = true;
 
@@ -98,17 +94,16 @@ public class View extends Composite {
         Runnable onLoad = new Runnable() {
             @Override
             public void run() {
-                draw();
+                if (wMap == null)
+                    wMap = new BasicMapWidget();
+                wMap.setPresenter(presenter);
+                addMapWidget(wMap);
             }
         };
 
         LoadApi.go(onLoad, loadLibraries, sensor);
-    }
 
-    public void draw() {
-        BasicMapWidget wMap = new BasicMapWidget();
-        wMap.setPresenter(presenter);
-        addMapWidget(wMap);
+
     }
 
     private void addMapWidget(Widget widget) {
@@ -119,8 +114,15 @@ public class View extends Composite {
         return label;
     }
 
-    public void setUI() {
+    public void createUI() {
+        initWidget(ourUiBinder.createAndBindUi(this));
+        setUI();
+        loadMapApi();
+        presenter.launchApp();
+        RootPanel.get("root").add(this);
+    }
 
+    public void setUI() {
         mapPanel.getElement().getStyle().setWidth(Window.getClientWidth() / MAP_PANEL_WIDTH_REDUCTION, Style.Unit.PX);
         mapPanel.getElement().getStyle().setHeight(Window.getClientHeight() - MAP_PANEL_HEIGHT_REDUCTION, Style.Unit.PX);
 
@@ -158,15 +160,21 @@ public class View extends Composite {
         date.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);
     }
 
-    public void updateFields(Event event) {
+    public void updateFields(EventDto event) {
         this.name.setText(event.getName());
         this.description.setText(event.getDescription());
         this.date.setText(event.getDate().toString());
         this.time.setText(event.getTime());
-        image.setUrl(event.getImages().get(0).getUrl());
+        image.setUrl(event.getImage().getUrl());
         image.setVisibleRect(-35, -80,
                 (int) (0.25 * Window.getClientWidth()),
                 (int) (Window.getClientHeight() / 2.5));
         imagePanel.add(image);
+    }
+
+    public void loadLightData(final List<LightEventDto> lightEventDtos) {
+        if (wMap != null) {
+            wMap.launchApp(lightEventDtos);
+        }
     }
 }

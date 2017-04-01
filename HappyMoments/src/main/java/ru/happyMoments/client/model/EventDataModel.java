@@ -2,20 +2,20 @@ package ru.happyMoments.client.model;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.HandlerRegistration;
-import ru.happyMoments.client.entity.Event;
 import ru.happyMoments.client.events.ChangeDataEvent;
 import ru.happyMoments.client.events.ChangeDataEventHandler;
 import ru.happyMoments.shared.dto.EventDto;
 
 import javax.inject.Inject;
+import java.util.List;
 
-public class DataModel {
+public class EventDataModel {
 
-    private Event event;
+    private EventDto event;
     private EventBus eventBus;
 
     @Inject
-    public void DataModel(Event event,
+    public void DataModel(EventDto event,
                           EventBus eventBus) {
         this.event = event;
         this.eventBus = eventBus;
@@ -25,19 +25,17 @@ public class DataModel {
         return eventBus.addHandler(ChangeDataEvent.TYPE, handler);
     }
 
-    public void setEvent(Event event) {
-        if (event.equals(this.event)) return;
-        else {
+    public void setEvent(EventDto event) {
+        if (event != null) {
+            if (this.event.equals(event)) return;
             this.event = event;
             eventBus.fireEvent(ChangeDataEvent.create());
         }
     }
 
-    public void setEvent(EventDto event) {
-            eventBus.fireEvent(ChangeDataEvent.create());
-        }
-
-    public Event getEvent() {
+    public EventDto getEvent() {
         return event;
     }
+
+
 }

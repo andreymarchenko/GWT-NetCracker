@@ -1,14 +1,15 @@
 package ru.happyMoments.client.commands;
 
 import com.google.gwt.event.shared.GwtEvent;
-import ru.happyMoments.client.entity.Event;
+import ru.happyMoments.shared.dto.EventDto;
+import ru.happyMoments.shared.dto.LightEventDto;
 
 public class LoadDataCommand extends GwtEvent<LoadDataCommandHandler> {
 
-    private Event event;
+    LightEventDto lightEventDto;
 
-    public LoadDataCommand(Event event) {
-        this.event = event;
+    public LoadDataCommand(LightEventDto lightEventDto) {
+        this.lightEventDto = lightEventDto;
     }
 
     public static Type<LoadDataCommandHandler> TYPE = new Type<LoadDataCommandHandler>();
@@ -20,10 +21,10 @@ public class LoadDataCommand extends GwtEvent<LoadDataCommandHandler> {
 
     @Override
     protected void dispatch(LoadDataCommandHandler loadDataCommandHandler) {
-        loadDataCommandHandler.onLoadData(event, this);
+        loadDataCommandHandler.onLoadData(lightEventDto, this);
     }
 
-    public static LoadDataCommand create(Event event) {
-        return new LoadDataCommand(event);
+    public static LoadDataCommand create(LightEventDto lightEventDto) {
+        return new LoadDataCommand(lightEventDto);
     }
 }

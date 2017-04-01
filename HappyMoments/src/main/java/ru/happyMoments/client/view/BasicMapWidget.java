@@ -28,9 +28,9 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.VerticalPanel;
-import ru.happyMoments.client.entity.Event;
-import ru.happyMoments.client.entity.Image;
 import ru.happyMoments.client.presenter.Presenter;
+import ru.happyMoments.shared.dto.ImageDto;
+import ru.happyMoments.shared.dto.LightEventDto;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -50,9 +50,6 @@ public class BasicMapWidget extends Composite {
         initWidget(pWidget);
         drawMap();
         drawMapAds();
-        drawMarkerWithDropAnimation(56.32867, 44.00205);
-        drawMarkerWithDropAnimation(56.322, 44.098);
-        drawMarkerWithDropAnimation(56.331, 44.008);
     }
 
     private void stopAnimation() {
@@ -79,20 +76,11 @@ public class BasicMapWidget extends Composite {
         marker.addClickHandler(new ClickMapHandler() {
             @Override
             public void onEvent(ClickMapEvent event) {
-
                 marker.setAnimation(Animation.BOUNCE);
-                List<Image> list = new ArrayList<>();
-                Image img = new Image(1, "http://www.google.com/images/logo.gif");
-                list.add(img);
-
-                presenter.loadData(new Event(markers.size(),
-                        "Some description", new Date(), "Some name", list, "22:00"));
-
+                presenter.loadEvent(new LightEventDto(marker.getPosition().getLatitude(), marker.getPosition().getLongitude()));
                 //drawInfoWindow(marker, event.getMouseEvent());
             }
         });
-
-        markers.add(marker);
     }
 
     protected void drawInfoWindow(Marker marker, MouseEvent mouseEvent) {
@@ -119,13 +107,21 @@ public class BasicMapWidget extends Composite {
         pWidget.add(mapWidget);
         mapWidget.setSize(Double.toString(Window.getClientWidth() / 1.36),
                 Double.toString(Window.getClientHeight() - 20));
-        mapWidget.addClickHandler(new ClickMapHandler() {
+
+        /*mapWidget.addClickHandler(new ClickMapHandler() {
             @Override
             public void onEvent(ClickMapEvent event) {
                 drawMarkerWithDropAnimation(event.getMouseEvent().getLatLng().getLatitude(),
                         event.getMouseEvent().getLatLng().getLongitude());
             }
-        });
+        });*/
+    }
+
+    public void launchApp(List<LightEventDto> lightEventDtos) {
+        markers.clear();
+        for (int i = 0; i < lightEventDtos.size(); i++) {
+            drawMarkerWithDropAnimation(lightEventDtos.get(i).getLatitude(), lightEventDtos.get(i).getLongitude());
+        }
     }
 
     private void drawMapAds() {
@@ -162,5 +158,6 @@ public class BasicMapWidget extends Composite {
             }
         });
     }
+
 
 }
