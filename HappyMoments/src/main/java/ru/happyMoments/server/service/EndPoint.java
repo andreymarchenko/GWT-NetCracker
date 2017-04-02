@@ -23,13 +23,13 @@ public class EndPoint {
         return lightEvents;
     }
 
-    /*@POST
+    @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public EventDto getEventByLatLng(EventDto eventDto) {
+    @Produces(MediaType.APPLICATION_JSON)
+    public EventDto getEventByLatLng(LightEventDto lightEventDto) {
 
         ArrayList<EventDto> eventDtos = new ArrayList<>();
 
-        eventDtos.clear();
         eventDtos.add(new EventDto(1,
                 "This is first event",
                 new Date(),
@@ -54,18 +54,17 @@ public class EndPoint {
                 "Third event",
                 new ImageDto(1, "http://www.google.com/images/logo.gif"),
                 "23:00",
-                56.322,
-                44.098));
+                56.331,
+                44.008));
 
         EventDto e = new EventDto();
 
         for (int i = 0; i < eventDtos.size(); i++) {
-            if (eventDtos.get(i).getLatitude() == eventDto.getLatitude() &&
-                    eventDtos.get(i).getLongitude() == eventDto.getLongitude())
+            if (eventDtos.get(i).getLatitude() - lightEventDto.getLatitude() < 0.0001 && eventDtos.get(i).getLongitude() - lightEventDto.getLongitude() < 0.0001)
                 e = eventDtos.get(i);
         }
 
         return e;
-    }*/
+    }
 
 }

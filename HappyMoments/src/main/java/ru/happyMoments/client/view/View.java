@@ -164,7 +164,7 @@ public class View extends Composite {
     }
 
     public void loadLightData(final List<LightEventDto> lightEventDtos) {
-        if (wMap == null) {
+        if (wMap != null) {
             wMap.launchApp(lightEventDtos);
         }
     }

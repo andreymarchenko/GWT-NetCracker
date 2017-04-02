@@ -11,7 +11,6 @@ import ru.happyMoments.client.events.LoadLightDataEventHandler;
 import ru.happyMoments.client.model.EventDataModel;
 import ru.happyMoments.client.model.EventListDataModel;
 import ru.happyMoments.client.view.View;
-import ru.happyMoments.shared.dto.EventDto;
 import ru.happyMoments.shared.dto.LightEventDto;
 
 import javax.inject.Inject;
@@ -39,6 +38,7 @@ public class Presenter {
     }
 
     public void bind() {
+
         eventDataModel.addDataChangedEventHandler(new ChangeDataEventHandler() {
             @Override
             public void onChangeData(ChangeDataEvent changeDataEvent) {

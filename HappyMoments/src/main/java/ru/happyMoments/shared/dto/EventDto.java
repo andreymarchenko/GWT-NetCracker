@@ -20,14 +20,7 @@ public class EventDto implements Serializable{
     private double longitude;
 
     public EventDto() {
-        id = 0;
-        description = "";
-        date = new Date(1);
-        name = "";
-        time = "";
-        image = new ImageDto();
-        latitude = 1.0;
-        longitude = 1.0;
+
     }
 
     @JsonCreator

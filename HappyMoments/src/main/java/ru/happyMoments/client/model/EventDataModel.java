@@ -7,12 +7,11 @@ import ru.happyMoments.client.events.ChangeDataEventHandler;
 import ru.happyMoments.shared.dto.EventDto;
 
 import javax.inject.Inject;
-import java.util.List;
 
 public class EventDataModel {
 
-    private EventDto event = null;
-    private EventBus eventBus = null;
+    private EventDto event;
+    private EventBus eventBus;
 
     public EventDataModel() {
     }
@@ -29,8 +28,8 @@ public class EventDataModel {
     }
 
     public void setEvent(EventDto event) {
-        if (event != null) {
-            if (this.event.equals(event)) return;
+        if (event != null && this.event.equals(event)) return;
+        else {
             this.event = event;
             eventBus.fireEvent(ChangeDataEvent.create());
         }

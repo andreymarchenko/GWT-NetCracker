@@ -15,8 +15,9 @@ public interface EndPoint extends RestService {
     @Path("/events")
     void loadAllLightEvents(MethodCallback<List<LightEventDto>> callback);
 
-    /*@POST
+    @POST
     @Path("/events")
-    void getEventByLatLng(LightEventDto lightEventDto, MethodCallback<EventDto> callback);*/
+    void getEventByLatLng(LightEventDto lightEventDto,
+                          MethodCallback<EventDto> callback);
 
 }
