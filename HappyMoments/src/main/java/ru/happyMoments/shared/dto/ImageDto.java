@@ -11,6 +11,8 @@ public class ImageDto implements Serializable{
     private String url;
 
     public ImageDto() {
+        id = 0;
+        url = "";
     }
 
     @JsonCreator

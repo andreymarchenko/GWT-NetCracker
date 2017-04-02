@@ -54,8 +54,6 @@ public class View extends Composite {
     Label eventDate;
     @UiField
     Image image;
-    @UiField
-    Label label;
 
     private EventBus eventBus;
     private Presenter presenter;
@@ -94,24 +92,17 @@ public class View extends Composite {
         Runnable onLoad = new Runnable() {
             @Override
             public void run() {
-                if (wMap == null)
-                    wMap = new BasicMapWidget();
+                wMap = new BasicMapWidget();
                 wMap.setPresenter(presenter);
                 addMapWidget(wMap);
             }
         };
 
         LoadApi.go(onLoad, loadLibraries, sensor);
-
-
     }
 
     private void addMapWidget(Widget widget) {
         mapPanel.add(widget);
-    }
-
-    public Label getLabel() {
-        return label;
     }
 
     public void createUI() {
@@ -173,7 +164,7 @@ public class View extends Composite {
     }
 
     public void loadLightData(final List<LightEventDto> lightEventDtos) {
-        if (wMap != null) {
+        if (wMap == null) {
             wMap.launchApp(lightEventDtos);
         }
     }

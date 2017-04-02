@@ -1,42 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f805ecf9-c126-4915-82bf-31ed9b401e09" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/commands/LaunchAppCommand.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/commands/LaunchAppCommandHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/events/LoadLightDataEvent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/events/LoadLightDataEventHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/model/EventListDataModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/LightEventDto.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/entity/Event.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/entity/Image.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/entity/Event.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/entity/Image.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/model/DataModel.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/model/DataModel.java" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/model/EventDataModel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/commands/LoadDataCommand.class" afterPath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/commands/LoadDataCommand.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/commands/LoadDataCommandHandler.class" afterPath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/commands/LoadDataCommandHandler.class" />
+    <list default="true" id="f805ecf9-c126-4915-82bf-31ed9b401e09" name="Default" comment="Added LightEventDto and transform structure, but there are problems with refreshing app.">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test/java/ru/happyMoments/client/entity/EventListDataModelTest.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/test/java/ru/happyMoments/client/entity/EventTest.java" afterPath="$PROJECT_DIR$/src/test/java/ru/happyMoments/client/entity/EventDataModelTest.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/controller/Controller$1.class" afterPath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/controller/Controller$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/controller/Controller.class" afterPath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/controller/Controller.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/entryPoint/HappyMoments.class" afterPath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/entryPoint/HappyMoments.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/modules/Module.class" afterPath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/modules/Module.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/presenter/Presenter$1.class" afterPath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/presenter/Presenter$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/presenter/Presenter.class" afterPath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/presenter/Presenter.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/view/View$1.class" afterPath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/view/View$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/view/View.class" afterPath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/view/View.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/ru/happyMoments/client/entity/EventTest.class" afterPath="$PROJECT_DIR$/target/test-classes/ru/happyMoments/client/entity/EventTest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/commands/LoadDataCommand.java" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/commands/LoadDataCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/commands/LoadDataCommandHandler.java" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/commands/LoadDataCommandHandler.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/controller/Controller.java" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/controller/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/modules/Module.java" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/modules/Module.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/presenter/Presenter.java" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/presenter/Presenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/model/EventDataModel.java" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/model/EventDataModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/model/EventListDataModel.java" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/model/EventListDataModel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/service/EndPoint.java" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/service/EndPoint.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/BasicMapWidget.java" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/BasicMapWidget.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/View.java" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/View.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/View.ui.xml" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/View.ui.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/happyMoments/server/service/EndPoint.java" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/server/service/EndPoint.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/EventDto.java" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/EventDto.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/ru/happyMoments/client/entity/EventTest.java" afterPath="$PROJECT_DIR$/src/test/java/ru/happyMoments/client/entity/EventTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/ImageDto.java" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/ImageDto.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/LightEventDto.java" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/LightEventDto.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -56,45 +39,28 @@
       <file leaf-file-name="EndPoint.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/server/service/EndPoint.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-268">
-              <caret line="27" column="57" lean-forward="false" selection-start-line="27" selection-start-column="57" selection-end-line="27" selection-end-column="57" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="1037">
+              <caret line="70" column="1" lean-forward="false" selection-start-line="70" selection-start-column="1" selection-end-line="70" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LightEventDto.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/LightEventDto.java">
+      <file leaf-file-name="EventListDataModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/model/EventListDataModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="21" column="5" lean-forward="false" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="153">
+              <caret line="17" column="11" lean-forward="false" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Presenter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/presenter/Presenter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="57" column="63" lean-forward="false" selection-start-line="57" selection-start-column="63" selection-end-line="57" selection-end-column="63" />
-              <folding>
-                <element signature="e#2110#2111#0" expanded="true" />
-                <element signature="e#2183#2184#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="View.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="View.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/View.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="482">
-              <caret line="111" column="0" lean-forward="false" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+            <state relative-caret-position="-1603">
+              <caret line="5" column="37" lean-forward="true" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
               <folding>
                 <element signature="method#setUI#0;class#View#0" expanded="false" />
               </folding>
@@ -102,37 +68,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/controller/Controller.java">
+      <file leaf-file-name="EventDataModelTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/java/ru/happyMoments/client/entity/EventDataModelTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="50" column="47" lean-forward="false" selection-start-line="50" selection-start-column="47" selection-end-line="50" selection-end-column="47" />
+            <state relative-caret-position="284">
+              <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
               <folding>
-                <element signature="e#1615#2224#0" expanded="true" />
-                <element signature="e#2098#2099#0" expanded="true" />
-                <element signature="e#2179#2180#0" expanded="true" />
-                <element signature="e#2223#2224#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoadDataCommandHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/commands/LoadDataCommandHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="7" column="47" lean-forward="false" selection-start-line="7" selection-start-column="47" selection-end-line="7" selection-end-column="47" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LoadDataCommand.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/commands/LoadDataCommand.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="26" column="68" lean-forward="false" selection-start-line="26" selection-start-column="68" selection-end-line="26" selection-end-column="68" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -140,31 +83,64 @@
       <file leaf-file-name="EventDto.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/EventDto.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1122">
-              <caret line="90" column="5" lean-forward="false" selection-start-line="90" selection-start-column="5" selection-end-line="90" selection-end-column="5" />
+            <state relative-caret-position="233">
+              <caret line="116" column="37" lean-forward="false" selection-start-line="116" selection-start-column="37" selection-end-line="116" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BasicMapWidget.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/BasicMapWidget.java">
+      <file leaf-file-name="ImageDto.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/ImageDto.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-234">
-              <caret line="79" column="90" lean-forward="false" selection-start-line="79" selection-start-column="90" selection-end-line="79" selection-end-column="90" />
+            <state relative-caret-position="114">
+              <caret line="13" column="15" lean-forward="true" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LightEventDto.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/LightEventDto.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventDataModel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/model/EventDataModel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="13" column="26" lean-forward="false" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="26" />
               <folding>
-                <element signature="method#drawMapAds#0;class#BasicMapWidget#0" expanded="false" />
+                <element signature="e#1161#1162#0" expanded="true" />
+                <element signature="e#1192#1193#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EndPoint.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/service/EndPoint.java">
+      <file leaf-file-name="Module.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/modules/Module.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="19" column="53" lean-forward="false" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
+            <state relative-caret-position="68">
+              <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EventListDataModelTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/ru/happyMoments/client/entity/EventListDataModelTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -175,8 +151,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit4 Test Class" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -204,39 +180,41 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/maps/BasicMapWidget.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/Image.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/ImageDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/Event.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/server/dto/EventDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/server/dto/ImageDto.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/entity/Image.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/View.ui.xml" />
         <option value="$PROJECT_DIR$/war/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/index.gwt.xml" />
         <option value="$PROJECT_DIR$/war/HappyMoments.html" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/entryPoint/HappyMoments.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/entity/Event.java" />
-        <option value="$PROJECT_DIR$/src/test/java/ru/happyMoments/client/entity/EventTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/model/DataModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/commands/LaunchAppCommandHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/commands/LaunchAppCommand.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/model/EventDataModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/events/LoadLightEventsEvent.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/events/LoadLightEventsEventHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/events/LoadLightDataEventHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/events/LoadLightDataEvent.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/model/EventListDataModel.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/modules/Module.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/controller/LifeCycle.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/EventDto.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/View.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/LightEventDto.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/service/EndPoint.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/server/service/EndPoint.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/controller/Controller.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/commands/LoadDataCommandHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/commands/LoadDataCommand.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/presenter/Presenter.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/BasicMapWidget.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/server/service/EndPoint.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/View.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/View.ui.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/service/EndPoint.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/controller/Controller.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ru/happyMoments/client/entity/EventTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ru/happyMoments/client/entity/EventListDataModelTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/model/EventListDataModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/ImageDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/model/EventDataModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/EventDto.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/LightEventDto.java" />
+        <option value="$PROJECT_DIR$/src/test/java/ru/happyMoments/client/entity/EventDataModelTest.java" />
       </list>
     </option>
   </component>
@@ -277,8 +255,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -296,7 +274,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -352,6 +332,30 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ru" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="happyMoments" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="client" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entity" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -827,8 +831,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -869,19 +871,19 @@
       <recent name="C:\Users\Andrey\IdeaProjects\HappyMoments\src\main\java\ru\happyMoments\client\events" />
     </key>
   </component>
-  <component name="RunManager" selected="GWT Configuration.HappyMoments">
-    <configuration default="false" name="EventTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.EventDataModelTest">
+    <configuration default="false" name="EventDataModelTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
-          <option name="PATTERN" value="ru.happyMoments.server.entity.*" />
+          <option name="PATTERN" value="ru.happyMoments.client.entity.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <module name="HappyMoments" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="ru.happyMoments.server.entity" />
-      <option name="MAIN_CLASS_NAME" value="ru.happyMoments.server.entity.EventTest" />
+      <option name="PACKAGE_NAME" value="ru.happyMoments.client.entity" />
+      <option name="MAIN_CLASS_NAME" value="ru.happyMoments.client.entity.EventDataModelTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -896,7 +898,7 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="EventTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="EventListDataModelTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="ru.happyMoments.client.entity.*" />
@@ -907,7 +909,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="ru.happyMoments.client.entity" />
-      <option name="MAIN_CLASS_NAME" value="ru.happyMoments.client.entity.EventTest" />
+      <option name="MAIN_CLASS_NAME" value="ru.happyMoments.client.entity.EventListDataModelTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
@@ -1317,6 +1319,12 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
+    <configuration default="false" name="HappyMoments" type="GWT.ConfigurationType" factoryName="GWT Configuration">
+      <module name="HappyMoments" />
+      <option name="RUN_PAGE" value="HappyMoments.html" />
+      <option name="USE_SUPER_DEV_MODE" value="true" />
+      <method />
+    </configuration>
     <configuration default="false" name="Tomcat 8.5.11" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.11" ALTERNATIVE_JRE_ENABLED="false">
       <deployment />
       <server-settings />
@@ -1328,22 +1336,16 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <method />
     </configuration>
-    <configuration default="false" name="HappyMoments" type="GWT.ConfigurationType" factoryName="GWT Configuration">
-      <module name="HappyMoments" />
-      <option name="RUN_PAGE" value="HappyMoments.html" />
-      <option name="USE_SUPER_DEV_MODE" value="true" />
-      <method />
-    </configuration>
     <list size="4">
-      <item index="0" class="java.lang.String" itemvalue="Tomcat Server.Tomcat 8.5.11" />
-      <item index="1" class="java.lang.String" itemvalue="GWT Configuration.HappyMoments" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.EventTest" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.EventTest (1)" />
+      <item index="0" class="java.lang.String" itemvalue="GWT Configuration.HappyMoments" />
+      <item index="1" class="java.lang.String" itemvalue="Tomcat Server.Tomcat 8.5.11" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.EventDataModelTest" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.EventListDataModelTest" />
     </list>
     <recent_temporary>
       <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.EventTest (1)" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.EventTest" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.EventDataModelTest" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.EventListDataModelTest" />
       </list>
     </recent_temporary>
   </component>
@@ -1396,7 +1398,9 @@
       <workItem from="1490998951949" duration="4816000" />
       <workItem from="1491004176767" duration="1477000" />
       <workItem from="1491054872987" duration="6503000" />
-      <workItem from="1491067445606" duration="2313000" />
+      <workItem from="1491067445606" duration="4936000" />
+      <workItem from="1491128192033" duration="1560000" />
+      <workItem from="1491129889652" duration="3362000" />
     </task>
     <task id="LOCAL-00001" summary="Added update view on map click, added markers animation.">
       <created>1490133442581</created>
@@ -1440,41 +1444,60 @@
       <option name="project" value="LOCAL" />
       <updated>1490598357933</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added LightEventDto and transform structure, but there are problems with refreshing app.">
+      <created>1491070044495</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1491070044495</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="EventTest - 2017.03.19 at 00h 10m 01s.xml">
-      <configuration name="EventTest" configurationId="JUnit" />
+    <history-entry file="EventDataModelTest - 2017.04.02 at 14h 17m 56s.xml">
+      <configuration name="EventDataModelTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EventTest - 2017.03.19 at 00h 10m 28s.xml">
-      <configuration name="EventTest" configurationId="JUnit" />
+    <history-entry file="EventDataModelTest - 2017.04.02 at 14h 20m 51s.xml">
+      <configuration name="EventDataModelTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EventTest - 2017.03.19 at 00h 11m 01s.xml">
-      <configuration name="EventTest" configurationId="JUnit" />
+    <history-entry file="EventDataModelTest - 2017.04.02 at 14h 22m 40s.xml">
+      <configuration name="EventDataModelTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EventTest - 2017.03.19 at 00h 11m 46s.xml">
-      <configuration name="EventTest" configurationId="JUnit" />
+    <history-entry file="EventDataModelTest - 2017.04.02 at 14h 25m 55s.xml">
+      <configuration name="EventDataModelTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EventTest_(1) - 2017.03.26 at 17h 57m 01s.xml">
-      <configuration name="EventTest (1)" configurationId="JUnit" />
+    <history-entry file="EventDataModelTest - 2017.04.02 at 14h 31m 06s.xml">
+      <configuration name="EventDataModelTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="EventTest_(1) - 2017.03.26 at 17h 57m 16s.xml">
-      <configuration name="EventTest (1)" configurationId="JUnit" />
+    <history-entry file="EventDataModelTest - 2017.04.02 at 14h 36m 47s.xml">
+      <configuration name="EventDataModelTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EventDataModelTest - 2017.04.02 at 14h 37m 43s.xml">
+      <configuration name="EventDataModelTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EventDataModelTest - 2017.04.02 at 14h 38m 24s.xml">
+      <configuration name="EventDataModelTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EventDataModelTest - 2017.04.02 at 14h 44m 09s.xml">
+      <configuration name="EventDataModelTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="EventListDataModelTest - 2017.04.02 at 14h 30m 54s.xml">
+      <configuration name="EventListDataModelTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94257000" />
+    <option name="totallyTimeSpent" value="101802000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.096066564" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.06769723" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1484,15 +1507,15 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39910814" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32820514" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277592" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17094018" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33890748" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2806354" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20202559" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1502,7 +1525,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32887402" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25195095" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1518,11 +1541,12 @@
     <MESSAGE value="Fixed DataModel to check clicked event, fixed loadDataCommand, added 3 default markers, deleted unnecessary button." />
     <MESSAGE value="Fixed some bugs" />
     <MESSAGE value="Fixed some bugs and client-server interaction" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed some bugs and client-server interaction" />
+    <MESSAGE value="Added LightEventDto and transform structure, but there are problems with refreshing app." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added LightEventDto and transform structure, but there are problems with refreshing app." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1531,17 +1555,8 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/war/WEB-INF/web.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/entity/Event.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/entity/Image.java" />
-    <entry file="file://$PROJECT_DIR$/src/test/java/ru/happyMoments/client/entity/EventTest.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/ru/happyMoments/client/entity/EventDataModelTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1559,7 +1574,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1642,14 +1659,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/HappyMomentsService.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/entity/Image.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/View.ui.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="14" lean-forward="false" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/war/HappyMoments.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1665,13 +1674,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/entity/Event.java" />
-    <entry file="file://$PROJECT_DIR$/src/test/java/ru/happyMoments/client/entity/EventTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="28" column="1" lean-forward="false" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/commands/LoadDataCoomand.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/entryPoint/HappyMoments.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1704,86 +1706,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/ImageDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" column="4" lean-forward="true" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/events/LoadLightDataEventHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="42" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/controller/LifeCycle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="20" column="25" lean-forward="false" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/events/LoadLightDataEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="18" column="45" lean-forward="false" selection-start-line="18" selection-start-column="45" selection-end-line="18" selection-end-column="45" />
-          <folding>
-            <element signature="e#539#540#0" expanded="false" />
-            <element signature="e#586#587#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/commands/LaunchAppCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="20" column="38" lean-forward="true" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
-          <folding>
-            <element signature="e#577#578#0" expanded="false" />
-            <element signature="e#622#623#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/commands/LaunchAppCommandHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="17" lean-forward="false" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/model/EventListDataModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#557#558#0" expanded="false" />
-            <element signature="e#594#595#0" expanded="false" />
-            <element signature="e#658#659#0" expanded="false" />
-            <element signature="e#698#699#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/modules/Injector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/modules/Module.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1807,42 +1733,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/model/EventDataModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/LightEventDto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="21" column="5" lean-forward="false" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/service/EndPoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="19" column="53" lean-forward="false" selection-start-line="19" selection-start-column="53" selection-end-line="19" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/server/service/EndPoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-268">
-          <caret line="27" column="57" lean-forward="false" selection-start-line="27" selection-start-column="57" selection-end-line="27" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/commands/LoadDataCommandHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -1851,62 +1741,212 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/EventDto.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/commands/LoadDataCommand.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1122">
-          <caret line="90" column="5" lean-forward="false" selection-start-line="90" selection-start-column="5" selection-end-line="90" selection-end-column="5" />
+        <state relative-caret-position="340">
+          <caret line="26" column="68" lean-forward="false" selection-start-line="26" selection-start-column="68" selection-end-line="26" selection-end-column="68" />
+          <folding>
+            <element signature="e#824#825#0" expanded="false" />
+            <element signature="e#881#882#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/commands/LaunchAppCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="20" column="38" lean-forward="true" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
+          <folding>
+            <element signature="e#577#578#0" expanded="false" />
+            <element signature="e#622#623#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/commands/LaunchAppCommandHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/commands/LoadDataCommand.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/View.ui.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="26" column="68" lean-forward="false" selection-start-line="26" selection-start-column="68" selection-end-line="26" selection-end-column="68" />
+        <state relative-caret-position="340">
+          <caret line="20" column="42" lean-forward="false" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/controller/LifeCycle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="20" column="25" lean-forward="false" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/service/EndPoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="8" column="22" lean-forward="false" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/controller/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="50" column="47" lean-forward="false" selection-start-line="50" selection-start-column="47" selection-end-line="50" selection-end-column="47" />
+        <state relative-caret-position="748">
+          <caret line="64" column="58" lean-forward="false" selection-start-line="64" selection-start-column="58" selection-end-line="64" selection-end-column="58" />
           <folding>
-            <element signature="e#1615#2224#0" expanded="true" />
-            <element signature="e#2098#2099#0" expanded="true" />
-            <element signature="e#2179#2180#0" expanded="true" />
-            <element signature="e#2223#2224#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <marker date="1491129577151" expanded="false" signature="2098:2125" ph=" { " />
+            <marker date="1491129577151" expanded="false" signature="2159:2181" ph=" }" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/events/LoadLightDataEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="18" column="36" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="36" />
+          <folding>
+            <element signature="e#338#339#0" expanded="false" />
+            <element signature="e#365#366#0" expanded="false" />
+            <element signature="e#445#446#0" expanded="false" />
+            <element signature="e#490#491#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/presenter/Presenter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="57" column="63" lean-forward="false" selection-start-line="57" selection-start-column="63" selection-end-line="57" selection-end-column="63" />
+        <state relative-caret-position="612">
+          <caret line="52" column="13" lean-forward="false" selection-start-line="52" selection-start-column="13" selection-end-line="52" selection-end-column="13" />
           <folding>
-            <element signature="e#2110#2111#0" expanded="true" />
-            <element signature="e#2183#2184#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#1662#1663#0" expanded="false" />
+            <element signature="e#1738#1739#0" expanded="false" />
+            <element signature="e#2110#2111#0" expanded="false" />
+            <element signature="e#2183#2184#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/BasicMapWidget.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-234">
-          <caret line="79" column="90" lean-forward="false" selection-start-line="79" selection-start-column="90" selection-end-line="79" selection-end-column="90" />
+        <state relative-caret-position="214">
+          <caret line="127" column="30" lean-forward="false" selection-start-line="127" selection-start-column="30" selection-end-line="127" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.11/junit-4.11.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/modules/Injector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="9" column="29" lean-forward="false" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
           <folding>
-            <element signature="method#drawMapAds#0;class#BasicMapWidget#0" expanded="false" />
+            <element signature="imports" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/modules/Module.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/View.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="482">
-          <caret line="111" column="0" lean-forward="false" selection-start-line="111" selection-start-column="0" selection-end-line="111" selection-end-column="0" />
+        <state relative-caret-position="-1603">
+          <caret line="5" column="37" lean-forward="true" selection-start-line="5" selection-start-column="37" selection-end-line="5" selection-end-column="37" />
           <folding>
             <element signature="method#setUI#0;class#View#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/model/EventListDataModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="17" column="11" lean-forward="false" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/server/service/EndPoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="70" column="1" lean-forward="false" selection-start-line="70" selection-start-column="1" selection-end-line="70" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/model/EventDataModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="13" column="26" lean-forward="false" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="26" />
+          <folding>
+            <element signature="e#1161#1162#0" expanded="true" />
+            <element signature="e#1192#1193#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ru/happyMoments/client/entity/EventListDataModelTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/EventDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="116" column="37" lean-forward="false" selection-start-line="116" selection-start-column="37" selection-end-line="116" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/ImageDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="13" column="15" lean-forward="true" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/shared/dto/LightEventDto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/ru/happyMoments/client/entity/EventDataModelTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

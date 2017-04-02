@@ -11,8 +11,11 @@ import java.util.List;
 
 public class EventDataModel {
 
-    private EventDto event;
-    private EventBus eventBus;
+    private EventDto event = null;
+    private EventBus eventBus = null;
+
+    public EventDataModel() {
+    }
 
     @Inject
     public void DataModel(EventDto event,
@@ -37,5 +40,7 @@ public class EventDataModel {
         return event;
     }
 
-
+    public EventBus getEventBus() {
+        return eventBus;
+    }
 }

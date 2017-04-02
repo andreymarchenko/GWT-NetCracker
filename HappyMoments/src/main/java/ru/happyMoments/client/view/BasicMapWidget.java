@@ -77,7 +77,8 @@ public class BasicMapWidget extends Composite {
             @Override
             public void onEvent(ClickMapEvent event) {
                 marker.setAnimation(Animation.BOUNCE);
-                presenter.loadEvent(new LightEventDto(marker.getPosition().getLatitude(), marker.getPosition().getLongitude()));
+                presenter.loadEvent(new LightEventDto(marker.getPosition().getLatitude(),
+                        marker.getPosition().getLongitude()));
                 //drawInfoWindow(marker, event.getMouseEvent());
             }
         });

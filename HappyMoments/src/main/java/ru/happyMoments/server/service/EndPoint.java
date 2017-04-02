@@ -23,10 +23,12 @@ public class EndPoint {
         return lightEvents;
     }
 
-    @POST
+    /*@POST
     @Consumes(MediaType.APPLICATION_JSON)
     public EventDto getEventByLatLng(EventDto eventDto) {
+
         ArrayList<EventDto> eventDtos = new ArrayList<>();
+
         eventDtos.clear();
         eventDtos.add(new EventDto(1,
                 "This is first event",
@@ -64,6 +66,6 @@ public class EndPoint {
         }
 
         return e;
-    }
+    }*/
 
 }

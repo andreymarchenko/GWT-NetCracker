@@ -15,9 +15,7 @@ public class EventListDataModel {
     private List<LightEventDto> lightEventDtos;
     private EventBus eventBus;
 
-    public List<LightEventDto> getLightEventDtos() {
-        return lightEventDtos;
-    }
+    public EventListDataModel() {}
 
     @Inject
     public EventListDataModel(EventBus eventBus) {
@@ -26,6 +24,10 @@ public class EventListDataModel {
 
     public HandlerRegistration addLoadLightDataEventHandler(final LoadLightDataEventHandler handler) {
         return eventBus.addHandler(LoadLightDataEvent.TYPE, handler);
+    }
+
+    public List<LightEventDto> getLightEventDtos() {
+        return lightEventDtos;
     }
 
     public void setLightEvents(ArrayList<LightEventDto> lightEventDtos) {

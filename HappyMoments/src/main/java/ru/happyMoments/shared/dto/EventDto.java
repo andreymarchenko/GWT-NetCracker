@@ -1,6 +1,9 @@
 package ru.happyMoments.shared.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.base.Objects;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,9 +20,17 @@ public class EventDto implements Serializable{
     private double longitude;
 
     public EventDto() {
-
+        id = 0;
+        description = "";
+        date = new Date(1);
+        name = "";
+        time = "";
+        image = new ImageDto();
+        latitude = 1.0;
+        longitude = 1.0;
     }
 
+    @JsonCreator
     public EventDto(@JsonProperty("id") int id,
                     @JsonProperty("description") String description,
                     @JsonProperty("date") Date date,
@@ -100,5 +111,40 @@ public class EventDto implements Serializable{
 
     public double getLongitude() {
         return longitude;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        EventDto eventDto = (EventDto) o;
+
+        if (id != eventDto.id) return false;
+        if (Double.compare(eventDto.latitude, latitude) != 0) return false;
+        if (Double.compare(eventDto.longitude, longitude) != 0) return false;
+        if (description != null ? !description.equals(eventDto.description) : eventDto.description != null)
+            return false;
+        if (date != null ? !date.equals(eventDto.date) : eventDto.date != null) return false;
+        if (name != null ? !name.equals(eventDto.name) : eventDto.name != null) return false;
+        if (time != null ? !time.equals(eventDto.time) : eventDto.time != null) return false;
+        return image != null ? image.equals(eventDto.image) : eventDto.image == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = id;
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (time != null ? time.hashCode() : 0);
+        result = 31 * result + (image != null ? image.hashCode() : 0);
+        temp = Double.doubleToLongBits(latitude);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(longitude);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 }

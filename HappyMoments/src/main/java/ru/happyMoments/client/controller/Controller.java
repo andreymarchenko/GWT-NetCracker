@@ -42,10 +42,9 @@ public class Controller {
 
     public void bind() {
 
-        eventBus.addHandler(LoadDataCommand.TYPE, new LoadDataCommandHandler() {
+       /* eventBus.addHandler(LoadDataCommand.TYPE, new LoadDataCommandHandler() {
             @Override
             public void onLoadData(LightEventDto lightEventDto, LoadDataCommand loadDataCommand) {
-
                 endPoint.getEventByLatLng(lightEventDto, new MethodCallback<EventDto>() {
                     @Override
                     public void onFailure(Method method, Throwable throwable) {
@@ -58,7 +57,7 @@ public class Controller {
                     }
                 });
             }
-        });
+        });*/
 
         eventBus.addHandler(LaunchAppCommand.TYPE, new LaunchAppCommandHandler() {
             @Override
