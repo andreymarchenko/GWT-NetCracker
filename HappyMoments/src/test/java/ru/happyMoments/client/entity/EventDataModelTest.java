@@ -8,14 +8,14 @@ import ru.happyMoments.client.model.EventDataModel;
 import ru.happyMoments.shared.dto.EventDto;
 import ru.happyMoments.shared.dto.ImageDto;
 
-import java.util.Date;
+import java.sql.Date;
 
 import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.assertEquals;
 
 public class EventDataModelTest {
 
-    private static final EventDto FIRST_EVENT = new EventDto(1, "", new Date(1), "", new ImageDto(), "", 1.0, 1.0);
+    private static final EventDto FIRST_EVENT = new EventDto(1, "", "", "", new ImageDto(), "", 1.0, 1.0);
 
     @Test
     public void testSetNullEvent() {

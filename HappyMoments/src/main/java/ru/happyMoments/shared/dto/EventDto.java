@@ -12,7 +12,7 @@ import java.util.List;
 public class EventDto implements Serializable{
     private int id;
     private String description;
-    private Date date;
+    private String date;
     private String name;
     private String time;
     private ImageDto image;
@@ -26,7 +26,7 @@ public class EventDto implements Serializable{
     @JsonCreator
     public EventDto(@JsonProperty("id") int id,
                     @JsonProperty("description") String description,
-                    @JsonProperty("date") Date date,
+                    @JsonProperty("date") String date,
                     @JsonProperty("name") String name,
                     @JsonProperty("image") ImageDto image,
                     @JsonProperty("time") String time,
@@ -66,11 +66,11 @@ public class EventDto implements Serializable{
         this.description = description;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

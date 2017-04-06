@@ -1,7 +1,7 @@
 package ru.happyMoments.client.presenter;
 
 import com.google.gwt.event.shared.EventBus;
-import ru.happyMoments.client.commands.LaunchAppCommand;
+import ru.happyMoments.client.commands.LoadLightEventsCommand;
 import ru.happyMoments.client.commands.LoadDataCommand;
 import ru.happyMoments.client.controller.Controller;
 import ru.happyMoments.client.events.ChangeDataEvent;
@@ -59,7 +59,7 @@ public class Presenter {
     }
 
     public void launchApp() {
-        eventBus.fireEvent(LaunchAppCommand.create());
+        eventBus.fireEvent(LoadLightEventsCommand.create());
     }
 
 }

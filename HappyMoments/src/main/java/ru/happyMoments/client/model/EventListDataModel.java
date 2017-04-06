@@ -31,9 +31,18 @@ public class EventListDataModel {
     }
 
     public void setLightEvents(ArrayList<LightEventDto> lightEventDtos) {
-        this.lightEventDtos = lightEventDtos;
-        if (lightEventDtos != null) {
+
+        if(this.lightEventDtos != null) {
+            for (int i = 0; i < lightEventDtos.size(); i++) {
+                if (this.lightEventDtos.get(i).equals(lightEventDtos.get(i)) || lightEventDtos == null) {
+                    return;
+                }
+            }
+        }
+        else {
+            this.lightEventDtos = lightEventDtos;
             eventBus.fireEvent(LoadLightDataEvent.create());
         }
+
     }
 }

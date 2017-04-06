@@ -4,8 +4,8 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.shared.EventBus;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
-import ru.happyMoments.client.commands.LaunchAppCommand;
-import ru.happyMoments.client.commands.LaunchAppCommandHandler;
+import ru.happyMoments.client.commands.LoadLightEventsCommand;
+import ru.happyMoments.client.commands.LoadLightEventsCommandHandler;
 import ru.happyMoments.client.commands.LoadDataCommand;
 import ru.happyMoments.client.commands.LoadDataCommandHandler;
 import ru.happyMoments.client.model.EventDataModel;
@@ -59,9 +59,9 @@ public class Controller {
             }
         });
 
-        eventBus.addHandler(LaunchAppCommand.TYPE, new LaunchAppCommandHandler() {
+        eventBus.addHandler(LoadLightEventsCommand.TYPE, new LoadLightEventsCommandHandler() {
             @Override
-            public void onLaunchApp(LaunchAppCommand launchAppCommand) {
+            public void onLaunchApp(LoadLightEventsCommand loadLightEventsCommand) {
                 endPoint.loadAllLightEvents(new MethodCallback<List<LightEventDto>>() {
                     @Override
                     public void onFailure(Method method, Throwable throwable) {
