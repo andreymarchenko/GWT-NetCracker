@@ -1,6 +1,8 @@
 package ru.happyMoments.client.entity;
 
 
+import com.google.gwt.event.shared.EventBus;
+import com.google.gwt.event.shared.SimpleEventBus;
 import org.junit.Test;
 import ru.happyMoments.client.model.EventDataModel;
 import ru.happyMoments.shared.dto.EventDto;
@@ -12,6 +14,9 @@ import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.assertEquals;
 
 public class EventDataModelTest {
+
+    private static final EventDto FIRST_EVENT = new EventDto(1, "", new Date(1), "", new ImageDto(), "", 1.0, 1.0);
+
     @Test
     public void testSetNullEvent() {
         EventDataModel eventDataModel = new EventDataModel();
@@ -22,8 +27,8 @@ public class EventDataModelTest {
 /*   @Test
     public void testSetNotNullEvent() {
         EventDataModel eventDataModel = new EventDataModel();
-        eventDataModel.setEvent(new EventDto());
-        assertEquals(new EventDto(), eventDataModel.getEvent());
+        eventDataModel.setEvent(FIRST_EVENT);
+        assertEquals(FIRST_EVENT, eventDataModel.getEvent());
     }*/
 
 }

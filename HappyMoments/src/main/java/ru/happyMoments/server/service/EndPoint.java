@@ -7,6 +7,7 @@ import ru.happyMoments.shared.dto.LightEventDto;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,9 +18,28 @@ public class EndPoint {
     @Produces(MediaType.APPLICATION_JSON)
     public List<LightEventDto> loadAllEvents() {
         List<LightEventDto> lightEvents = new ArrayList<LightEventDto>();
-        lightEvents.add(new LightEventDto(56.32867, 44.00205));
-        lightEvents.add(new LightEventDto(56.322, 44.098));
-        lightEvents.add(new LightEventDto(56.331, 44.008));
+
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection("jdbc:sqlite:C:\\GWT-NetCracker\\HappyMoments\\Events.db");
+            System.out.println("Opened database successfully");
+        } catch (SQLException ex) {
+        }
+
+        PreparedStatement data = null;
+        ResultSet receivedData = null;
+
+
+        try {
+            data = connection.prepareStatement("SELECT * FROM lightevents; ");
+            receivedData = data.executeQuery();
+            while (receivedData.next()) {
+                lightEvents.add(new LightEventDto(receivedData.getDouble(1), receivedData.getDouble(2)));
+            }
+            data.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return lightEvents;
     }
 
@@ -27,6 +47,16 @@ public class EndPoint {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public EventDto getEventByLatLng(LightEventDto lightEventDto) {
+
+        Connection connection = null;
+        try {
+            connection = DriverManager.getConnection("jdbc:sqlite:Events.db");
+            System.out.println("Opened database successfully");
+        } catch (SQLException ex) {
+        }
+
+        PreparedStatement checkEvent;
+        String str = "";
 
         ArrayList<EventDto> eventDtos = new ArrayList<>();
 

@@ -17,9 +17,7 @@ public class EventDataModel {
     }
 
     @Inject
-    public void DataModel(EventDto event,
-                          EventBus eventBus) {
-        this.event = event;
+    public void DataModel(EventBus eventBus) {
         this.eventBus = eventBus;
     }
 

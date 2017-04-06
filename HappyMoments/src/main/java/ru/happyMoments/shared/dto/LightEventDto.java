@@ -16,8 +16,8 @@ public class LightEventDto implements Serializable {
     }
 
     @JsonCreator
-    public LightEventDto(@JsonProperty("latitude")double latitude,
-                         @JsonProperty("longitude")double longitude) {
+    public LightEventDto(@JsonProperty("latitude") double latitude,
+                         @JsonProperty("longitude") double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
