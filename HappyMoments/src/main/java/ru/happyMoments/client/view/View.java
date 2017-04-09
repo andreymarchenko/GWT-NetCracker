@@ -109,7 +109,6 @@ public class View extends Composite {
         initWidget(ourUiBinder.createAndBindUi(this));
         setUI();
         loadMapApi();
-        presenter.launchApp();
         RootPanel.get("root").add(this);
     }
 
@@ -157,9 +156,8 @@ public class View extends Composite {
         this.date.setText(event.getDate().toString());
         this.time.setText(event.getTime());
         image.setUrl(event.getImage().getUrl());
-        image.setVisibleRect(-35, -80,
-                (int) (0.25 * Window.getClientWidth()),
-                (int) (Window.getClientHeight() / 2.5));
+        image.getElement().getStyle().setWidth(RIGHT_PANEL_WIDTH_REDUCTION * Window.getClientWidth(), Style.Unit.PX);
+        image.getElement().getStyle().setHeight(Window.getClientHeight() / IMAGE_PANEL_HEIGHT_REDUCTION, Style.Unit.PX);
         imagePanel.add(image);
     }
 

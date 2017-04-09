@@ -59,7 +59,6 @@ public class EndPoint {
             data.setDouble(4, lightEventDto.getLongitude() + 0.0001);
 
             receivedData = data.executeQuery();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
             while (receivedData.next()) {
                 PreparedStatement image = null;
@@ -80,7 +79,7 @@ public class EndPoint {
                 eventDto = new EventDto(
                         receivedData.getInt(1),
                         receivedData.getString(2),
-                        dateFormat.format(receivedData.getDate(3)),
+                        receivedData.getString(3),
                         receivedData.getString(4),
                         new ImageDto(imageId, url),
                         receivedData.getString(5),

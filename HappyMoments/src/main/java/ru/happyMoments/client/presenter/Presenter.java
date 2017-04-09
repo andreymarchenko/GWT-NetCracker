@@ -58,8 +58,4 @@ public class Presenter {
         eventBus.fireEvent(LoadDataCommand.create(lightEventDto));
     }
 
-    public void launchApp() {
-        eventBus.fireEvent(LoadLightEventsCommand.create());
-    }
-
 }
