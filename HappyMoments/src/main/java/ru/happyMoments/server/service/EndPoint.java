@@ -14,6 +14,10 @@ import java.util.List;
 
 @Path("/events")
 public class EndPoint {
+
+    ClassLoader classLoader = getClass().getClassLoader();
+    private String path = classLoader.getResource("Events.db").getFile();
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<LightEventDto> loadAllEvents() {
@@ -24,7 +28,7 @@ public class EndPoint {
         ResultSet receivedData = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:C:\\GWT-NetCracker\\HappyMoments\\Events.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:" + path);
             data = connection.prepareStatement("SELECT * FROM LIGHTEVENTS; ");
             receivedData = data.executeQuery();
             while (receivedData.next()) {
@@ -49,7 +53,7 @@ public class EndPoint {
         ResultSet receivedData = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:C:\\GWT-NetCracker\\HappyMoments\\Events.db");
+            connection = DriverManager.getConnection("jdbc:sqlite:" + path);
             data = connection.prepareStatement("SELECT id,description,date,name,time,latitude,longitude FROM EVENTS WHERE (latitude BETWEEN ? AND ?) AND (longitude BETWEEN ? AND ?); ");
 
             data.setDouble(1, lightEventDto.getLatitude() - 0.0001);

@@ -1,6 +1,7 @@
 package ru.happyMoments.client.view;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.layout.client.Layout;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.shared.EventBus;
@@ -29,8 +30,8 @@ public class View extends Composite {
     private static MainPanelUiBinder ourUiBinder = GWT.create(MainPanelUiBinder.class);
 
     @UiField
-    FlowPanel mapPanel;
-    @UiField
+    RootLayoutPanel mapPanel;
+   /* @UiField
     FlowPanel rightPanel;
     @UiField
     FlowPanel imagePanel;
@@ -53,11 +54,13 @@ public class View extends Composite {
     @UiField
     Label eventDate;
     @UiField
-    Image image;
+    Image image;*/
 
     private EventBus eventBus;
     private Presenter presenter;
     private BasicMapWidget wMap;
+
+    private InfoPanel infoPanel;
 
     private static final double MAP_PANEL_WIDTH_REDUCTION = 1.36;
     private static final double MAP_PANEL_HEIGHT_REDUCTION = 20;
@@ -109,23 +112,20 @@ public class View extends Composite {
         initWidget(ourUiBinder.createAndBindUi(this));
         setUI();
         loadMapApi();
+        infoPanel = new InfoPanel();
         RootPanel.get("root").add(this);
     }
 
     public void setUI() {
-        mapPanel.getElement().getStyle().setWidth(Window.getClientWidth() / MAP_PANEL_WIDTH_REDUCTION, Style.Unit.PX);
-        mapPanel.getElement().getStyle().setHeight(Window.getClientHeight() - MAP_PANEL_HEIGHT_REDUCTION, Style.Unit.PX);
+        mapPanel.getElement().getStyle().setWidth(Window.getClientWidth(), Style.Unit.PX);
+        mapPanel.getElement().getStyle().setHeight(Window.getClientHeight(), Style.Unit.PX);
 
-        rightPanel.getElement().getStyle().setWidth(RIGHT_PANEL_WIDTH_REDUCTION * Window.getClientWidth(), Style.Unit.PX);
+        /*rightPanel.getElement().getStyle().setWidth(RIGHT_PANEL_WIDTH_REDUCTION * Window.getClientWidth(), Style.Unit.PX);
         rightPanel.getElement().getStyle().setHeight(Window.getClientHeight() - MAP_PANEL_HEIGHT_REDUCTION, Style.Unit.PX);
 
-        imagePanel.getElement().getStyle().setBorderColor("Gray");
-        imagePanel.getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
         imagePanel.getElement().getStyle().setWidth(RIGHT_PANEL_WIDTH_REDUCTION * Window.getClientWidth(), Style.Unit.PX);
         imagePanel.getElement().getStyle().setHeight(Window.getClientHeight() / IMAGE_PANEL_HEIGHT_REDUCTION, Style.Unit.PX);
 
-        infoPanel.getElement().getStyle().setBorderColor("Gray");
-        infoPanel.getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
         infoPanel.getElement().getStyle().setWidth(RIGHT_PANEL_WIDTH_REDUCTION * Window.getClientWidth(), Style.Unit.PX);
         infoPanel.getElement().getStyle().setHeight(INFO_PANEL_HEIGHT_REDUCTION * Window.getClientHeight(), Style.Unit.PX);
 
@@ -147,18 +147,17 @@ public class View extends Composite {
         eventDate.getElement().getStyle().setPaddingTop(TOP_PADDING_UPPER_ELEMENT, Style.Unit.PX);
         eventDate.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);
         date.getElement().getStyle().setPaddingTop(TOP_PADDING_LOWER_ELEMENT, Style.Unit.PX);
-        date.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);
+        date.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);*/
     }
 
     public void updateFields(EventDto event) {
-        this.name.setText(event.getName());
+        /*this.name.setText(event.getName());
         this.description.setText(event.getDescription());
         this.date.setText(event.getDate().toString());
         this.time.setText(event.getTime());
-        image.setUrl(event.getImage().getUrl());
-        image.getElement().getStyle().setWidth(RIGHT_PANEL_WIDTH_REDUCTION * Window.getClientWidth(), Style.Unit.PX);
-        image.getElement().getStyle().setHeight(Window.getClientHeight() / IMAGE_PANEL_HEIGHT_REDUCTION, Style.Unit.PX);
-        imagePanel.add(image);
+        */
+        infoPanel.getImage().setUrl(event.getImage().getUrl());
+        infoPanel.getName().setText(event.getName());
     }
 
     public void loadLightData(final List<LightEventDto> lightEventDtos) {

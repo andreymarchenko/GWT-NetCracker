@@ -3,22 +3,6 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:m="urn:import:gwt.material.design.client.ui">
 
-    <g:HorizontalPanel>
-        <g:FlowPanel ui:field="mapPanel"></g:FlowPanel>
-        <g:FlowPanel ui:field="rightPanel">
-            <g:FlowPanel ui:field="imagePanel">
-                <g:Image ui:field="image"/>
-            </g:FlowPanel>
-            <g:FlowPanel ui:field="infoPanel">
-                <g:Label ui:field="eventName" text="Name"/>
-                <g:Label ui:field="name"/>
-                <g:Label ui:field="eventDescription" text="Description"/>
-                <g:Label ui:field="description"/>
-                <g:Label ui:field="eventTime" text="Time"/>
-                <g:Label ui:field="time"/>
-                <g:Label ui:field="eventDate" text="Date"/>
-                <g:Label ui:field="date"/>
-            </g:FlowPanel>
-        </g:FlowPanel>
-    </g:HorizontalPanel>
+    <g:RootLayoutPanel ui:field="mapPanel"/>
+
 </ui:UiBinder>

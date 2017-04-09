@@ -1,5 +1,6 @@
 package ru.happyMoments.client.view;
 
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.maps.client.MapOptions;
 import com.google.gwt.maps.client.MapTypeId;
 import com.google.gwt.maps.client.MapWidget;
@@ -27,6 +28,7 @@ import com.google.gwt.maps.client.overlays.MarkerOptions;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import ru.happyMoments.client.presenter.Presenter;
 import ru.happyMoments.shared.dto.ImageDto;
@@ -79,6 +81,13 @@ public class BasicMapWidget extends Composite {
                 marker.setAnimation(Animation.BOUNCE);
                 presenter.loadEvent(new LightEventDto(marker.getPosition().getLatitude(),
                         marker.getPosition().getLongitude()));
+
+                PopupPanel infoPanel = new PopupPanel();
+                infoPanel.getElement().getStyle().setBackgroundColor("White");
+                infoPanel.getElement().getStyle().setHeight(100, Style.Unit.PX);
+                infoPanel.getElement().getStyle().setWidth(100, Style.Unit.PX);
+                infoPanel.setPopupPosition(Window.getClientWidth()/2, Window.getClientHeight()/2);
+                infoPanel.setVisible(true);
                 //drawInfoWindow(marker, event.getMouseEvent());
             }
         });
@@ -106,8 +115,10 @@ public class BasicMapWidget extends Composite {
 
         mapWidget = new MapWidget(opts);
         pWidget.add(mapWidget);
-        mapWidget.setSize(Double.toString(Window.getClientWidth() / 1.36),
-                Double.toString(Window.getClientHeight() - 20));
+
+        mapWidget.setSize(Double.toString(Window.getClientWidth()),
+                Double.toString(Window.getClientHeight()));
+
 
         /*mapWidget.addClickHandler(new ClickMapHandler() {
             @Override
