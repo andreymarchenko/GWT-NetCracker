@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f805ecf9-c126-4915-82bf-31ed9b401e09" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/Events.db" afterPath="$PROJECT_DIR$/src/main/resources/Events.db" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/view/View.class" afterPath="$PROJECT_DIR$/target/classes/ru/happyMoments/client/view/View.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/BasicMapWidget.java" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/BasicMapWidget.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/View.java" afterPath="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/View.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -22,13 +21,15 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="View.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="View.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/View.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="124" column="25" lean-forward="false" selection-start-line="124" selection-start-column="25" selection-end-line="124" selection-end-column="25" />
+            <state relative-caret-position="305">
+              <caret line="139" column="5" lean-forward="true" selection-start-line="139" selection-start-column="5" selection-end-line="139" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#4649#4815#0" expanded="true" />
+                <element signature="e#4814#4815#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -106,12 +107,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BasicMapWidget.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BasicMapWidget.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/BasicMapWidget.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="106" column="35" lean-forward="true" selection-start-line="106" selection-start-column="35" selection-end-line="106" selection-end-column="35" />
-              <folding />
+            <state relative-caret-position="543">
+              <caret line="174" column="37" lean-forward="false" selection-start-line="174" selection-start-column="37" selection-end-line="174" selection-end-column="37" />
+              <folding>
+                <element signature="e#6748#6749#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -224,8 +227,8 @@
         <option value="$PROJECT_DIR$/src/test/java/ru/happyMoments/client/entity/EventListDataModelTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/ru/happyMoments/client/entity/EventDataModelTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/InfoPanel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/View.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/BasicMapWidget.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/View.java" />
       </list>
     </option>
   </component>
@@ -1505,7 +1508,7 @@
       <workItem from="1491736266294" duration="506000" />
       <workItem from="1491748958053" duration="9727000" />
       <workItem from="1491760853243" duration="4587000" />
-      <workItem from="1491807706574" duration="19421000" />
+      <workItem from="1491807706574" duration="20652000" />
     </task>
     <task id="LOCAL-00001" summary="Added update view on map click, added markers animation.">
       <created>1490133442581</created>
@@ -1619,7 +1622,14 @@
       <option name="project" value="LOCAL" />
       <updated>1491827543512</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Fixed marker animation, fixed data in database">
+      <created>1491828199342</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1491828199342</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1655,7 +1665,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="180843000" />
+    <option name="totallyTimeSpent" value="182074000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1728,7 +1738,8 @@
     <MESSAGE value="Added fabrics for Dto, fixed bug with refresh, fixed markers animation, fixed connection opening, changed EventBus class" />
     <MESSAGE value="Fixed tasks" />
     <MESSAGE value="Fixed ui" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed ui" />
+    <MESSAGE value="Fixed marker animation, fixed data in database" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed marker animation, fixed data in database" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -2125,21 +2136,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/View.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/BasicMapWidget.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="124" column="25" lean-forward="false" selection-start-line="124" selection-start-column="25" selection-end-line="124" selection-end-column="25" />
+        <state relative-caret-position="543">
+          <caret line="174" column="37" lean-forward="false" selection-start-line="174" selection-start-column="37" selection-end-line="174" selection-end-column="37" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#6748#6749#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/BasicMapWidget.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/happyMoments/client/view/View.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="106" column="35" lean-forward="true" selection-start-line="106" selection-start-column="35" selection-end-line="106" selection-end-column="35" />
-          <folding />
+        <state relative-caret-position="305">
+          <caret line="139" column="5" lean-forward="true" selection-start-line="139" selection-start-column="5" selection-end-line="139" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4649#4815#0" expanded="true" />
+            <element signature="e#4814#4815#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

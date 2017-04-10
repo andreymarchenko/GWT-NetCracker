@@ -172,5 +172,7 @@ public class BasicMapWidget extends Composite {
         });
     }
 
-
+    public MapWidget getMapWidget() {
+        return mapWidget;
+    }
 }

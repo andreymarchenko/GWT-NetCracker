@@ -1,6 +1,8 @@
 package ru.happyMoments.client.view;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.maps.client.events.click.ClickMapEvent;
+import com.google.gwt.maps.client.events.click.ClickMapHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.dom.client.Style;
 import com.google.web.bindery.event.shared.EventBus;
@@ -140,6 +142,12 @@ public class View extends Composite {
     private void setMarkers() {
         if (wMap != null && !lightEvents.isEmpty()) {
         wMap.launchApp(lightEvents);
+        wMap.getMapWidget().addClickHandler(new ClickMapHandler() {
+            @Override
+            public void onEvent(ClickMapEvent clickMapEvent) {
+                infoPanel.hide();
+            }
+        });
     }
 }
 }
