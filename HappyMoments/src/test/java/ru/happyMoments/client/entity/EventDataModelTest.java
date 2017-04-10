@@ -21,5 +21,4 @@ public class EventDataModelTest {
         eventDataModel.setEvent(FIRST_EVENT);
         assertEquals(FIRST_EVENT, eventDataModel.getEvent());
     }
-
 }

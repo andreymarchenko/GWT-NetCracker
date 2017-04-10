@@ -119,45 +119,17 @@ public class View extends Composite {
     public void setUI() {
         mapPanel.getElement().getStyle().setWidth(Window.getClientWidth(), Style.Unit.PX);
         mapPanel.getElement().getStyle().setHeight(Window.getClientHeight(), Style.Unit.PX);
-
-        /*rightPanel.getElement().getStyle().setWidth(RIGHT_PANEL_WIDTH_REDUCTION * Window.getClientWidth(), Style.Unit.PX);
-        rightPanel.getElement().getStyle().setHeight(Window.getClientHeight() - MAP_PANEL_HEIGHT_REDUCTION, Style.Unit.PX);
-
-        imagePanel.getElement().getStyle().setWidth(RIGHT_PANEL_WIDTH_REDUCTION * Window.getClientWidth(), Style.Unit.PX);
-        imagePanel.getElement().getStyle().setHeight(Window.getClientHeight() / IMAGE_PANEL_HEIGHT_REDUCTION, Style.Unit.PX);
-
-        infoPanel.getElement().getStyle().setWidth(RIGHT_PANEL_WIDTH_REDUCTION * Window.getClientWidth(), Style.Unit.PX);
-        infoPanel.getElement().getStyle().setHeight(INFO_PANEL_HEIGHT_REDUCTION * Window.getClientHeight(), Style.Unit.PX);
-
-        eventName.getElement().getStyle().setPaddingTop(TOP_PADDING_UPPER_ELEMENT, Style.Unit.PX);
-        eventName.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);
-        name.getElement().getStyle().setPaddingTop(TOP_PADDING_LOWER_ELEMENT, Style.Unit.PX);
-        name.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);
-
-        eventDescription.getElement().getStyle().setPaddingTop(TOP_PADDING_UPPER_ELEMENT, Style.Unit.PX);
-        eventDescription.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);
-        description.getElement().getStyle().setPaddingTop(TOP_PADDING_LOWER_ELEMENT, Style.Unit.PX);
-        description.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);
-
-        eventTime.getElement().getStyle().setPaddingTop(TOP_PADDING_UPPER_ELEMENT, Style.Unit.PX);
-        eventTime.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);
-        time.getElement().getStyle().setPaddingTop(TOP_PADDING_LOWER_ELEMENT, Style.Unit.PX);
-        time.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);
-
-        eventDate.getElement().getStyle().setPaddingTop(TOP_PADDING_UPPER_ELEMENT, Style.Unit.PX);
-        eventDate.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);
-        date.getElement().getStyle().setPaddingTop(TOP_PADDING_LOWER_ELEMENT, Style.Unit.PX);
-        date.getElement().getStyle().setPaddingLeft(TOP_PADDING_LEFT, Style.Unit.PX);*/
     }
 
     public void updateFields(EventDto event) {
-        /*this.name.setText(event.getName());
-        this.description.setText(event.getDescription());
-        this.date.setText(event.getDate().toString());
-        this.time.setText(event.getTime());
-        */
+        infoPanel.show();
         infoPanel.getImage().setUrl(event.getImage().getUrl());
         infoPanel.getName().setText(event.getName());
+        infoPanel.getDescription().setText(event.getDescription());
+        infoPanel.getTime().setText(event.getTime());
+        infoPanel.getDate().setText(event.getDate());
+        infoPanel.getLatitude().setText("Широта:  " + Double.toString(event.getLatitude()));
+        infoPanel.getLongitude().setText("Долгота:  " + Double.toString(event.getLongitude()));
     }
 
     public void setLightData(final List<LightEventDto> lightEventDtos) {
