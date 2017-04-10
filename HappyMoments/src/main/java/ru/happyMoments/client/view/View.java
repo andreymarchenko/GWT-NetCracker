@@ -1,10 +1,9 @@
 package ru.happyMoments.client.view;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.layout.client.Layout;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.dom.client.Style;
-import com.google.gwt.event.shared.EventBus;
+import com.google.web.bindery.event.shared.EventBus;
 import com.google.gwt.maps.client.LoadApi;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
@@ -16,8 +15,6 @@ import java.util.List;
 
 import com.google.gwt.maps.client.LoadApi.LoadLibrary;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Image;
-import com.google.gwt.user.client.ui.Label;
 import ru.happyMoments.client.presenter.Presenter;
 import ru.happyMoments.shared.dto.EventDto;
 import ru.happyMoments.shared.dto.LightEventDto;
@@ -59,6 +56,8 @@ public class View extends Composite {
     private EventBus eventBus;
     private Presenter presenter;
     private BasicMapWidget wMap;
+    //Дописать флаг проверки на заполнение маркеров
+    private List<LightEventDto> lightEvents;
 
     private InfoPanel infoPanel;
 
@@ -98,6 +97,7 @@ public class View extends Composite {
                 wMap = new BasicMapWidget();
                 wMap.setPresenter(presenter);
                 addMapWidget(wMap);
+                setMarkers();
             }
         };
 
@@ -160,9 +160,14 @@ public class View extends Composite {
         infoPanel.getName().setText(event.getName());
     }
 
-    public void loadLightData(final List<LightEventDto> lightEventDtos) {
-        if (wMap != null) {
-            wMap.launchApp(lightEventDtos);
-        }
+    public void setLightData(final List<LightEventDto> lightEventDtos) {
+        lightEvents = lightEventDtos;
+        setMarkers();
     }
+
+    private void setMarkers() {
+        if (wMap != null && !lightEvents.isEmpty()) {
+        wMap.launchApp(lightEvents);
+    }
+}
 }

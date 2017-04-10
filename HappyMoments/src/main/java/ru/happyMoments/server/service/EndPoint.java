@@ -3,6 +3,9 @@ package ru.happyMoments.server.service;
 import ru.happyMoments.shared.dto.EventDto;
 import ru.happyMoments.shared.dto.ImageDto;
 import ru.happyMoments.shared.dto.LightEventDto;
+import ru.happyMoments.shared.factories.EventDtoFactory;
+import ru.happyMoments.shared.factories.ImageDtoFactory;
+import ru.happyMoments.shared.factories.LightEventDtoFactory;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -17,22 +20,32 @@ public class EndPoint {
 
     ClassLoader classLoader = getClass().getClassLoader();
     private String path = classLoader.getResource("Events.db").getFile();
+    private Connection connection;
+
+    private void createConnection() {
+        if (connection == null) {
+            try {
+                connection = DriverManager.getConnection("jdbc:sqlite:" + path);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<LightEventDto> loadAllEvents() {
         List<LightEventDto> lightEvents = new ArrayList<LightEventDto>();
 
-        Connection connection = null;
         PreparedStatement data = null;
         ResultSet receivedData = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:" + path);
+            createConnection();
             data = connection.prepareStatement("SELECT * FROM LIGHTEVENTS; ");
             receivedData = data.executeQuery();
             while (receivedData.next()) {
-                lightEvents.add(new LightEventDto(receivedData.getDouble(1), receivedData.getDouble(2)));
+                lightEvents.add(LightEventDtoFactory.create(receivedData.getDouble(1), receivedData.getDouble(2)));
             }
             data.close();
         } catch (SQLException e) {
@@ -48,12 +61,11 @@ public class EndPoint {
     public EventDto getEventByLatLng(LightEventDto lightEventDto) {
 
         EventDto eventDto = null;
-        Connection connection = null;
         PreparedStatement data = null;
         ResultSet receivedData = null;
 
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:" + path);
+            createConnection();
             data = connection.prepareStatement("SELECT id,description,date,name,time,latitude,longitude FROM EVENTS WHERE (latitude BETWEEN ? AND ?) AND (longitude BETWEEN ? AND ?); ");
 
             data.setDouble(1, lightEventDto.getLatitude() - 0.0001);
@@ -75,17 +87,17 @@ public class EndPoint {
                 int imageId = 0;
                 String url = "";
 
-                while(receivedImage.next()) {
+                while (receivedImage.next()) {
                     imageId = receivedImage.getInt(1);
                     url = receivedImage.getString(2);
                 }
 
-                eventDto = new EventDto(
+                eventDto = EventDtoFactory.create(
                         receivedData.getInt(1),
                         receivedData.getString(2),
                         receivedData.getString(3),
                         receivedData.getString(4),
-                        new ImageDto(imageId, url),
+                        ImageDtoFactory.create(imageId, url),
                         receivedData.getString(5),
                         receivedData.getDouble(6),
                         receivedData.getDouble(7));

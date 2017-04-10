@@ -1,6 +1,6 @@
 package ru.happyMoments.client.controller;
 
-import com.google.gwt.event.shared.EventBus;
+import com.google.web.bindery.event.shared.EventBus;
 import ru.happyMoments.client.commands.LoadLightEventsCommand;
 import ru.happyMoments.client.presenter.Presenter;
 import ru.happyMoments.client.view.View;

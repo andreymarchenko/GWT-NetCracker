@@ -33,6 +33,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import ru.happyMoments.client.presenter.Presenter;
 import ru.happyMoments.shared.dto.ImageDto;
 import ru.happyMoments.shared.dto.LightEventDto;
+import ru.happyMoments.shared.factories.LightEventDtoFactory;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -70,7 +71,6 @@ public class BasicMapWidget extends Composite {
         options.setTitle("Thanks for clicking on me.");
         options.setAnimation(Animation.DROP);
 
-        stopAnimation();
         final Marker marker = Marker.newInstance(options);
         marker.setMap(mapWidget);
         markers.add(marker);
@@ -78,8 +78,10 @@ public class BasicMapWidget extends Composite {
         marker.addClickHandler(new ClickMapHandler() {
             @Override
             public void onEvent(ClickMapEvent event) {
+                stopAnimation();
                 marker.setAnimation(Animation.BOUNCE);
-                presenter.loadEvent(new LightEventDto(marker.getPosition().getLatitude(),
+
+                presenter.loadEvent(LightEventDtoFactory.create(marker.getPosition().getLatitude(),
                         marker.getPosition().getLongitude()));
 
                 PopupPanel infoPanel = new PopupPanel();

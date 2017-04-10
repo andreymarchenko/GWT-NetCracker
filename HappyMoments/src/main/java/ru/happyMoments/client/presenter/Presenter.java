@@ -1,7 +1,6 @@
 package ru.happyMoments.client.presenter;
 
-import com.google.gwt.event.shared.EventBus;
-import ru.happyMoments.client.commands.LoadLightEventsCommand;
+import com.google.web.bindery.event.shared.EventBus;
 import ru.happyMoments.client.commands.LoadDataCommand;
 import ru.happyMoments.client.controller.Controller;
 import ru.happyMoments.client.events.ChangeDataEvent;
@@ -49,7 +48,7 @@ public class Presenter {
         eventListDataModel.addLoadLightDataEventHandler(new LoadLightDataEventHandler() {
             @Override
             public void onLoadLightData(LoadLightDataEvent loadLightDataEvent) {
-                view.loadLightData(eventListDataModel.getLightEventDtos());
+                view.setLightData(eventListDataModel.getLightEventDtos());
             }
         });
     }

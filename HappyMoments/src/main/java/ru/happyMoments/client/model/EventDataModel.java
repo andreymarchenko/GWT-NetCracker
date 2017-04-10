@@ -1,7 +1,7 @@
 package ru.happyMoments.client.model;
 
-import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.event.shared.HandlerRegistration;
+import com.google.web.bindery.event.shared.EventBus;
+import com.google.web.bindery.event.shared.HandlerRegistration;
 import ru.happyMoments.client.events.ChangeDataEvent;
 import ru.happyMoments.client.events.ChangeDataEventHandler;
 import ru.happyMoments.shared.dto.EventDto;
@@ -38,7 +38,7 @@ public class EventDataModel {
         return event;
     }
 
-    public EventBus getEventBus() {
-        return eventBus;
+    public void setEventBus(EventBus eventBus) {
+        this.eventBus = eventBus;
     }
 }
