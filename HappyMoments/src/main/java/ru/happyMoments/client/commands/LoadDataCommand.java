@@ -8,11 +8,11 @@ public class LoadDataCommand extends GwtEvent<LoadDataCommandHandler> {
 
     LightEventDto lightEventDto;
 
+    public static Type<LoadDataCommandHandler> TYPE = new Type<LoadDataCommandHandler>();
+
     public LoadDataCommand(LightEventDto lightEventDto) {
         this.lightEventDto = lightEventDto;
     }
-
-    public static Type<LoadDataCommandHandler> TYPE = new Type<LoadDataCommandHandler>();
 
     @Override
     public Type<LoadDataCommandHandler> getAssociatedType() {

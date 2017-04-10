@@ -1,8 +1,12 @@
 package ru.happyMoments.client.view;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.maps.client.events.click.ClickMapEvent;
 import com.google.gwt.maps.client.events.click.ClickMapHandler;
+import com.google.gwt.maps.client.events.dblclick.DblClickMapEvent;
+import com.google.gwt.maps.client.events.dblclick.DblClickMapHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.dom.client.Style;
 import com.google.web.bindery.event.shared.EventBus;
@@ -17,9 +21,12 @@ import java.util.List;
 
 import com.google.gwt.maps.client.LoadApi.LoadLibrary;
 import com.google.gwt.user.client.ui.Composite;
+import ru.happyMoments.client.commands.CreateEventCommand;
 import ru.happyMoments.client.presenter.Presenter;
 import ru.happyMoments.shared.dto.EventDto;
 import ru.happyMoments.shared.dto.LightEventDto;
+import ru.happyMoments.shared.factories.EventDtoFactory;
+import ru.happyMoments.shared.factories.ImageDtoFactory;
 
 public class View extends Composite {
 
@@ -30,30 +37,6 @@ public class View extends Composite {
 
     @UiField
     RootLayoutPanel mapPanel;
-   /* @UiField
-    FlowPanel rightPanel;
-    @UiField
-    FlowPanel imagePanel;
-    @UiField
-    FlowPanel infoPanel;
-    @UiField
-    Label name;
-    @UiField
-    Label eventName;
-    @UiField
-    Label description;
-    @UiField
-    Label eventDescription;
-    @UiField
-    Label time;
-    @UiField
-    Label eventTime;
-    @UiField
-    Label date;
-    @UiField
-    Label eventDate;
-    @UiField
-    Image image;*/
 
     private EventBus eventBus;
     private Presenter presenter;
@@ -62,6 +45,7 @@ public class View extends Composite {
     private List<LightEventDto> lightEvents;
 
     private InfoPanel infoPanel;
+    private AddDialogBox addDialogBox;
 
     private static final double MAP_PANEL_WIDTH_REDUCTION = 1.36;
     private static final double MAP_PANEL_HEIGHT_REDUCTION = 20;
@@ -115,6 +99,7 @@ public class View extends Composite {
         setUI();
         loadMapApi();
         infoPanel = new InfoPanel();
+        addDialogBox = new AddDialogBox();
         RootPanel.get("root").add(this);
     }
 
@@ -137,17 +122,44 @@ public class View extends Composite {
     public void setLightData(final List<LightEventDto> lightEventDtos) {
         lightEvents = lightEventDtos;
         setMarkers();
+        bind();
     }
 
-    private void setMarkers() {
-        if (wMap != null && !lightEvents.isEmpty()) {
-        wMap.launchApp(lightEvents);
-        wMap.getMapWidget().addClickHandler(new ClickMapHandler() {
+    private void bind() {
+        wMap.getMapWidget().addDblClickHandler(new DblClickMapHandler() {
             @Override
-            public void onEvent(ClickMapEvent clickMapEvent) {
-                infoPanel.hide();
+            public void onEvent(final DblClickMapEvent dblClickMapEvent) {
+                addDialogBox.show();
+                addDialogBox.getAddButton().addClickHandler(new ClickHandler() {
+                    @Override
+                    public void onClick(ClickEvent event) {
+                        presenter.createEvent(EventDtoFactory.create(
+                                wMap.getMarkers().size() + 1,
+                                addDialogBox.getDescriptionInput().getText(),
+                                addDialogBox.getDateInput().getText(),
+                                addDialogBox.getNameInput().getText(),
+                                ImageDtoFactory.create(wMap.getMarkers().size(), ""),
+                                addDialogBox.getTimeInput().getText(),
+                                dblClickMapEvent.getMouseEvent().getLatLng().getLatitude(),
+                                dblClickMapEvent.getMouseEvent().getLatLng().getLongitude()
+                        ));
+                        addDialogBox.hide();
+                    }
+                });
             }
         });
     }
-}
+
+    private void setMarkers() {
+        if (wMap != null && lightEvents!= null && !lightEvents.isEmpty()) {
+            wMap.launchApp(lightEvents);
+            wMap.getMapWidget().addClickHandler(new ClickMapHandler() {
+                @Override
+                public void onEvent(ClickMapEvent clickMapEvent) {
+                    infoPanel.hide();
+                    wMap.stopAnimation();
+                }
+            });
+        }
+    }
 }

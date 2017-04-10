@@ -20,4 +20,8 @@ public interface EndPoint extends RestService {
     void getEventByLatLng(LightEventDto lightEventDto,
                           MethodCallback<EventDto> callback);
 
+    @POST
+    @Path("/events/create")
+    void createEvent(EventDto EventDto,
+                     MethodCallback<List<LightEventDto>> callback);
 }

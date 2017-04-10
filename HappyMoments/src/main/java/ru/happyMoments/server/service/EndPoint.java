@@ -101,6 +101,7 @@ public class EndPoint {
                         receivedData.getString(5),
                         receivedData.getDouble(6),
                         receivedData.getDouble(7));
+
             }
             data.close();
 
@@ -109,5 +110,66 @@ public class EndPoint {
         }
 
         return eventDto;
+    }
+
+    @Path("/create")
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<LightEventDto> createEvent(EventDto eventDto) {
+        List<LightEventDto> lightEvents = new ArrayList<LightEventDto>();
+
+        PreparedStatement eventsData = null;
+        PreparedStatement lightEventsData = null;
+        PreparedStatement imagesData = null;
+        PreparedStatement data = null;
+
+        ResultSet receivedLightEventsData = null;
+
+        try {
+            createConnection();
+
+            eventsData = connection.prepareStatement("INSERT INTO EVENTS (id, description, date, name, time, latitude, longitude)" +
+                    " VALUES (?, ?, ?, ?, ?, ?, ?); ");
+
+            eventsData.setInt(1, eventDto.getId());
+            eventsData.setString(2, eventDto.getDescription());
+            eventsData.setString(3, eventDto.getDate());
+            eventsData.setString(4, eventDto.getName());
+            eventsData.setString(5, eventDto.getTime());
+            eventsData.setDouble(6, eventDto.getLatitude());
+            eventsData.setDouble(7, eventDto.getLongitude());
+
+            eventsData.executeUpdate();
+            eventsData.close();
+
+            lightEventsData = connection.prepareStatement("INSERT INTO LIGHTEVENTS (latitude, longitude)" +
+                    " VALUES (?, ?); ");
+
+            lightEventsData.setDouble(1, eventDto.getLatitude());
+            lightEventsData.setDouble(2, eventDto.getLongitude());
+
+            lightEventsData.executeUpdate();
+            lightEventsData.close();
+
+            imagesData = connection.prepareStatement("INSERT INTO IMAGES (event_id, url)" +
+                    " VALUES (?, ?); ");
+
+            imagesData.setInt(1, eventDto.getId());
+            imagesData.setString(2, eventDto.getImage().getUrl());
+
+            imagesData.executeUpdate();
+            imagesData.close();
+
+            data = connection.prepareStatement("SELECT * FROM LIGHTEVENTS; ");
+            receivedLightEventsData = data.executeQuery();
+            while (receivedLightEventsData.next()) {
+                lightEvents.add(LightEventDtoFactory.create(receivedLightEventsData.getDouble(1), receivedLightEventsData.getDouble(2)));
+            }
+
+            data.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lightEvents;
     }
 }

@@ -55,7 +55,7 @@ public class BasicMapWidget extends Composite {
         drawMapAds();
     }
 
-    private void stopAnimation() {
+    public void stopAnimation() {
         for (Marker m : markers) {
             m.setAnimation(Animation.STOPANIMATION);
         }
@@ -111,6 +111,7 @@ public class BasicMapWidget extends Composite {
         LatLng center = LatLng.newInstance(56.1937, 44.0027);
         MapOptions opts = MapOptions.newInstance();
         opts.setZoom(11);
+        opts.setDisableDoubleClickZoom(true);
         opts.setCenter(center);
         opts.setMapTypeId(MapTypeId.ROADMAP);
 
@@ -174,5 +175,9 @@ public class BasicMapWidget extends Composite {
 
     public MapWidget getMapWidget() {
         return mapWidget;
+    }
+
+    public List<Marker> getMarkers() {
+        return markers;
     }
 }

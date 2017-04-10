@@ -4,10 +4,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.web.bindery.event.shared.EventBus;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
-import ru.happyMoments.client.commands.LoadLightEventsCommand;
-import ru.happyMoments.client.commands.LoadLightEventsCommandHandler;
-import ru.happyMoments.client.commands.LoadDataCommand;
-import ru.happyMoments.client.commands.LoadDataCommandHandler;
+import ru.happyMoments.client.commands.*;
 import ru.happyMoments.client.model.EventDataModel;
 import ru.happyMoments.client.model.EventListDataModel;
 import ru.happyMoments.client.presenter.Presenter;
@@ -75,6 +72,22 @@ public class Controller {
             }
         });
 
+        eventBus.addHandler(CreateEventCommand.TYPE, new CreateEventCommandHandler() {
+            @Override
+            public void onCreateEvent(EventDto eventDto, CreateEventCommand createEventCommand) {
+                endPoint.createEvent(eventDto, new MethodCallback<List<LightEventDto>>() {
+                    @Override
+                    public void onFailure(Method method, Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(Method method, List<LightEventDto> lightEventDtos) {
+                        eventListDataModel.setLightEvents((ArrayList<LightEventDto>) lightEventDtos);
+                    }
+                });
+            }
+        });
 
     }
 }
