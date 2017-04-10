@@ -69,7 +69,6 @@ public class BasicMapWidget extends Composite {
         MarkerOptions options = MarkerOptions.newInstance();
         options.setPosition(LatLng.newInstance(latitude, longitude));
         options.setTitle("Thanks for clicking on me.");
-        options.setAnimation(Animation.DROP);
 
         final Marker marker = Marker.newInstance(options);
         marker.setMap(mapWidget);
