@@ -27,7 +27,7 @@ public class EventDataModel {
     }
 
     public void setEvent(EventDto event) {
-        if (event != null && this.event.equals(event)) return;
+        if (this.event != null && this.event.equals(event)) return;
         else {
             this.event = event;
             eventBus.fireEvent(ChangeDataEvent.create());

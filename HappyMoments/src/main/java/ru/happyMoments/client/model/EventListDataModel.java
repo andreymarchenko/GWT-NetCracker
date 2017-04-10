@@ -15,7 +15,8 @@ public class EventListDataModel {
     private List<LightEventDto> lightEventDtos;
     private EventBus eventBus;
 
-    public EventListDataModel() {}
+    public EventListDataModel() {
+    }
 
     @Inject
     public EventListDataModel(EventBus eventBus) {
@@ -32,17 +33,25 @@ public class EventListDataModel {
 
     public void setLightEvents(ArrayList<LightEventDto> lightEventDtos) {
 
-        if(this.lightEventDtos != null) {
+        if (this.lightEventDtos != null && lightEventDtos != null) {
+            int index = 0;
             for (int i = 0; i < lightEventDtos.size(); i++) {
-                if (this.lightEventDtos.get(i).equals(lightEventDtos.get(i)) || lightEventDtos == null) {
-                    return;
+                if (this.lightEventDtos.get(i).equals(lightEventDtos.get(i))) {
+                    index++;
                 }
             }
-        }
-        else {
+            if (index == lightEventDtos.size()) return;
+        } else if (lightEventDtos != null) {
             this.lightEventDtos = lightEventDtos;
             eventBus.fireEvent(LoadLightDataEvent.create());
-        }
+        } else {
 
+        }
+    }
+
+    public void setEventBus(EventBus eventBus) {
+        if (eventBus != null) {
+            this.eventBus = eventBus;
+        }
     }
 }
