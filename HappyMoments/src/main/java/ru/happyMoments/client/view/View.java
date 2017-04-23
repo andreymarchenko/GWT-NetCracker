@@ -21,12 +21,10 @@ import java.util.List;
 
 import com.google.gwt.maps.client.LoadApi.LoadLibrary;
 import com.google.gwt.user.client.ui.Composite;
-import ru.happyMoments.client.commands.CreateEventCommand;
 import ru.happyMoments.client.presenter.Presenter;
 import ru.happyMoments.shared.dto.EventDto;
 import ru.happyMoments.shared.dto.LightEventDto;
-import ru.happyMoments.shared.factories.EventDtoFactory;
-import ru.happyMoments.shared.factories.ImageDtoFactory;
+import ru.happyMoments.shared.factories.Factory;
 
 public class View extends Composite {
 
@@ -111,6 +109,9 @@ public class View extends Composite {
     public void updateFields(EventDto event) {
         infoPanel.show();
         infoPanel.getImage().setUrl(event.getImage().getUrl());
+        infoPanel.getEditImage().setUrl("http://127.0.0.1:8888/images/edit.png");
+        infoPanel.getDeleteImage().setUrl("http://127.0.0.1:8888/images/delete.png");
+        infoPanel.getAcceptImage().setUrl("http://127.0.0.1:8888/images/accept.png");
         infoPanel.getName().setText(event.getName());
         infoPanel.getDescription().setText(event.getDescription());
         infoPanel.getTime().setText(event.getTime());
@@ -133,12 +134,12 @@ public class View extends Composite {
                 addDialogBox.getAddButton().addClickHandler(new ClickHandler() {
                     @Override
                     public void onClick(ClickEvent event) {
-                        presenter.createEvent(EventDtoFactory.create(
+                        presenter.createEvent(Factory.createEventDto(
                                 wMap.getMarkers().size() + 1,
                                 addDialogBox.getDescriptionInput().getText(),
                                 addDialogBox.getDateInput().getText(),
                                 addDialogBox.getNameInput().getText(),
-                                ImageDtoFactory.create(wMap.getMarkers().size(), ""),
+                                Factory.createImageDto(wMap.getMarkers().size(), ""),
                                 addDialogBox.getTimeInput().getText(),
                                 dblClickMapEvent.getMouseEvent().getLatLng().getLatitude(),
                                 dblClickMapEvent.getMouseEvent().getLatLng().getLongitude()

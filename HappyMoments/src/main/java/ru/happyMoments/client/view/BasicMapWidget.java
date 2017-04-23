@@ -9,7 +9,6 @@ import com.google.gwt.maps.client.adsense.AdUnitOptions;
 import com.google.gwt.maps.client.adsense.AdUnitWidget;
 import com.google.gwt.maps.client.base.LatLng;
 import com.google.gwt.maps.client.controls.ControlPosition;
-import com.google.gwt.maps.client.events.MouseEvent;
 import com.google.gwt.maps.client.events.channelnumber.ChannelNumberChangeMapEvent;
 import com.google.gwt.maps.client.events.channelnumber.ChannelNumberChangeMapHandler;
 import com.google.gwt.maps.client.events.click.ClickMapEvent;
@@ -21,8 +20,6 @@ import com.google.gwt.maps.client.events.mapchange.MapChangeMapHandler;
 import com.google.gwt.maps.client.events.position.PositionChangeMapEvent;
 import com.google.gwt.maps.client.events.position.PositionChangeMapHandler;
 import com.google.gwt.maps.client.overlays.Animation;
-import com.google.gwt.maps.client.overlays.InfoWindow;
-import com.google.gwt.maps.client.overlays.InfoWindowOptions;
 import com.google.gwt.maps.client.overlays.Marker;
 import com.google.gwt.maps.client.overlays.MarkerOptions;
 import com.google.gwt.user.client.Window;
@@ -31,14 +28,10 @@ import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import ru.happyMoments.client.presenter.Presenter;
-import ru.happyMoments.shared.dto.ImageDto;
 import ru.happyMoments.shared.dto.LightEventDto;
-import ru.happyMoments.shared.factories.LightEventDtoFactory;
-
+import ru.happyMoments.shared.factories.Factory;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 public class BasicMapWidget extends Composite {
 
@@ -80,7 +73,7 @@ public class BasicMapWidget extends Composite {
                 stopAnimation();
                 marker.setAnimation(Animation.BOUNCE);
 
-                presenter.loadEvent(LightEventDtoFactory.create(marker.getPosition().getLatitude(),
+                presenter.loadEvent(Factory.createLightEventDto(marker.getPosition().getLatitude(),
                         marker.getPosition().getLongitude()));
 
                 PopupPanel infoPanel = new PopupPanel();
@@ -89,22 +82,8 @@ public class BasicMapWidget extends Composite {
                 infoPanel.getElement().getStyle().setWidth(100, Style.Unit.PX);
                 infoPanel.setPopupPosition(Window.getClientWidth()/2, Window.getClientHeight()/2);
                 infoPanel.setVisible(true);
-                //drawInfoWindow(marker, event.getMouseEvent());
             }
         });
-    }
-
-    protected void drawInfoWindow(Marker marker, MouseEvent mouseEvent) {
-
-        if (marker == null || mouseEvent == null) {
-            return;
-        }
-
-        HTML html = new HTML("You clicked on: " + mouseEvent.getLatLng().getToString());
-        InfoWindowOptions options = InfoWindowOptions.newInstance();
-        options.setContent(html);
-        InfoWindow iw = InfoWindow.newInstance(options);
-        iw.open(mapWidget, marker);
     }
 
     private void drawMap() {
@@ -120,15 +99,6 @@ public class BasicMapWidget extends Composite {
 
         mapWidget.setSize(Double.toString(Window.getClientWidth()),
                 Double.toString(Window.getClientHeight()));
-
-
-        /*mapWidget.addClickHandler(new ClickMapHandler() {
-            @Override
-            public void onEvent(ClickMapEvent event) {
-                drawMarkerWithDropAnimation(event.getMouseEvent().getLatLng().getLatitude(),
-                        event.getMouseEvent().getLatLng().getLongitude());
-            }
-        });*/
     }
 
     public void launchApp(List<LightEventDto> lightEventDtos) {

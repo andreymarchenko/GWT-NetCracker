@@ -8,8 +8,12 @@ public class InfoPanel extends PopupPanel {
 
     private VerticalPanel contentPanel;
     private FlowPanel imagePanel;
+    private HorizontalPanel editPanel;
     private FlowPanel namePanel;
     private Image image;
+    private Image editImage;
+    private Image acceptImage;
+    private Image deleteImage;
     private Label name;
     private Label textName;
     private VerticalPanel nameContentPanel;
@@ -34,14 +38,11 @@ public class InfoPanel extends PopupPanel {
     }
 
     private void createSeparator() {
-        VerticalPanel separator = new VerticalPanel();
-        separator.getElement().getStyle().setHeight(2, Style.Unit.PX);
+        FlowPanel separator = new FlowPanel();
+        separator.getElement().getStyle().setHeight(1, Style.Unit.PX);
         separator.getElement().getStyle().setWidth(Window.getClientWidth() /4.5 - 10, Style.Unit.PX);
-        separator.getElement().getStyle().setBorderColor("#757575");
+        separator.getElement().getStyle().setBackgroundColor("#757575");
         separator.getElement().getStyle().setOpacity(0.4);
-        //separator.getElement().getStyle().setMarginLeft(Window.getClientWidth() / 24.5, Style.Unit.PX);
-        separator.getElement().getStyle().setBorderWidth(0.5,Style.Unit.PX );
-        separator.getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
         mainInfoPanel.add(separator);
     }
 
@@ -94,6 +95,33 @@ public class InfoPanel extends PopupPanel {
         mainInfoPanel = new VerticalPanel();
         mainInfoPanel.getElement().getStyle().setWidth(Window.getClientWidth() / 4.5 - 10, Style.Unit.PX);
         mainInfoPanel.getElement().getStyle().setHeight(Window.getClientHeight() * 5 / 9 - 20, Style.Unit.PX);
+
+        editImage = new Image();
+        editImage.getElement().getStyle().setHeight(Window.getClientWidth() / 25, Style.Unit.PX);
+        editImage.getElement().getStyle().setWidth(Window.getClientWidth() / 25, Style.Unit.PX);
+        editImage.getElement().getStyle().setMarginLeft(Window.getClientWidth() / 45, Style.Unit.PX);
+        editImage.getElement().getStyle().setMarginTop(Window.getClientWidth() / 120, Style.Unit.PX);
+
+        deleteImage = new Image();
+        deleteImage.getElement().getStyle().setHeight(Window.getClientWidth() / 25, Style.Unit.PX);
+        deleteImage.getElement().getStyle().setWidth(Window.getClientWidth() / 25, Style.Unit.PX);
+        deleteImage.getElement().getStyle().setMarginRight(Window.getClientWidth() / 125, Style.Unit.PX);
+        deleteImage.getElement().getStyle().setMarginTop(Window.getClientWidth() / 120, Style.Unit.PX);
+
+        acceptImage = new Image();
+        acceptImage.getElement().getStyle().setHeight(Window.getClientWidth() / 25, Style.Unit.PX);
+        acceptImage.getElement().getStyle().setWidth(Window.getClientWidth() / 25, Style.Unit.PX);
+        acceptImage.getElement().getStyle().setMarginTop(Window.getClientWidth() / 120, Style.Unit.PX);
+
+        editPanel = new HorizontalPanel();
+        editPanel.getElement().getStyle().setHeight(Window.getClientHeight() / 9, Style.Unit.PX);
+        editPanel.getElement().getStyle().setWidth(Window.getClientWidth() / 4.5 - 10, Style.Unit.PX);
+        editPanel.add(editImage);
+        editPanel.add(deleteImage);
+        editPanel.add(acceptImage);
+        mainInfoPanel.add(editPanel);
+
+        createSeparator();
 
         descriptionPanel = new VerticalPanel();
         descriptionPanel.getElement().getStyle().setWidth(Window.getClientWidth() / 4.5 - 10, Style.Unit.PX);
@@ -170,7 +198,7 @@ public class InfoPanel extends PopupPanel {
         textLocation.getElement().getStyle().setColor("#757575");
         textLocation.getElement().getStyle().setFontSize(15, Style.Unit.PX);
         textLocation.getElement().getStyle().setMarginLeft(25, Style.Unit.PX);
-        textLocation.getElement().getStyle().setMarginTop(Window.getClientHeight() / 45, Style.Unit.PX);
+        textLocation.getElement().getStyle().setMarginTop(Window.getClientHeight() / 120, Style.Unit.PX);
         textLocation.setText("Координаты события");
         locationPanel.add(textLocation);
 
@@ -178,14 +206,14 @@ public class InfoPanel extends PopupPanel {
         latitude.getElement().getStyle().setColor("#757575");
         latitude.getElement().getStyle().setFontSize(20, Style.Unit.PX);
         latitude.getElement().getStyle().setMarginLeft(25, Style.Unit.PX);
-        //latitude.getElement().getStyle().setMarginTop(Window.getClientHeight() / 65, Style.Unit.PX);
+        latitude.getElement().getStyle().setMarginTop(Window.getClientHeight() / -65, Style.Unit.PX);
         locationPanel.add(latitude);
 
         longitude = new Label();
         longitude.getElement().getStyle().setColor("#757575");
         longitude.getElement().getStyle().setFontSize(20, Style.Unit.PX);
         longitude.getElement().getStyle().setMarginLeft(25, Style.Unit.PX);
-        //longitude.getElement().getStyle().setMarginTop(Window.getClientHeight() / 65, Style.Unit.PX);
+        longitude.getElement().getStyle().setMarginTop(Window.getClientHeight() / -65, Style.Unit.PX);
         locationPanel.add(longitude);
 
         imagePanel.add(image);
@@ -223,5 +251,17 @@ public class InfoPanel extends PopupPanel {
 
     public Label getLongitude() {
         return longitude;
+    }
+
+    public Image getEditImage() {
+        return editImage;
+    }
+
+    public Image getDeleteImage() {
+        return deleteImage;
+    }
+
+    public Image getAcceptImage() {
+        return acceptImage;
     }
 }

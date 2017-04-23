@@ -32,7 +32,7 @@ public class AddDialogBox extends DialogBox {
         super.setGlassEnabled(true);
     }
 
-    public void createMarkup() {
+    private void createMarkup() {
         mainPanel = new VerticalPanel();
         horizontalPanel = new HorizontalPanel();
         buttonPanel = new HorizontalPanel();
@@ -66,7 +66,7 @@ public class AddDialogBox extends DialogBox {
         setStyle();
     }
 
-    public void bind(final AddDialogBox addDialogBox) {
+    private void bind(final AddDialogBox addDialogBox) {
         closeButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 addDialogBox.hide();
@@ -74,7 +74,7 @@ public class AddDialogBox extends DialogBox {
         });
     }
 
-    public void setStyle() {
+    private void setStyle() {
         this.setPopupPosition((Window.getClientWidth() - 420) / 2, (Window.getClientHeight() - 420) / 2);
         this.getElement().getStyle().setWidth(420, Style.Unit.PX);
         this.getElement().getStyle().setHeight(320, Style.Unit.PX);

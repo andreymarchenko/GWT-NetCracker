@@ -1,35 +1,31 @@
 package ru.happyMoments.server.service;
 
 import ru.happyMoments.shared.dto.EventDto;
-import ru.happyMoments.shared.dto.ImageDto;
 import ru.happyMoments.shared.dto.LightEventDto;
-import ru.happyMoments.shared.factories.EventDtoFactory;
-import ru.happyMoments.shared.factories.ImageDtoFactory;
-import ru.happyMoments.shared.factories.LightEventDtoFactory;
+import ru.happyMoments.shared.factories.Factory;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.sql.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Path("/events")
 public class EndPoint {
 
     ClassLoader classLoader = getClass().getClassLoader();
-    private String path = classLoader.getResource("Events.db").getFile();
+    private final String PATH = "jdbc:sqlite:" + classLoader.getResource("Events.db").getFile();
     private Connection connection;
 
-    private void createConnection() {
+    private Connection getConnection() {
         if (connection == null) {
             try {
-                connection = DriverManager.getConnection("jdbc:sqlite:" + path);
+                connection = DriverManager.getConnection(PATH);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
+        return connection;
     }
 
     @GET
@@ -37,15 +33,14 @@ public class EndPoint {
     public List<LightEventDto> loadAllEvents() {
         List<LightEventDto> lightEvents = new ArrayList<LightEventDto>();
 
-        PreparedStatement data = null;
-        ResultSet receivedData = null;
+        PreparedStatement data;
+        ResultSet receivedData;
 
         try {
-            createConnection();
-            data = connection.prepareStatement("SELECT * FROM LIGHTEVENTS; ");
+            data = getConnection().prepareStatement("SELECT latitude,longitude FROM EVENTS; ");
             receivedData = data.executeQuery();
             while (receivedData.next()) {
-                lightEvents.add(LightEventDtoFactory.create(receivedData.getDouble(1), receivedData.getDouble(2)));
+                lightEvents.add(Factory.createLightEventDto(receivedData.getDouble(1), receivedData.getDouble(2)));
             }
             data.close();
         } catch (SQLException e) {
@@ -61,12 +56,11 @@ public class EndPoint {
     public EventDto getEventByLatLng(LightEventDto lightEventDto) {
 
         EventDto eventDto = null;
-        PreparedStatement data = null;
-        ResultSet receivedData = null;
+        PreparedStatement data;
+        ResultSet receivedData;
 
         try {
-            createConnection();
-            data = connection.prepareStatement("SELECT id,description,date,name,time,latitude,longitude FROM EVENTS WHERE (latitude BETWEEN ? AND ?) AND (longitude BETWEEN ? AND ?); ");
+            data = getConnection().prepareStatement("SELECT id,description,date,name,time,latitude,longitude FROM EVENTS WHERE (latitude BETWEEN ? AND ?) AND (longitude BETWEEN ? AND ?); ");
 
             data.setDouble(1, lightEventDto.getLatitude() - 0.0001);
             data.setDouble(2, lightEventDto.getLatitude() + 0.0001);
@@ -92,12 +86,12 @@ public class EndPoint {
                     url = receivedImage.getString(2);
                 }
 
-                eventDto = EventDtoFactory.create(
+                eventDto = Factory.createEventDto(
                         receivedData.getInt(1),
                         receivedData.getString(2),
                         receivedData.getString(3),
                         receivedData.getString(4),
-                        ImageDtoFactory.create(imageId, url),
+                        Factory.createImageDto(imageId, url),
                         receivedData.getString(5),
                         receivedData.getDouble(6),
                         receivedData.getDouble(7));
@@ -108,7 +102,6 @@ public class EndPoint {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return eventDto;
     }
 
@@ -118,17 +111,15 @@ public class EndPoint {
     public List<LightEventDto> createEvent(EventDto eventDto) {
         List<LightEventDto> lightEvents = new ArrayList<LightEventDto>();
 
-        PreparedStatement eventsData = null;
-        PreparedStatement lightEventsData = null;
-        PreparedStatement imagesData = null;
-        PreparedStatement data = null;
+        PreparedStatement eventsData;
+        PreparedStatement imagesData;
+        PreparedStatement data;
 
-        ResultSet receivedLightEventsData = null;
+        ResultSet receivedLightEventsData;
 
         try {
-            createConnection();
 
-            eventsData = connection.prepareStatement("INSERT INTO EVENTS (id, description, date, name, time, latitude, longitude)" +
+            eventsData = getConnection().prepareStatement("INSERT INTO EVENTS (id, description, date, name, time, latitude, longitude)" +
                     " VALUES (?, ?, ?, ?, ?, ?, ?); ");
 
             eventsData.setInt(1, eventDto.getId());
@@ -142,15 +133,6 @@ public class EndPoint {
             eventsData.executeUpdate();
             eventsData.close();
 
-            lightEventsData = connection.prepareStatement("INSERT INTO LIGHTEVENTS (latitude, longitude)" +
-                    " VALUES (?, ?); ");
-
-            lightEventsData.setDouble(1, eventDto.getLatitude());
-            lightEventsData.setDouble(2, eventDto.getLongitude());
-
-            lightEventsData.executeUpdate();
-            lightEventsData.close();
-
             imagesData = connection.prepareStatement("INSERT INTO IMAGES (event_id, url)" +
                     " VALUES (?, ?); ");
 
@@ -160,10 +142,10 @@ public class EndPoint {
             imagesData.executeUpdate();
             imagesData.close();
 
-            data = connection.prepareStatement("SELECT * FROM LIGHTEVENTS; ");
+            data = connection.prepareStatement("SELECT latitude,longitude FROM EVENTS; ");
             receivedLightEventsData = data.executeQuery();
             while (receivedLightEventsData.next()) {
-                lightEvents.add(LightEventDtoFactory.create(receivedLightEventsData.getDouble(1), receivedLightEventsData.getDouble(2)));
+                lightEvents.add(Factory.createLightEventDto(receivedLightEventsData.getDouble(1), receivedLightEventsData.getDouble(2)));
             }
 
             data.close();

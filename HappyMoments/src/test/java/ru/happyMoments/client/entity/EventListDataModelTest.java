@@ -4,13 +4,11 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.SimpleEventBus;
 import org.junit.Before;
 import org.junit.Test;
-import ru.happyMoments.client.model.EventDataModel;
 import ru.happyMoments.client.model.EventListDataModel;
 import ru.happyMoments.shared.dto.LightEventDto;
-import ru.happyMoments.shared.factories.LightEventDtoFactory;
+import ru.happyMoments.shared.factories.Factory;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.assertEquals;
@@ -22,13 +20,14 @@ public class EventListDataModelTest {
 
     @Before
     public void addData() {
-        LIGHT_EVENTS.add(LightEventDtoFactory.create( 1.1, 1.1));
+        LIGHT_EVENTS.add(Factory.createLightEventDto(1.1, 1.1));
     }
+
+    //тест на одинаковые значения
 
     @Test
     public void testSetNotNullEvents() {
-        EventListDataModel eventListDataModel = new EventListDataModel();
-        eventListDataModel.setEventBus(EVENT_BUS);
+        EventListDataModel eventListDataModel = new EventListDataModel(EVENT_BUS);
         eventListDataModel.setLightEvents(LIGHT_EVENTS);
         assertEquals(LIGHT_EVENTS, eventListDataModel.getLightEventDtos());
     }

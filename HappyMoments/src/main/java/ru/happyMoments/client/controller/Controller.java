@@ -11,9 +11,7 @@ import ru.happyMoments.client.presenter.Presenter;
 import ru.happyMoments.client.service.EndPoint;
 import ru.happyMoments.shared.dto.EventDto;
 import ru.happyMoments.shared.dto.LightEventDto;
-
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -24,7 +22,6 @@ public class Controller {
 
     private EventBus eventBus;
 
-    private static final Logger logger = Logger.getLogger(Presenter.class.getName());
     private final EndPoint endPoint = GWT.create(EndPoint.class);
 
     @Inject
@@ -66,7 +63,7 @@ public class Controller {
 
                     @Override
                     public void onSuccess(Method method, List<LightEventDto> lightEventDtos) {
-                        eventListDataModel.setLightEvents((ArrayList<LightEventDto>) lightEventDtos);
+                        eventListDataModel.setLightEvents(lightEventDtos);
                     }
                 });
             }
@@ -83,7 +80,8 @@ public class Controller {
 
                     @Override
                     public void onSuccess(Method method, List<LightEventDto> lightEventDtos) {
-                        eventListDataModel.setLightEvents((ArrayList<LightEventDto>) lightEventDtos);
+                        //команду loadLightEvent кидать здесь
+                        eventListDataModel.setLightEvents(lightEventDtos);
                     }
                 });
             }

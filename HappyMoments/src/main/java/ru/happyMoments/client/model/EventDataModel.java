@@ -17,8 +17,7 @@ public class EventDataModel {
     }
 
     @Inject
-    public void EventDataModel(EventDto event, EventBus eventBus) {
-        this.event = event;
+    public void EventDataModel(EventBus eventBus) {
         this.eventBus = eventBus;
     }
 
@@ -36,9 +35,5 @@ public class EventDataModel {
 
     public EventDto getEvent() {
         return event;
-    }
-
-    public void setEventBus(EventBus eventBus) {
-        this.eventBus = eventBus;
     }
 }

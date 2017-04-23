@@ -7,11 +7,11 @@ import ru.happyMoments.client.events.LoadLightDataEventHandler;
 import ru.happyMoments.shared.dto.LightEventDto;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
 
 public class EventListDataModel {
 
+    //создать пустой при инициализаии
     private List<LightEventDto> lightEventDtos;
     private EventBus eventBus;
 
@@ -31,7 +31,7 @@ public class EventListDataModel {
         return lightEventDtos;
     }
 
-    public void setLightEvents(ArrayList<LightEventDto> lightEventDtos) {
+    public void setLightEvents(List<LightEventDto> lightEventDtos) {
 
         if (this.lightEventDtos != null && lightEventDtos != null) {
             int index = 0;
@@ -40,20 +40,18 @@ public class EventListDataModel {
                     index++;
                 }
             }
+
             if (this.lightEventDtos.size() == lightEventDtos.size() && index == lightEventDtos.size()) return;
+
             else {
                 this.lightEventDtos = lightEventDtos;
                 eventBus.fireEvent(LoadLightDataEvent.create());
             }
-        } else if (this.lightEventDtos == null) {
+        }
+        else if (this.lightEventDtos == null) {
             this.lightEventDtos = lightEventDtos;
             eventBus.fireEvent(LoadLightDataEvent.create());
         }
     }
 
-    public void setEventBus(EventBus eventBus) {
-        if (eventBus != null) {
-            this.eventBus = eventBus;
-        }
-    }
 }

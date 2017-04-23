@@ -22,19 +22,25 @@ public class ImageDto implements Serializable{
         this.url = url;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ImageDto imageDto = (ImageDto) o;
+
+        if (id != imageDto.id) return false;
+        return url.equals(imageDto.url);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + url.hashCode();
+        return result;
     }
 }

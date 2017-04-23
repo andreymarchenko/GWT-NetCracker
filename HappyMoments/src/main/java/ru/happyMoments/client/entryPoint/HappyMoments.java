@@ -11,7 +11,7 @@ public class HappyMoments implements EntryPoint {
     @Override
     public void onModuleLoad() {
         Defaults.setServiceRoot(GWT.getHostPageBaseURL());
-        Defaults.setDateFormat(null);
+        //Defaults.setDateFormat(null);
         Injector injector = GWT.create(Injector.class);
         LifeCycle lifeCycle = injector.getLifeCycle();
         lifeCycle.start();

@@ -17,7 +17,6 @@ public class EventDataModelTest {
     @Test
     public void testSetNotNullEvent() {
         EventDataModel eventDataModel = new EventDataModel();
-        eventDataModel.setEventBus(EVENT_BUS);
         eventDataModel.setEvent(FIRST_EVENT);
         assertEquals(FIRST_EVENT, eventDataModel.getEvent());
     }

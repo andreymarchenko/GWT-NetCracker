@@ -2,7 +2,6 @@ package ru.happyMoments.shared.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.base.Objects;
 
 import java.io.Serializable;
 

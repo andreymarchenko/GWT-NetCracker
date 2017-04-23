@@ -11,17 +11,20 @@ import java.util.List;
 @Path("/api")
 public interface EndPoint extends RestService {
 
+    static final String PATH = "/events";
+    static final String CREATE_PATH = "/events/create";
+
     @GET
-    @Path("/events")
+    @Path(PATH)
     void loadAllLightEvents(MethodCallback<List<LightEventDto>> callback);
 
     @POST
-    @Path("/events")
+    @Path(PATH)
     void getEventByLatLng(LightEventDto lightEventDto,
                           MethodCallback<EventDto> callback);
 
     @POST
-    @Path("/events/create")
+    @Path(CREATE_PATH)
     void createEvent(EventDto EventDto,
                      MethodCallback<List<LightEventDto>> callback);
 }
