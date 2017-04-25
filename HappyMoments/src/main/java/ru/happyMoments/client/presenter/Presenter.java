@@ -2,6 +2,7 @@ package ru.happyMoments.client.presenter;
 
 import com.google.web.bindery.event.shared.EventBus;
 import ru.happyMoments.client.commands.CreateEventCommand;
+import ru.happyMoments.client.commands.EditEventCommand;
 import ru.happyMoments.client.commands.LoadDataCommand;
 import ru.happyMoments.client.controller.Controller;
 import ru.happyMoments.client.events.ChangeDataEvent;
@@ -62,4 +63,11 @@ public class Presenter {
         eventBus.fireEvent(CreateEventCommand.create(eventDto));
     }
 
+    public void editEvent(EventDto eventDto) {
+        eventBus.fireEvent(EditEventCommand.create(eventDto));
+    }
+
+    public EventDataModel getEventDataModel() {
+        return eventDataModel;
+    }
 }

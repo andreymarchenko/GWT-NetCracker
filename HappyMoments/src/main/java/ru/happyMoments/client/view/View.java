@@ -116,8 +116,8 @@ public class View extends Composite {
         infoPanel.getDescription().setText(event.getDescription());
         infoPanel.getTime().setText(event.getTime());
         infoPanel.getDate().setText(event.getDate());
-        infoPanel.getLatitude().setText("Широта:  " + Double.toString(event.getLatitude()));
-        infoPanel.getLongitude().setText("Долгота:  " + Double.toString(event.getLongitude()));
+        infoPanel.getLatitude().setText(Double.toString(event.getLatitude()));
+        infoPanel.getLongitude().setText(Double.toString(event.getLongitude()));
     }
 
     public void setLightData(final List<LightEventDto> lightEventDtos) {
@@ -145,14 +145,45 @@ public class View extends Composite {
                                 dblClickMapEvent.getMouseEvent().getLatLng().getLongitude()
                         ));
                         addDialogBox.hide();
+                        infoPanel.setActive(false);
                     }
                 });
+            }
+        });
+
+        infoPanel.getEditImage().addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                infoPanel.setActive(true);
+            }
+        });
+
+        infoPanel.getAcceptImage().addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                infoPanel.setActive(false);
+                presenter.editEvent(Factory.createEventDto(
+                        presenter.getEventDataModel().getEvent().getId(),
+                        infoPanel.getDescription().getText(),
+                        infoPanel.getDate().getText(),
+                        infoPanel.getName().getText(),
+                        presenter.getEventDataModel().getEvent().getImage(),
+                        infoPanel.getTime().getText(),
+                        Double.parseDouble(infoPanel.getLatitude().getText()),
+                        Double.parseDouble(infoPanel.getLongitude().getText())));
+            }
+        });
+
+        infoPanel.getDeleteImage().addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                infoPanel.setActive(false);
             }
         });
     }
 
     private void setMarkers() {
-        if (wMap != null && lightEvents!= null && !lightEvents.isEmpty()) {
+        if (wMap != null && lightEvents != null && !lightEvents.isEmpty()) {
             wMap.launchApp(lightEvents);
             wMap.getMapWidget().addClickHandler(new ClickMapHandler() {
                 @Override

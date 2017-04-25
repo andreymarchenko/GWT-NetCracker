@@ -11,6 +11,7 @@ import ru.happyMoments.client.presenter.Presenter;
 import ru.happyMoments.client.service.EndPoint;
 import ru.happyMoments.shared.dto.EventDto;
 import ru.happyMoments.shared.dto.LightEventDto;
+
 import javax.inject.Inject;
 import java.util.List;
 import java.util.logging.Logger;
@@ -35,7 +36,6 @@ public class Controller {
     }
 
     public void bind() {
-
         eventBus.addHandler(LoadDataCommand.TYPE, new LoadDataCommandHandler() {
             @Override
             public void onLoadData(LightEventDto lightEventDto, LoadDataCommand loadDataCommand) {
@@ -72,16 +72,32 @@ public class Controller {
         eventBus.addHandler(CreateEventCommand.TYPE, new CreateEventCommandHandler() {
             @Override
             public void onCreateEvent(EventDto eventDto, CreateEventCommand createEventCommand) {
-                endPoint.createEvent(eventDto, new MethodCallback<List<LightEventDto>>() {
+                endPoint.createEvent(eventDto, new MethodCallback() {
                     @Override
                     public void onFailure(Method method, Throwable throwable) {
 
                     }
 
                     @Override
-                    public void onSuccess(Method method, List<LightEventDto> lightEventDtos) {
-                        //команду loadLightEvent кидать здесь
-                        eventListDataModel.setLightEvents(lightEventDtos);
+                    public void onSuccess(Method method, Object o) {
+                        eventBus.fireEvent(LoadLightEventsCommand.create());
+                    }
+                });
+            }
+        });
+
+        eventBus.addHandler(EditEventCommand.TYPE, new EditEventCommandHandler() {
+            @Override
+            public void onEditEvent(EventDto eventDto, EditEventCommand editEventCommand) {
+                endPoint.editEvent(eventDto, new MethodCallback() {
+                    @Override
+                    public void onFailure(Method method, Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(Method method, Object o) {
+                        eventBus.fireEvent(LoadLightEventsCommand.create());
                     }
                 });
             }

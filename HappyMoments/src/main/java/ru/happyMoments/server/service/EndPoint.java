@@ -107,18 +107,11 @@ public class EndPoint {
 
     @Path("/create")
     @POST
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<LightEventDto> createEvent(EventDto eventDto) {
-        List<LightEventDto> lightEvents = new ArrayList<LightEventDto>();
+    public void createEvent(EventDto eventDto) {
 
         PreparedStatement eventsData;
-        PreparedStatement imagesData;
-        PreparedStatement data;
-
-        ResultSet receivedLightEventsData;
 
         try {
-
             eventsData = getConnection().prepareStatement("INSERT INTO EVENTS (id, description, date, name, time, latitude, longitude)" +
                     " VALUES (?, ?, ?, ?, ?, ?, ?); ");
 
@@ -133,25 +126,33 @@ public class EndPoint {
             eventsData.executeUpdate();
             eventsData.close();
 
-            imagesData = connection.prepareStatement("INSERT INTO IMAGES (event_id, url)" +
-                    " VALUES (?, ?); ");
-
-            imagesData.setInt(1, eventDto.getId());
-            imagesData.setString(2, eventDto.getImage().getUrl());
-
-            imagesData.executeUpdate();
-            imagesData.close();
-
-            data = connection.prepareStatement("SELECT latitude,longitude FROM EVENTS; ");
-            receivedLightEventsData = data.executeQuery();
-            while (receivedLightEventsData.next()) {
-                lightEvents.add(Factory.createLightEventDto(receivedLightEventsData.getDouble(1), receivedLightEventsData.getDouble(2)));
-            }
-
-            data.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return lightEvents;
+    }
+
+    @Path("/edit")
+    @POST
+    public void editEvent(EventDto eventDto) {
+
+        PreparedStatement eventsData;
+
+        try {
+            eventsData = getConnection().prepareStatement("UPDATE EVENTS SET description=?, date=?, name=?, time=?, latitude=?, longitude=? WHERE id=?; ");
+
+            eventsData.setString(1, eventDto.getDescription());
+            eventsData.setString(2, eventDto.getDate());
+            eventsData.setString(3, eventDto.getName());
+            eventsData.setString(4, eventDto.getTime());
+            eventsData.setDouble(5, eventDto.getLatitude());
+            eventsData.setDouble(6, eventDto.getLongitude());
+            eventsData.setInt(7, eventDto.getId());
+
+            eventsData.executeUpdate();
+            eventsData.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -3,6 +3,10 @@ package ru.happyMoments.client.view;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
+import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Label;
+
+import java.awt.*;
 
 public class InfoPanel extends PopupPanel {
 
@@ -14,23 +18,27 @@ public class InfoPanel extends PopupPanel {
     private Image editImage;
     private Image acceptImage;
     private Image deleteImage;
-    private Label name;
+    private TextBox name;
     private Label textName;
     private VerticalPanel nameContentPanel;
     private VerticalPanel mainInfoPanel;
     private VerticalPanel descriptionPanel;
     private Label textDescription;
-    private Label description;
+    private TextBox description;
     private VerticalPanel timePanel;
     private Label textTime;
-    private Label time;
+    private TextBox time;
     private VerticalPanel datePanel;
     private Label textDate;
-    private Label date;
+    private TextBox date;
     private VerticalPanel locationPanel;
     private Label textLocation;
-    private Label latitude;
-    private Label longitude;
+    private Label textLatitude;
+    private Label textLongitude;
+    private TextBox latitude;
+    private TextBox longitude;
+    private HorizontalPanel latitudePanel;
+    private HorizontalPanel longitudePanel;
 
 
     public InfoPanel() {
@@ -40,7 +48,7 @@ public class InfoPanel extends PopupPanel {
     private void createSeparator() {
         FlowPanel separator = new FlowPanel();
         separator.getElement().getStyle().setHeight(1, Style.Unit.PX);
-        separator.getElement().getStyle().setWidth(Window.getClientWidth() /4.5 - 10, Style.Unit.PX);
+        separator.getElement().getStyle().setWidth(Window.getClientWidth() / 4.5 - 10, Style.Unit.PX);
         separator.getElement().getStyle().setBackgroundColor("#757575");
         separator.getElement().getStyle().setOpacity(0.4);
         mainInfoPanel.add(separator);
@@ -85,11 +93,14 @@ public class InfoPanel extends PopupPanel {
         textName.setText("Название события");
         nameContentPanel.add(textName);
 
-        name = new Label();
+        name = new TextBox();
+        name.setEnabled(false);
         name.getElement().getStyle().setColor("White");
         name.getElement().getStyle().setFontSize(25, Style.Unit.PX);
         name.getElement().getStyle().setMarginLeft(25, Style.Unit.PX);
         name.getElement().getStyle().setMarginTop(-Window.getClientHeight() / 32, Style.Unit.PX);
+        name.getElement().getStyle().setBackgroundColor("4285f4");
+        name.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
         nameContentPanel.add(name);
 
         mainInfoPanel = new VerticalPanel();
@@ -97,24 +108,24 @@ public class InfoPanel extends PopupPanel {
         mainInfoPanel.getElement().getStyle().setHeight(Window.getClientHeight() * 5 / 9 - 20, Style.Unit.PX);
 
         editImage = new Image();
-        editImage.getElement().getStyle().setHeight(Window.getClientWidth() / 25, Style.Unit.PX);
-        editImage.getElement().getStyle().setWidth(Window.getClientWidth() / 25, Style.Unit.PX);
+        editImage.getElement().getStyle().setHeight(Window.getClientWidth() / 30, Style.Unit.PX);
+        editImage.getElement().getStyle().setWidth(Window.getClientWidth() / 30, Style.Unit.PX);
         editImage.getElement().getStyle().setMarginLeft(Window.getClientWidth() / 45, Style.Unit.PX);
-        editImage.getElement().getStyle().setMarginTop(Window.getClientWidth() / 120, Style.Unit.PX);
+        editImage.getElement().getStyle().setMarginTop(Window.getClientWidth() / 140, Style.Unit.PX);
 
         deleteImage = new Image();
-        deleteImage.getElement().getStyle().setHeight(Window.getClientWidth() / 25, Style.Unit.PX);
-        deleteImage.getElement().getStyle().setWidth(Window.getClientWidth() / 25, Style.Unit.PX);
+        deleteImage.getElement().getStyle().setHeight(Window.getClientWidth() / 30, Style.Unit.PX);
+        deleteImage.getElement().getStyle().setWidth(Window.getClientWidth() / 30, Style.Unit.PX);
         deleteImage.getElement().getStyle().setMarginRight(Window.getClientWidth() / 125, Style.Unit.PX);
-        deleteImage.getElement().getStyle().setMarginTop(Window.getClientWidth() / 120, Style.Unit.PX);
+        deleteImage.getElement().getStyle().setMarginTop(Window.getClientWidth() / 140, Style.Unit.PX);
 
         acceptImage = new Image();
-        acceptImage.getElement().getStyle().setHeight(Window.getClientWidth() / 25, Style.Unit.PX);
-        acceptImage.getElement().getStyle().setWidth(Window.getClientWidth() / 25, Style.Unit.PX);
-        acceptImage.getElement().getStyle().setMarginTop(Window.getClientWidth() / 120, Style.Unit.PX);
+        acceptImage.getElement().getStyle().setHeight(Window.getClientWidth() / 30, Style.Unit.PX);
+        acceptImage.getElement().getStyle().setWidth(Window.getClientWidth() / 30, Style.Unit.PX);
+        acceptImage.getElement().getStyle().setMarginTop(Window.getClientWidth() / 140, Style.Unit.PX);
 
         editPanel = new HorizontalPanel();
-        editPanel.getElement().getStyle().setHeight(Window.getClientHeight() / 9, Style.Unit.PX);
+        editPanel.getElement().getStyle().setHeight(Window.getClientHeight() / 11, Style.Unit.PX);
         editPanel.getElement().getStyle().setWidth(Window.getClientWidth() / 4.5 - 10, Style.Unit.PX);
         editPanel.add(editImage);
         editPanel.add(deleteImage);
@@ -138,8 +149,11 @@ public class InfoPanel extends PopupPanel {
         textDescription.setText("Описание события");
         descriptionPanel.add(textDescription);
 
-        description = new Label();
+        description = new TextBox();
+        description.setEnabled(false);
+        description.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
         description.getElement().getStyle().setColor("#757575");
+        description.getElement().getStyle().setBackgroundColor("White");
         description.getElement().getStyle().setFontSize(25, Style.Unit.PX);
         description.getElement().getStyle().setMarginLeft(25, Style.Unit.PX);
         description.getElement().getStyle().setMarginTop(-Window.getClientHeight() / 45, Style.Unit.PX);
@@ -160,8 +174,11 @@ public class InfoPanel extends PopupPanel {
         textTime.setText("Время события");
         timePanel.add(textTime);
 
-        time = new Label();
+        time = new TextBox();
+        time.setEnabled(false);
+        time.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
         time.getElement().getStyle().setColor("#757575");
+        time.getElement().getStyle().setBackgroundColor("White");
         time.getElement().getStyle().setFontSize(25, Style.Unit.PX);
         time.getElement().getStyle().setMarginLeft(25, Style.Unit.PX);
         time.getElement().getStyle().setMarginTop(-Window.getClientHeight() / 45, Style.Unit.PX);
@@ -182,8 +199,11 @@ public class InfoPanel extends PopupPanel {
         textDate.setText("Дата события");
         datePanel.add(textDate);
 
-        date = new Label();
+        date = new TextBox();
+        date.setEnabled(false);
+        date.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
         date.getElement().getStyle().setColor("#757575");
+        date.getElement().getStyle().setBackgroundColor("White");
         date.getElement().getStyle().setFontSize(25, Style.Unit.PX);
         date.getElement().getStyle().setMarginLeft(25, Style.Unit.PX);
         date.getElement().getStyle().setMarginTop(-Window.getClientHeight() / 45, Style.Unit.PX);
@@ -202,19 +222,54 @@ public class InfoPanel extends PopupPanel {
         textLocation.setText("Координаты события");
         locationPanel.add(textLocation);
 
-        latitude = new Label();
-        latitude.getElement().getStyle().setColor("#757575");
-        latitude.getElement().getStyle().setFontSize(20, Style.Unit.PX);
-        latitude.getElement().getStyle().setMarginLeft(25, Style.Unit.PX);
-        latitude.getElement().getStyle().setMarginTop(Window.getClientHeight() / -65, Style.Unit.PX);
-        locationPanel.add(latitude);
+        latitudePanel = new HorizontalPanel();
+        latitudePanel.getElement().getStyle().setWidth(Window.getClientWidth() / 4.5 - 10, Style.Unit.PX);
+        latitudePanel.getElement().getStyle().setHeight(Window.getClientHeight() / 24 - 8, Style.Unit.PX);
+        latitudePanel.getElement().getStyle().setMarginTop(Window.getClientHeight() / 120, Style.Unit.PX);
 
-        longitude = new Label();
+        longitudePanel = new HorizontalPanel();
+        longitudePanel.getElement().getStyle().setWidth(Window.getClientWidth() / 4.5 - 10, Style.Unit.PX);
+        longitudePanel.getElement().getStyle().setHeight(Window.getClientHeight() / 24 - 8, Style.Unit.PX);
+
+
+        textLatitude = new Label();
+        textLatitude.getElement().getStyle().setColor("#757575");
+        textLatitude.getElement().getStyle().setFontSize(15, Style.Unit.PX);
+        textLatitude.getElement().getStyle().setMarginLeft(25, Style.Unit.PX);
+        textLatitude.getElement().getStyle().setMarginTop(Window.getClientHeight() / 500, Style.Unit.PX);
+        textLatitude.setText("Широта: ");
+
+        textLongitude = new Label();
+        textLongitude.getElement().getStyle().setColor("#757575");
+        textLongitude.getElement().getStyle().setFontSize(15, Style.Unit.PX);
+        textLongitude.getElement().getStyle().setMarginLeft(25, Style.Unit.PX);
+        textLongitude.getElement().getStyle().setMarginTop(Window.getClientHeight() / 500, Style.Unit.PX);
+        textLongitude.setText("Долгота: ");
+
+        latitude = new TextBox();
+        latitude.setEnabled(false);
+        latitude.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
+        latitude.getElement().getStyle().setColor("#757575");
+        latitude.getElement().getStyle().setBackgroundColor("White");
+        latitude.getElement().getStyle().setFontSize(17, Style.Unit.PX);
+
+        latitudePanel.add(textLatitude);
+        latitudePanel.add(latitude);
+
+        locationPanel.add(latitudePanel);
+
+        longitude = new TextBox();
+        longitude.setEnabled(false);
+        longitude.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
         longitude.getElement().getStyle().setColor("#757575");
-        longitude.getElement().getStyle().setFontSize(20, Style.Unit.PX);
-        longitude.getElement().getStyle().setMarginLeft(25, Style.Unit.PX);
-        longitude.getElement().getStyle().setMarginTop(Window.getClientHeight() / -65, Style.Unit.PX);
+        longitude.getElement().getStyle().setBackgroundColor("White");
+        longitude.getElement().getStyle().setFontSize(17, Style.Unit.PX);
         locationPanel.add(longitude);
+
+        longitudePanel.add(textLongitude);
+        longitudePanel.add(longitude);
+
+        locationPanel.add(longitudePanel);
 
         imagePanel.add(image);
 
@@ -229,27 +284,27 @@ public class InfoPanel extends PopupPanel {
         return image;
     }
 
-    public Label getName() {
+    public TextBox getName() {
         return name;
     }
 
-    public Label getDescription() {
+    public TextBox getDescription() {
         return description;
     }
 
-    public Label getTime() {
+    public TextBox getTime() {
         return time;
     }
 
-    public Label getDate() {
+    public TextBox getDate() {
         return date;
     }
 
-    public Label getLatitude() {
+    public TextBox getLatitude() {
         return latitude;
     }
 
-    public Label getLongitude() {
+    public TextBox getLongitude() {
         return longitude;
     }
 
@@ -264,4 +319,25 @@ public class InfoPanel extends PopupPanel {
     public Image getAcceptImage() {
         return acceptImage;
     }
+
+    public void setActive(boolean value) {
+        if (value == true) {
+            this.name.setEnabled(true);
+            this.description.setEnabled(true);
+            this.time.setEnabled(true);
+            this.date.setEnabled(true);
+            this.latitude.setEnabled(true);
+            this.longitude.setEnabled(true);
+        }
+        else {
+            this.name.setEnabled(false);
+            this.description.setEnabled(false);
+            this.time.setEnabled(false);
+            this.date.setEnabled(false);
+            this.latitude.setEnabled(false);
+            this.longitude.setEnabled(false);
+        }
+
+    }
+
 }
