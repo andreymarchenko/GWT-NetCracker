@@ -14,6 +14,7 @@ public interface EndPoint extends RestService {
     static final String PATH = "/events";
     static final String CREATE_PATH = "/events/create";
     static final String EDIT_PATH = "/events/edit";
+    static final String DELETE_PATH = "/events/delete";
 
     @GET
     @Path(PATH)
@@ -33,4 +34,9 @@ public interface EndPoint extends RestService {
     @Path(EDIT_PATH)
     void editEvent(EventDto EventDto,
                      MethodCallback callback);
+
+    @POST
+    @Path(DELETE_PATH)
+    void deleteEvent(EventDto EventDto,
+                   MethodCallback callback);
 }

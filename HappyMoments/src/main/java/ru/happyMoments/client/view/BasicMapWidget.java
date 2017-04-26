@@ -30,6 +30,7 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import ru.happyMoments.client.presenter.Presenter;
 import ru.happyMoments.shared.dto.LightEventDto;
 import ru.happyMoments.shared.factories.Factory;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +59,12 @@ public class BasicMapWidget extends Composite {
         this.presenter = presenter;
     }
 
+    private void clearMap() {
+        for (int i = 0; i < markers.size(); i++) {
+            markers.get(i).clear();
+        }
+    }
+
     private void drawMarkerWithDropAnimation(double latitude, double longitude) {
         MarkerOptions options = MarkerOptions.newInstance();
         options.setPosition(LatLng.newInstance(latitude, longitude));
@@ -80,7 +87,7 @@ public class BasicMapWidget extends Composite {
                 infoPanel.getElement().getStyle().setBackgroundColor("White");
                 infoPanel.getElement().getStyle().setHeight(100, Style.Unit.PX);
                 infoPanel.getElement().getStyle().setWidth(100, Style.Unit.PX);
-                infoPanel.setPopupPosition(Window.getClientWidth()/2, Window.getClientHeight()/2);
+                infoPanel.setPopupPosition(Window.getClientWidth() / 2, Window.getClientHeight() / 2);
                 infoPanel.setVisible(true);
             }
         });
@@ -102,6 +109,7 @@ public class BasicMapWidget extends Composite {
     }
 
     public void launchApp(List<LightEventDto> lightEventDtos) {
+        clearMap();
         markers.clear();
         for (int i = 0; i < lightEventDtos.size(); i++) {
             drawMarkerWithDropAnimation(lightEventDtos.get(i).getLatitude(), lightEventDtos.get(i).getLongitude());

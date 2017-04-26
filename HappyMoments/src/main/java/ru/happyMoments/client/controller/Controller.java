@@ -103,5 +103,22 @@ public class Controller {
             }
         });
 
+        eventBus.addHandler(DeleteEventCommand.TYPE, new DeleteEventCommandHandler() {
+            @Override
+            public void onDeleteEvent(EventDto eventDto, DeleteEventCommand deleteEventCommand) {
+                endPoint.deleteEvent(eventDto, new MethodCallback() {
+                    @Override
+                    public void onFailure(Method method, Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(Method method, Object o) {
+                        eventBus.fireEvent(LoadLightEventsCommand.create());
+                    }
+                });
+            }
+        });
+
     }
 }

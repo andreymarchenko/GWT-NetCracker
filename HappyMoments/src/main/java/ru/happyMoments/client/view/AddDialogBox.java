@@ -14,16 +14,19 @@ public class AddDialogBox extends DialogBox {
     private VerticalPanel leftPanel;
     private VerticalPanel rightPanel;
     private HorizontalPanel buttonPanel;
-    private TextArea nameInput;
-    private TextArea descriptionInput;
-    private TextArea dateInput;
-    private TextArea timeInput;
+    private TextBox nameInput;
+    private TextBox descriptionInput;
+    private TextBox dateInput;
+    private TextBox timeInput;
     private Label nameInfo;
     private Label descriptionInfo;
     private Label dateInfo;
     private Label timeInfo;
     private Button addButton;
     private Button closeButton;
+    private HorizontalPanel fileUploadPanel;
+    private FileUpload fileUpload;
+    private Label addingEvent;
 
     public AddDialogBox() {
         createMarkup();
@@ -33,15 +36,19 @@ public class AddDialogBox extends DialogBox {
     }
 
     private void createMarkup() {
+        addingEvent = new Label("Добавление события");
+        fileUploadPanel = new HorizontalPanel();
+        fileUpload = new FileUpload();
+        fileUploadPanel.add(fileUpload);
         mainPanel = new VerticalPanel();
         horizontalPanel = new HorizontalPanel();
         buttonPanel = new HorizontalPanel();
         leftPanel = new VerticalPanel();
         rightPanel = new VerticalPanel();
-        nameInput = new TextArea();
-        descriptionInput = new TextArea();
-        dateInput = new TextArea();
-        timeInput = new TextArea();
+        nameInput = new TextBox();
+        descriptionInput = new TextBox();
+        dateInput = new TextBox();
+        timeInput = new TextBox();
         nameInfo = new Label("Название события");
         descriptionInfo = new Label("Описание события");
         dateInfo = new Label("Дата события");
@@ -55,53 +62,84 @@ public class AddDialogBox extends DialogBox {
         leftPanel.add(dateInfo);
         leftPanel.add(timeInfo);
         rightPanel.add(nameInput);
+        createLine();
         rightPanel.add(descriptionInput);
+        createLine();
         rightPanel.add(dateInput);
+        createLine();
         rightPanel.add(timeInput);
+        createLine();
         horizontalPanel.add(leftPanel);
         horizontalPanel.add(rightPanel);
+        mainPanel.add(addingEvent);
         mainPanel.add(horizontalPanel);
+        mainPanel.add(fileUploadPanel);
         mainPanel.add(buttonPanel);
         this.add(mainPanel);
         setStyle();
     }
 
+    private void createLine() {
+        FlowPanel line = new FlowPanel();
+        line.getElement().getStyle().setHeight(1, Style.Unit.PX);
+        line.getElement().getStyle().setBackgroundColor("Gray");
+        rightPanel.add(line);
+    }
+
     private void bind(final AddDialogBox addDialogBox) {
         closeButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
+                String str = fileUpload.getFilename();
                 addDialogBox.hide();
             }
         });
     }
 
     private void setStyle() {
+
         this.setPopupPosition((Window.getClientWidth() - 420) / 2, (Window.getClientHeight() - 420) / 2);
         this.getElement().getStyle().setWidth(420, Style.Unit.PX);
-        this.getElement().getStyle().setHeight(320, Style.Unit.PX);
+        this.getElement().getStyle().setHeight(420, Style.Unit.PX);
         this.getElement().getStyle().setBackgroundColor("White");
         this.getElement().getStyle().setOpacity(0.9);
 
-        rightPanel.getElement().getStyle().setPaddingLeft(50, Style.Unit.PX);
+        addingEvent.getElement().getStyle().setMarginTop(30, Style.Unit.PX);
+        addingEvent.getElement().getStyle().setMarginLeft(115, Style.Unit.PX);
+        addingEvent.getElement().getStyle().setFontSize(20, Style.Unit.PX);
 
-        nameInput.getElement().getStyle().setMarginTop(20, Style.Unit.PX);
-        descriptionInput.getElement().getStyle().setMarginTop(30, Style.Unit.PX);
-        dateInput.getElement().getStyle().setMarginTop(30, Style.Unit.PX);
-        timeInput.getElement().getStyle().setMarginTop(30, Style.Unit.PX);
+        rightPanel.getElement().getStyle().setPaddingLeft(35, Style.Unit.PX);
 
-        nameInfo.getElement().getStyle().setMarginTop(25, Style.Unit.PX);
+        nameInput.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
+        nameInput.getElement().getStyle().setHeight(25, Style.Unit.PX);
+        descriptionInput.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
+        descriptionInput.getElement().getStyle().setHeight(25, Style.Unit.PX);
+        dateInput.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
+        dateInput.getElement().getStyle().setHeight(25, Style.Unit.PX);
+        timeInput.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
+        timeInput.getElement().getStyle().setHeight(25, Style.Unit.PX);
+
+        nameInput.getElement().getStyle().setMarginTop(25, Style.Unit.PX);
+        descriptionInput.getElement().getStyle().setMarginTop(33, Style.Unit.PX);
+        dateInput.getElement().getStyle().setMarginTop(33, Style.Unit.PX);
+        timeInput.getElement().getStyle().setMarginTop(33, Style.Unit.PX);
+
+        nameInfo.getElement().getStyle().setMarginTop(30, Style.Unit.PX);
         nameInfo.getElement().getStyle().setPaddingLeft(45, Style.Unit.PX);
 
-        descriptionInfo.getElement().getStyle().setMarginTop(47, Style.Unit.PX);
+        descriptionInfo.getElement().getStyle().setMarginTop(42, Style.Unit.PX);
         descriptionInfo.getElement().getStyle().setPaddingLeft(45, Style.Unit.PX);
 
-        dateInfo.getElement().getStyle().setMarginTop(47, Style.Unit.PX);
+        dateInfo.getElement().getStyle().setMarginTop(42, Style.Unit.PX);
         dateInfo.getElement().getStyle().setPaddingLeft(45, Style.Unit.PX);
 
-        timeInfo.getElement().getStyle().setMarginTop(47, Style.Unit.PX);
+        timeInfo.getElement().getStyle().setMarginTop(42, Style.Unit.PX);
         timeInfo.getElement().getStyle().setPaddingLeft(45, Style.Unit.PX);
 
         buttonPanel.getElement().getStyle().setMarginTop(25, Style.Unit.PX);
         buttonPanel.getElement().getStyle().setPaddingLeft(140, Style.Unit.PX);
+
+        fileUploadPanel.getElement().getStyle().setMarginTop(35, Style.Unit.PX);
+        fileUploadPanel.getElement().getStyle().setMarginLeft(100, Style.Unit.PX);
 
         addButton.getElement().getStyle().setWidth(60, Style.Unit.PX);
         addButton.getElement().getStyle().setHeight(30, Style.Unit.PX);
@@ -110,26 +148,33 @@ public class AddDialogBox extends DialogBox {
         closeButton.getElement().getStyle().setHeight(30, Style.Unit.PX);
 
         closeButton.getElement().getStyle().setMarginLeft(20, Style.Unit.PX);
+
+        leftPanel.getElement().getStyle().setMarginTop(10, Style.Unit.PX);
+        rightPanel.getElement().getStyle().setMarginTop(10, Style.Unit.PX);
     }
 
     public Button getAddButton() {
         return addButton;
     }
 
-    public TextArea getNameInput() {
+    public TextBox getNameInput() {
         return nameInput;
     }
 
-    public TextArea getDescriptionInput() {
+    public TextBox getDescriptionInput() {
         return descriptionInput;
     }
 
-    public TextArea getDateInput() {
+    public TextBox getDateInput() {
         return dateInput;
     }
 
-    public TextArea getTimeInput() {
+    public TextBox getTimeInput() {
         return timeInput;
+    }
+
+    public FileUpload getFileUpload() {
+        return fileUpload;
     }
 }
 

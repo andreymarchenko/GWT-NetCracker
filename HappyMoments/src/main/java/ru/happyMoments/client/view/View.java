@@ -127,30 +127,6 @@ public class View extends Composite {
     }
 
     private void bind() {
-        wMap.getMapWidget().addDblClickHandler(new DblClickMapHandler() {
-            @Override
-            public void onEvent(final DblClickMapEvent dblClickMapEvent) {
-                addDialogBox.show();
-                addDialogBox.getAddButton().addClickHandler(new ClickHandler() {
-                    @Override
-                    public void onClick(ClickEvent event) {
-                        presenter.createEvent(Factory.createEventDto(
-                                wMap.getMarkers().size() + 1,
-                                addDialogBox.getDescriptionInput().getText(),
-                                addDialogBox.getDateInput().getText(),
-                                addDialogBox.getNameInput().getText(),
-                                Factory.createImageDto(wMap.getMarkers().size(), ""),
-                                addDialogBox.getTimeInput().getText(),
-                                dblClickMapEvent.getMouseEvent().getLatLng().getLatitude(),
-                                dblClickMapEvent.getMouseEvent().getLatLng().getLongitude()
-                        ));
-                        addDialogBox.hide();
-                        infoPanel.setActive(false);
-                    }
-                });
-            }
-        });
-
         infoPanel.getEditImage().addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
@@ -163,11 +139,13 @@ public class View extends Composite {
             public void onClick(ClickEvent event) {
                 infoPanel.setActive(false);
                 presenter.editEvent(Factory.createEventDto(
-                        presenter.getEventDataModel().getEvent().getId(),
+                        //getCurrentEventId/getCurrentEvent
+                        presenter.getCurrentEventDto().getId(),
                         infoPanel.getDescription().getText(),
                         infoPanel.getDate().getText(),
                         infoPanel.getName().getText(),
-                        presenter.getEventDataModel().getEvent().getImage(),
+                        //getCurrentEventImage/getCurrentEvent
+                        presenter.getCurrentEventDto().getImage(),
                         infoPanel.getTime().getText(),
                         Double.parseDouble(infoPanel.getLatitude().getText()),
                         Double.parseDouble(infoPanel.getLongitude().getText())));
@@ -178,6 +156,8 @@ public class View extends Composite {
             @Override
             public void onClick(ClickEvent event) {
                 infoPanel.setActive(false);
+                infoPanel.setVisible(false);
+                presenter.deleteEvent();
             }
         });
     }
@@ -190,6 +170,30 @@ public class View extends Composite {
                 public void onEvent(ClickMapEvent clickMapEvent) {
                     infoPanel.hide();
                     wMap.stopAnimation();
+                }
+            });
+
+            wMap.getMapWidget().addDblClickHandler(new DblClickMapHandler() {
+                @Override
+                public void onEvent(final DblClickMapEvent dblClickMapEvent) {
+                    addDialogBox.show();
+                    addDialogBox.getAddButton().addClickHandler(new ClickHandler() {
+                        @Override
+                        public void onClick(ClickEvent event) {
+                            presenter.createEvent(Factory.createEventDto(
+                                    wMap.getMarkers().size() + 1,
+                                    addDialogBox.getDescriptionInput().getText(),
+                                    addDialogBox.getDateInput().getText(),
+                                    addDialogBox.getNameInput().getText(),
+                                    Factory.createImageDto(wMap.getMarkers().size(), addDialogBox.getFileUpload().getFilename()),
+                                    addDialogBox.getTimeInput().getText(),
+                                    dblClickMapEvent.getMouseEvent().getLatLng().getLatitude(),
+                                    dblClickMapEvent.getMouseEvent().getLatLng().getLongitude()
+                            ));
+                            addDialogBox.hide();
+                            infoPanel.setActive(false);
+                        }
+                    });
                 }
             });
         }

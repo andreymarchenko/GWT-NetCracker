@@ -6,6 +6,7 @@ import ru.happyMoments.shared.factories.Factory;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +16,11 @@ public class EndPoint {
 
     ClassLoader classLoader = getClass().getClassLoader();
     private final String PATH = "jdbc:sqlite:" + classLoader.getResource("Events.db").getFile();
+
     private Connection connection;
 
     private Connection getConnection() {
+        String s= classLoader.getResource("Events.db").getFile();
         if (connection == null) {
             try {
                 connection = DriverManager.getConnection(PATH);
@@ -105,9 +108,35 @@ public class EndPoint {
         return eventDto;
     }
 
+    private static void copyFile(File source, File dest) throws IOException {
+        InputStream is = null;
+        OutputStream os = null;
+        try {
+            is = new FileInputStream(source);
+            os = new FileOutputStream(dest);
+            byte[] buffer = new byte[1024];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+        } finally {
+            is.close();
+            os.close();
+        }
+    }
+
     @Path("/create")
     @POST
     public void createEvent(EventDto eventDto) {
+
+        File newImage = new File(eventDto.getImage().getUrl(), "sample");
+        File imageDirectory = new File("war\\images");
+
+        try {
+            copyFile(newImage, imageDirectory);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         PreparedStatement eventsData;
 
@@ -150,6 +179,31 @@ public class EndPoint {
 
             eventsData.executeUpdate();
             eventsData.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Path("/delete")
+    @POST
+    public void deleteEvent(EventDto eventDto) {
+
+        PreparedStatement eventsData;
+        PreparedStatement imagesData;
+
+        try {
+            eventsData = getConnection().prepareStatement("DELETE FROM EVENTS WHERE id=?; ");
+            imagesData = getConnection().prepareStatement("DELETE FROM IMAGES WHERE event_id=?; ");
+
+            eventsData.setInt(1, eventDto.getId());
+            imagesData.setInt(1, eventDto.getId());
+
+            eventsData.executeUpdate();
+            eventsData.close();
+
+            imagesData.executeUpdate();
+            imagesData.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
