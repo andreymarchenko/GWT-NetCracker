@@ -2,7 +2,6 @@ package ru.happyMoments.client.commands;
 
 import com.google.gwt.event.shared.GwtEvent;
 import ru.happyMoments.shared.dto.EventDto;
-import ru.happyMoments.shared.dto.LightEventDto;
 
 public class CreateEventCommand extends GwtEvent<CreateEventCommandHandler> {
 

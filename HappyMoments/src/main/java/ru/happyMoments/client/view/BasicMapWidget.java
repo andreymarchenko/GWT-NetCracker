@@ -24,7 +24,6 @@ import com.google.gwt.maps.client.overlays.Marker;
 import com.google.gwt.maps.client.overlays.MarkerOptions;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import ru.happyMoments.client.presenter.Presenter;
@@ -68,7 +67,6 @@ public class BasicMapWidget extends Composite {
     private void drawMarkerWithDropAnimation(double latitude, double longitude) {
         MarkerOptions options = MarkerOptions.newInstance();
         options.setPosition(LatLng.newInstance(latitude, longitude));
-        options.setTitle("Thanks for clicking on me.");
 
         final Marker marker = Marker.newInstance(options);
         marker.setMap(mapWidget);
@@ -83,7 +81,7 @@ public class BasicMapWidget extends Composite {
                 presenter.loadEvent(Factory.createLightEventDto(marker.getPosition().getLatitude(),
                         marker.getPosition().getLongitude()));
 
-                PopupPanel infoPanel = new PopupPanel();
+                InfoPanel infoPanel = new InfoPanel();
                 infoPanel.getElement().getStyle().setBackgroundColor("White");
                 infoPanel.getElement().getStyle().setHeight(100, Style.Unit.PX);
                 infoPanel.getElement().getStyle().setWidth(100, Style.Unit.PX);

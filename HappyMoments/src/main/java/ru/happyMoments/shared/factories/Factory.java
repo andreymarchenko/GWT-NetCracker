@@ -5,6 +5,7 @@ import ru.happyMoments.shared.dto.ImageDto;
 import ru.happyMoments.shared.dto.LightEventDto;
 
 public class Factory {
+
     public static EventDto createEventDto(int id,
                                   String description,
                                   String date,

@@ -1,10 +1,8 @@
 package ru.happyMoments.client.presenter;
 
 import com.google.web.bindery.event.shared.EventBus;
-import ru.happyMoments.client.commands.CreateEventCommand;
-import ru.happyMoments.client.commands.DeleteEventCommand;
-import ru.happyMoments.client.commands.EditEventCommand;
-import ru.happyMoments.client.commands.LoadDataCommand;
+import org.vectomatic.file.File;
+import ru.happyMoments.client.commands.*;
 import ru.happyMoments.client.controller.Controller;
 import ru.happyMoments.client.events.ChangeDataEvent;
 import ru.happyMoments.client.events.ChangeDataEventHandler;
@@ -54,6 +52,7 @@ public class Presenter {
                 view.setLightData(eventListDataModel.getLightEventDtos());
             }
         });
+
     }
 
     public void loadEvent(LightEventDto lightEventDto) {
@@ -71,6 +70,8 @@ public class Presenter {
     public void deleteEvent() {
         eventBus.fireEvent(DeleteEventCommand.create(getCurrentEventDto()));
     }
+
+    public void uploadImage(File file) {eventBus.fireEvent(UploadImageCommand.create(file));}
 
     public EventDto getCurrentEventDto() {
         return eventDataModel.getEvent();

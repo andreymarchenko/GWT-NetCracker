@@ -1,30 +1,35 @@
 package ru.happyMoments.client.view;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.LoadEvent;
+import com.google.gwt.event.dom.client.LoadHandler;
+import com.google.gwt.maps.client.LoadApi;
+import com.google.gwt.maps.client.LoadApi.LoadLibrary;
 import com.google.gwt.maps.client.events.click.ClickMapEvent;
 import com.google.gwt.maps.client.events.click.ClickMapHandler;
 import com.google.gwt.maps.client.events.dblclick.DblClickMapEvent;
 import com.google.gwt.maps.client.events.dblclick.DblClickMapHandler;
 import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.dom.client.Style;
-import com.google.web.bindery.event.shared.EventBus;
-import com.google.gwt.maps.client.LoadApi;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
+import com.google.web.bindery.event.shared.EventBus;
+import org.vectomatic.file.File;
+import org.vectomatic.file.FileList;
+import org.vectomatic.file.FileUtils;
+import ru.happyMoments.client.presenter.Presenter;
+import ru.happyMoments.client.staff.Checker;
+import ru.happyMoments.shared.dto.EventDto;
+import ru.happyMoments.shared.dto.LightEventDto;
+import ru.happyMoments.shared.factories.Factory;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.google.gwt.maps.client.LoadApi.LoadLibrary;
-import com.google.gwt.user.client.ui.Composite;
-import ru.happyMoments.client.presenter.Presenter;
-import ru.happyMoments.shared.dto.EventDto;
-import ru.happyMoments.shared.dto.LightEventDto;
-import ru.happyMoments.shared.factories.Factory;
 
 public class View extends Composite {
 
@@ -39,20 +44,9 @@ public class View extends Composite {
     private EventBus eventBus;
     private Presenter presenter;
     private BasicMapWidget wMap;
-    //Дописать флаг проверки на заполнение маркеров
     private List<LightEventDto> lightEvents;
-
     private InfoPanel infoPanel;
     private AddDialogBox addDialogBox;
-
-    private static final double MAP_PANEL_WIDTH_REDUCTION = 1.36;
-    private static final double MAP_PANEL_HEIGHT_REDUCTION = 20;
-    private static final double RIGHT_PANEL_WIDTH_REDUCTION = 0.25;
-    private static final double IMAGE_PANEL_HEIGHT_REDUCTION = 2.5;
-    private static final double INFO_PANEL_HEIGHT_REDUCTION = 0.55;
-    private static final double TOP_PADDING_UPPER_ELEMENT = 30;
-    private static final double TOP_PADDING_LOWER_ELEMENT = 30;
-    private static final double TOP_PADDING_LEFT = 30;
 
     @Inject
     public View(EventBus eventBus) {
@@ -160,11 +154,46 @@ public class View extends Composite {
                 presenter.deleteEvent();
             }
         });
+
+    }
+
+    private Image createPngImage(final File file) {
+        final Image image = new Image();
+        final String url = FileUtils.createObjectURL(file);
+        image.addLoadHandler(new LoadHandler() {
+            @Override
+            public void onLoad(LoadEvent event) {
+                sizeBitmap(image);
+                FileUtils.revokeObjectURL(url);
+            }
+        });
+        image.setUrl(url);
+        return image;
+    }
+
+    private void sizeBitmap(Image image) {
+        int width = image.getWidth();
+        if (width == 0) {
+            width = ieWidth(image.getElement());
+        }
+        int height = image.getHeight();
+        if (height == 0) {
+            height = ieHeight(image.getElement());
+        }
+        GWT.log("size=" + width + "x" + height);
+        float f = 150.0f / Math.max(width, height);
+        int w = (int) (f * width);
+        int h = (int) (f * height);
+        image.setPixelSize(w, h);
+        image.getElement().getStyle().setWidth(w, Style.Unit.PX);
+        image.getElement().getStyle().setHeight(h, Style.Unit.PX);
+        image.setVisible(true);
     }
 
     private void setMarkers() {
         if (wMap != null && lightEvents != null && !lightEvents.isEmpty()) {
             wMap.launchApp(lightEvents);
+
             wMap.getMapWidget().addClickHandler(new ClickMapHandler() {
                 @Override
                 public void onEvent(ClickMapEvent clickMapEvent) {
@@ -180,7 +209,26 @@ public class View extends Composite {
                     addDialogBox.getAddButton().addClickHandler(new ClickHandler() {
                         @Override
                         public void onClick(ClickEvent event) {
-                            presenter.createEvent(Factory.createEventDto(
+                            if (!Checker.checkTime(addDialogBox.getTimeInput().getText())) {
+                                Window.alert("Некорректный формат времени");
+                            } else {
+                                FileList files = addDialogBox.getFileUpload().getFiles();
+                                final File file = files.getItem(0);
+                                Image image = createPngImage(file);
+                                presenter.uploadImage(file);
+
+                            /*reader.addLoadEndHandler(new LoadEndHandler() {
+                                @Override
+                                public void onLoadEnd(LoadEndEvent loadEndEvent) {
+                                    if (reader.getError() == null) {
+                                        FileList files = addDialogBox.getFileUpload().getFiles();
+                                        File file = files.getItem(0);
+                                        presenter.uploadImage(file);
+                                    }
+                                }
+                            });*/
+
+                            /*presenter.createEvent(Factory.createEventDto(
                                     wMap.getMarkers().size() + 1,
                                     addDialogBox.getDescriptionInput().getText(),
                                     addDialogBox.getDateInput().getText(),
@@ -189,13 +237,23 @@ public class View extends Composite {
                                     addDialogBox.getTimeInput().getText(),
                                     dblClickMapEvent.getMouseEvent().getLatLng().getLatitude(),
                                     dblClickMapEvent.getMouseEvent().getLatLng().getLongitude()
-                            ));
-                            addDialogBox.hide();
-                            infoPanel.setActive(false);
+                            ));*/
+                                addDialogBox.hide();
+                                infoPanel.setActive(false);
+                            }
                         }
                     });
                 }
             });
         }
     }
+
+    // For that piece of crap called IE
+    private static native int ieWidth(Element elt) /*-{
+        return elt.naturalWidth;
+    }-*/;
+
+    private static native int ieHeight(Element elt) /*-{
+        return elt.naturalHeight;
+    }-*/;
 }

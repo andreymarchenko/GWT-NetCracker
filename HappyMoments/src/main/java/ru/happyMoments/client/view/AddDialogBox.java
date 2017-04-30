@@ -6,6 +6,11 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
+import org.vectomatic.file.FileUploadExt;
+
+
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 
 public class AddDialogBox extends DialogBox {
 
@@ -24,8 +29,8 @@ public class AddDialogBox extends DialogBox {
     private Label timeInfo;
     private Button addButton;
     private Button closeButton;
-    private HorizontalPanel fileUploadPanel;
-    private FileUpload fileUpload;
+    private FormPanel fileUploadPanel;
+    private FileUploadExt fileUpload;
     private Label addingEvent;
 
     public AddDialogBox() {
@@ -37,9 +42,10 @@ public class AddDialogBox extends DialogBox {
 
     private void createMarkup() {
         addingEvent = new Label("Добавление события");
-        fileUploadPanel = new HorizontalPanel();
-        fileUpload = new FileUpload();
+        fileUpload = new FileUploadExt();
+        fileUploadPanel = new FormPanel();
         fileUploadPanel.add(fileUpload);
+
         mainPanel = new VerticalPanel();
         horizontalPanel = new HorizontalPanel();
         buttonPanel = new HorizontalPanel();
@@ -89,7 +95,6 @@ public class AddDialogBox extends DialogBox {
     private void bind(final AddDialogBox addDialogBox) {
         closeButton.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                String str = fileUpload.getFilename();
                 addDialogBox.hide();
             }
         });
@@ -173,8 +178,12 @@ public class AddDialogBox extends DialogBox {
         return timeInput;
     }
 
-    public FileUpload getFileUpload() {
+    public FileUploadExt getFileUpload() {
         return fileUpload;
+    }
+
+    public FormPanel getForm() {
+        return fileUploadPanel;
     }
 }
 
