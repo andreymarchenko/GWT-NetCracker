@@ -181,6 +181,7 @@ public class AddDialogBox extends DialogBox {
             public void onClick(ClickEvent event) {
                 nameInput.setText("");
                 nameInput.getElement().getStyle().setColor("000000");
+                nameInput.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
             }
         });
         descriptionInput.addClickHandler(new ClickHandler() {
@@ -188,6 +189,7 @@ public class AddDialogBox extends DialogBox {
             public void onClick(ClickEvent event) {
                 descriptionInput.setText("");
                 descriptionInput.getElement().getStyle().setColor("000000");
+                descriptionInput.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
             }
         });
 
@@ -196,6 +198,7 @@ public class AddDialogBox extends DialogBox {
             public void onClick(ClickEvent event) {
                 dateInput.setText("");
                 dateInput.getElement().getStyle().setColor("000000");
+                dateInput.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
             }
         });
 
@@ -204,6 +207,7 @@ public class AddDialogBox extends DialogBox {
             public void onClick(ClickEvent event) {
                 timeInput.setText("");
                 timeInput.getElement().getStyle().setColor("000000");
+                timeInput.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
             }
         });
 
@@ -231,30 +235,6 @@ public class AddDialogBox extends DialogBox {
 
     public FileUploadExt getFileUpload() {
         return fileUpload;
-    }
-
-    public HorizontalPanel getForm() {
-        return fileUploadPanel;
-    }
-
-    public void setMainPanel(VerticalPanel mainPanel) {
-        this.mainPanel = mainPanel;
-    }
-
-    public void setNameInput(TextBox nameInput) {
-        this.nameInput = nameInput;
-    }
-
-    public void setDescriptionInput(TextBox descriptionInput) {
-        this.descriptionInput = descriptionInput;
-    }
-
-    public void setDateInput(TextBox dateInput) {
-        this.dateInput = dateInput;
-    }
-
-    public void setTimeInput(TextBox timeInput) {
-        this.timeInput = timeInput;
     }
 }
 

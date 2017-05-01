@@ -78,10 +78,45 @@ public class BasicMapWidget extends Composite {
         addDialogBox.getAddButton().addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-
-                if (!Checker.checkTime(addDialogBox.getTimeInput().getText())) {
-                    Window.alert("Некорректный формат времени");
-                } else {
+                int indicator = 0;
+                if (!Checker.checkDate(addDialogBox.getDateInput().getText())) {
+                    addDialogBox.getDateInput().getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
+                    addDialogBox.getDateInput().getElement().getStyle().setBorderColor("#de3e50");
+                    indicator++;
+                }
+                if (!Checker.checkString(addDialogBox.getNameInput().getText())) {
+                    addDialogBox.getNameInput().getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
+                    addDialogBox.getNameInput().getElement().getStyle().setBorderColor("#de3e50");
+                    indicator++;
+                }
+                if (!Checker.checkString(addDialogBox.getDescriptionInput().getText())) {
+                    addDialogBox.getDescriptionInput().getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
+                    addDialogBox.getDescriptionInput().getElement().getStyle().setBorderColor("#de3e50");
+                    indicator++;
+                }
+                if (addDialogBox.getFileUpload().getFilename().equals("")) {
+                    Window.alert("Пожалуйста, выберите файл.");
+                    indicator++;
+                }
+                if ((!addDialogBox.getFileUpload().getFilename().endsWith(".jpg"))
+                       && !addDialogBox.getFileUpload().getFilename().endsWith(".png")) {
+                    String s = addDialogBox.getFileUpload().getFilename();
+                    boolean q = addDialogBox.getFileUpload().getFilename().endsWith(".jpg");
+                    Window.alert("Неверный формат файла");
+                    indicator++;
+                }
+                if (addDialogBox.getTimeInput().getText().contains("h")) {
+                    if (Checker.checkTime(addDialogBox.getTimeInput().getText()).equals("")) {
+                        addDialogBox.getTimeInput().getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
+                        addDialogBox.getTimeInput().getElement().getStyle().setBorderColor("#de3e50");
+                        indicator++;
+                    }
+                } else if (Checker.checkHourMinute(addDialogBox.getTimeInput().getText()).equals("")) {
+                    addDialogBox.getTimeInput().getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
+                    addDialogBox.getTimeInput().getElement().getStyle().setBorderColor("#de3e50");
+                    indicator++;
+                }
+                if (indicator == 0) {
                     FileList files = addDialogBox.getFileUpload().getFiles();
                     File file = files.getItem(0);
 
