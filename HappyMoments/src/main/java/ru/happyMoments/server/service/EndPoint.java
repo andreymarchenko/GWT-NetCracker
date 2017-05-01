@@ -1,17 +1,21 @@
 package ru.happyMoments.server.service;
 
-import org.vectomatic.file.File;
+import com.google.gwt.typedarrays.shared.ArrayBuffer;
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.IOUtils;
 import ru.happyMoments.server.dao.JdbcDao;
 import ru.happyMoments.server.dao.JdbcDaoImpl;
 import ru.happyMoments.shared.dto.EventDto;
 import ru.happyMoments.shared.dto.LightEventDto;
+import ru.happyMoments.shared.staff.Creator;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.io.InputStream;
+import java.io.*;
 import java.util.List;
 
 @Path("/events")
-public class EndPoint{
+public class EndPoint {
 
     private JdbcDao jdbcDao = new JdbcDaoImpl();
 
@@ -50,8 +54,20 @@ public class EndPoint{
 
     @Path("/upload")
     @POST
-    public void uploadImage(InputStream result) {
-
-       // jdbcDao.upload(file);
+    @Consumes(MediaType.TEXT_PLAIN)
+    public void uploadImage(String image) {
+        String encodingPrefix = "base64,";
+        int contentStartIndex = image.indexOf(encodingPrefix) + encodingPrefix.length();
+        byte[] imageData = Base64.decodeBase64(image.substring(contentStartIndex));
+        File file = new File("C:\\GWT-NetCracker\\HappyMoments\\war\\images\\" + Creator.createName() + ".jpg");
+        OutputStream outputStream = null;
+        try {
+            outputStream = new FileOutputStream(file);
+            IOUtils.write(imageData, outputStream);
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        jdbcDao.upload(file);
     }
 }

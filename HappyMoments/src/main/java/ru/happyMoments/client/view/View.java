@@ -22,7 +22,7 @@ import org.vectomatic.file.File;
 import org.vectomatic.file.FileList;
 import org.vectomatic.file.FileUtils;
 import ru.happyMoments.client.presenter.Presenter;
-import ru.happyMoments.client.staff.Checker;
+import ru.happyMoments.shared.staff.Checker;
 import ru.happyMoments.shared.dto.EventDto;
 import ru.happyMoments.shared.dto.LightEventDto;
 import ru.happyMoments.shared.factories.Factory;
@@ -133,12 +133,10 @@ public class View extends Composite {
             public void onClick(ClickEvent event) {
                 infoPanel.setActive(false);
                 presenter.editEvent(Factory.createEventDto(
-                        //getCurrentEventId/getCurrentEvent
                         presenter.getCurrentEventDto().getId(),
                         infoPanel.getDescription().getText(),
                         infoPanel.getDate().getText(),
                         infoPanel.getName().getText(),
-                        //getCurrentEventImage/getCurrentEvent
                         presenter.getCurrentEventDto().getImage(),
                         infoPanel.getTime().getText(),
                         Double.parseDouble(infoPanel.getLatitude().getText()),
@@ -154,40 +152,6 @@ public class View extends Composite {
                 presenter.deleteEvent();
             }
         });
-
-    }
-
-    private Image createPngImage(final File file) {
-        final Image image = new Image();
-        final String url = FileUtils.createObjectURL(file);
-        image.addLoadHandler(new LoadHandler() {
-            @Override
-            public void onLoad(LoadEvent event) {
-                sizeBitmap(image);
-                FileUtils.revokeObjectURL(url);
-            }
-        });
-        image.setUrl(url);
-        return image;
-    }
-
-    private void sizeBitmap(Image image) {
-        int width = image.getWidth();
-        if (width == 0) {
-            width = ieWidth(image.getElement());
-        }
-        int height = image.getHeight();
-        if (height == 0) {
-            height = ieHeight(image.getElement());
-        }
-        GWT.log("size=" + width + "x" + height);
-        float f = 150.0f / Math.max(width, height);
-        int w = (int) (f * width);
-        int h = (int) (f * height);
-        image.setPixelSize(w, h);
-        image.getElement().getStyle().setWidth(w, Style.Unit.PX);
-        image.getElement().getStyle().setHeight(h, Style.Unit.PX);
-        image.setVisible(true);
     }
 
     private void setMarkers() {
@@ -213,31 +177,19 @@ public class View extends Composite {
                                 Window.alert("Некорректный формат времени");
                             } else {
                                 FileList files = addDialogBox.getFileUpload().getFiles();
-                                final File file = files.getItem(0);
-                                Image image = createPngImage(file);
+                                File file = files.getItem(0);
+
                                 presenter.uploadImage(file);
-
-                            /*reader.addLoadEndHandler(new LoadEndHandler() {
-                                @Override
-                                public void onLoadEnd(LoadEndEvent loadEndEvent) {
-                                    if (reader.getError() == null) {
-                                        FileList files = addDialogBox.getFileUpload().getFiles();
-                                        File file = files.getItem(0);
-                                        presenter.uploadImage(file);
-                                    }
-                                }
-                            });*/
-
-                            /*presenter.createEvent(Factory.createEventDto(
-                                    wMap.getMarkers().size() + 1,
-                                    addDialogBox.getDescriptionInput().getText(),
-                                    addDialogBox.getDateInput().getText(),
-                                    addDialogBox.getNameInput().getText(),
-                                    Factory.createImageDto(wMap.getMarkers().size(), addDialogBox.getFileUpload().getFilename()),
-                                    addDialogBox.getTimeInput().getText(),
-                                    dblClickMapEvent.getMouseEvent().getLatLng().getLatitude(),
-                                    dblClickMapEvent.getMouseEvent().getLatLng().getLongitude()
-                            ));*/
+                                presenter.createEvent(Factory.createEventDto(
+                                        wMap.getMarkers().size() + 1,
+                                        addDialogBox.getDescriptionInput().getText(),
+                                        addDialogBox.getDateInput().getText(),
+                                        addDialogBox.getNameInput().getText(),
+                                        Factory.createImageDto(wMap.getMarkers().size() + 1, " "),
+                                        addDialogBox.getTimeInput().getText(),
+                                        dblClickMapEvent.getMouseEvent().getLatLng().getLatitude(),
+                                        dblClickMapEvent.getMouseEvent().getLatLng().getLongitude()
+                                ));
                                 addDialogBox.hide();
                                 infoPanel.setActive(false);
                             }
@@ -247,13 +199,4 @@ public class View extends Composite {
             });
         }
     }
-
-    // For that piece of crap called IE
-    private static native int ieWidth(Element elt) /*-{
-        return elt.naturalWidth;
-    }-*/;
-
-    private static native int ieHeight(Element elt) /*-{
-        return elt.naturalHeight;
-    }-*/;
 }

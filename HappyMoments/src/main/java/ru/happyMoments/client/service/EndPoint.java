@@ -1,17 +1,14 @@
 package ru.happyMoments.client.service;
 
-import com.google.gwt.http.client.Request;
-import com.google.gwt.user.client.ui.FormPanel;
-import com.google.gwt.user.client.ui.Image;
 import org.fusesource.restygwt.client.MethodCallback;
 import org.fusesource.restygwt.client.RestService;
-import org.vectomatic.file.File;
 import ru.happyMoments.shared.constants.Paths;
 import ru.happyMoments.shared.dto.EventDto;
 import ru.happyMoments.shared.dto.LightEventDto;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 import java.util.List;
 
 @Path("/api")
@@ -43,8 +40,7 @@ public interface EndPoint extends RestService {
 
     @POST
     @Path(Paths.UPLOAD_PATH)
-    @Consumes(MediaType.APPLICATION_OCTET_STREAM)
-    void uploadImage(String string,
+    void uploadImage(String image,
                      MethodCallback callback);
 
 }

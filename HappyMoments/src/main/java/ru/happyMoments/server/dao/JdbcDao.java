@@ -1,9 +1,9 @@
 package ru.happyMoments.server.dao;
 
-import org.vectomatic.file.File;
 import ru.happyMoments.shared.dto.EventDto;
 import ru.happyMoments.shared.dto.LightEventDto;
 
+import java.io.File;
 import java.util.List;
 
 public interface JdbcDao {

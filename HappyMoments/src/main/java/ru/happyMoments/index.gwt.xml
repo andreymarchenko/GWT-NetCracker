@@ -10,6 +10,7 @@
     <inherits name="org.fusesource.restygwt.RestyGWT"/>
     <inherits name="com.google.gwt.logging.Logging"/>
     <inherits name="org.vectomatic.libgwtfile"/>
+    <inherits name="com.google.gwt.http.HTTP"/>
 
     <!-- Specify the app entry point class.                   -->
     <entry-point class='ru.happyMoments.client.entryPoint.HappyMoments'/>

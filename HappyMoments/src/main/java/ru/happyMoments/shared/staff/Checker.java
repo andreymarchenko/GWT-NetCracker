@@ -1,4 +1,4 @@
-package ru.happyMoments.client.staff;
+package ru.happyMoments.shared.staff;
 
 
 public class Checker {

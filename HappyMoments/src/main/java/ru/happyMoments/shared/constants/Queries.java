@@ -16,4 +16,9 @@ public class Queries {
     public static String DELETE_EVENT = "DELETE FROM EVENTS WHERE id=?; ";
 
     public static String DELETE_IMAGE = "DELETE FROM IMAGES WHERE event_id=?; ";
+
+    public static String UPLOAD_IMAGE = "INSERT INTO IMAGES (event_id, url)" +
+            " VALUES (?, ?); ";
+
+    public static String GET_EVENTS_NUMBER = "SELECT COUNT(id) FROM EVENTS; ";
 }

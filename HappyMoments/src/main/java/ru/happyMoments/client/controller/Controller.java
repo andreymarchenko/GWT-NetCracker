@@ -3,7 +3,7 @@ package ru.happyMoments.client.controller;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.LoadEvent;
 import com.google.gwt.event.dom.client.LoadHandler;
-import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.http.client.*;
 import com.google.web.bindery.event.shared.EventBus;
 import org.fusesource.restygwt.client.Method;
 import org.fusesource.restygwt.client.MethodCallback;
@@ -12,14 +12,12 @@ import org.vectomatic.file.FileReader;
 import ru.happyMoments.client.commands.*;
 import ru.happyMoments.client.model.EventDataModel;
 import ru.happyMoments.client.model.EventListDataModel;
-import ru.happyMoments.client.presenter.Presenter;
 import ru.happyMoments.client.service.EndPoint;
 import ru.happyMoments.shared.dto.EventDto;
 import ru.happyMoments.shared.dto.LightEventDto;
 
 import javax.inject.Inject;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class Controller {
 
@@ -130,7 +128,6 @@ public class Controller {
             public void onUpdateImage(final File file, UploadImageCommand uploadImageCommand) {
 
                 final FileReader reader = new FileReader();
-
                 reader.addLoadHandler(new LoadHandler() {
                     @Override
                     public void onLoad(LoadEvent event) {
@@ -142,14 +139,12 @@ public class Controller {
 
                             @Override
                             public void onSuccess(Method method, Object o) {
-
                             }
                         });
                     }
                 });
 
-                reader.readAsBinaryString(file);
-
+                reader.readAsDataURL(file);
 
             }
         });

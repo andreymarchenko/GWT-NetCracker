@@ -1,11 +1,12 @@
 package ru.happyMoments.server.dao;
 
-import org.vectomatic.file.File;
 import ru.happyMoments.shared.constants.Queries;
 import ru.happyMoments.shared.dto.EventDto;
+import ru.happyMoments.shared.dto.ImageDto;
 import ru.happyMoments.shared.dto.LightEventDto;
 import ru.happyMoments.shared.factories.Factory;
 
+import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class JdbcDaoImpl implements JdbcDao {
     }
 
     @Override
-    public  List<LightEventDto> loadAllEvents() {
+    public List<LightEventDto> loadAllEvents() {
         List<LightEventDto> lightEvents = new ArrayList<LightEventDto>();
 
         PreparedStatement data;
@@ -40,6 +41,7 @@ public class JdbcDaoImpl implements JdbcDao {
             while (receivedData.next()) {
                 lightEvents.add(Factory.createLightEventDto(receivedData.getDouble(1), receivedData.getDouble(2)));
             }
+            receivedData.close();
             data.close();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -76,10 +78,12 @@ public class JdbcDaoImpl implements JdbcDao {
                 int imageId = 0;
                 String url = "";
 
-                while (receivedImage.next()) {
-                    imageId = receivedImage.getInt(1);
-                    url = receivedImage.getString(2);
-                }
+                imageId = receivedImage.getInt(1);
+                url = receivedImage.getString(2);
+
+                receivedImage.close();
+
+                ImageDto mg = Factory.createImageDto(imageId, url);
 
                 eventDto = Factory.createEventDto(
                         receivedData.getInt(1),
@@ -91,7 +95,9 @@ public class JdbcDaoImpl implements JdbcDao {
                         receivedData.getDouble(6),
                         receivedData.getDouble(7));
 
+                image.close();
             }
+
             data.close();
 
         } catch (SQLException e) {
@@ -172,29 +178,30 @@ public class JdbcDaoImpl implements JdbcDao {
 
     @Override
     public void upload(File file) {
-
-    }
-
-    /*    private void writeToFile(InputStream uploadedInputStream,
-                             String uploadedFileLocation) {
-
+        PreparedStatement fileData;
+        PreparedStatement numEventsData;
+        ResultSet receivedData;
+        int number = 0;
         try {
-            OutputStream out = new FileOutputStream(new File(
-                    uploadedFileLocation));
-            int read = 0;
-            byte[] bytes = new byte[1024];
+            fileData = getConnection().prepareStatement(Queries.UPLOAD_IMAGE);
+            numEventsData = getConnection().prepareStatement(Queries.GET_EVENTS_NUMBER);
 
-            out = new FileOutputStream(new File(uploadedFileLocation));
-            while ((read = uploadedInputStream.read(bytes)) != -1) {
-                out.write(bytes, 0, read);
-            }
-            out.flush();
-            out.close();
-        } catch (IOException e) {
+            receivedData = numEventsData.executeQuery();
 
-            e.printStackTrace();
+            number = receivedData.getInt(1);
+
+            receivedData.close();
+
+            fileData.setInt(1, number + 1);
+            fileData.setString(2, "http://127.0.0.1:8888/images/" + file.getName());
+
+            fileData.executeUpdate();
+
+            numEventsData.close();
+            fileData.close();
+
+        } catch (SQLException e) {
+
         }
-    }*/
-
-
+    }
 }

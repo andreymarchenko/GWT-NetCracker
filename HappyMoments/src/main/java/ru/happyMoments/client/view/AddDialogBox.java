@@ -45,7 +45,6 @@ public class AddDialogBox extends DialogBox {
         fileUpload = new FileUploadExt();
         fileUploadPanel = new FormPanel();
         fileUploadPanel.add(fileUpload);
-
         mainPanel = new VerticalPanel();
         horizontalPanel = new HorizontalPanel();
         buttonPanel = new HorizontalPanel();

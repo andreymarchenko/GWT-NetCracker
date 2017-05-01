@@ -11,7 +11,6 @@ import java.util.List;
 
 public class EventListDataModel {
 
-    //создать пустой при инициализаии
     private List<LightEventDto> lightEventDtos;
     private EventBus eventBus;
 
@@ -32,24 +31,18 @@ public class EventListDataModel {
     }
 
     public void setLightEvents(List<LightEventDto> lightEventDtos) {
-            //Здесь поправить
-        if (this.lightEventDtos != null && lightEventDtos != null) {
-            int index = 0;
-            for (int i = 0; i < lightEventDtos.size(); i++) {
-                if (this.lightEventDtos.get(i).equals(lightEventDtos.get(i))) {
-                    index++;
-                }
-            }
 
-            if (this.lightEventDtos.size() == lightEventDtos.size() && index == lightEventDtos.size()) return;
+        if (this.lightEventDtos != null && lightEventDtos != null) {
+            if (this.lightEventDtos.size() == lightEventDtos.size()) return;
             else {
                 this.lightEventDtos = lightEventDtos;
                 eventBus.fireEvent(LoadLightDataEvent.create());
             }
-
-        } else if (this.lightEventDtos == null) {
+        } else if (this.lightEventDtos == null && lightEventDtos != null) {
             this.lightEventDtos = lightEventDtos;
             eventBus.fireEvent(LoadLightDataEvent.create());
+        } else if (lightEventDtos == null) {
+            return;
         }
     }
 
