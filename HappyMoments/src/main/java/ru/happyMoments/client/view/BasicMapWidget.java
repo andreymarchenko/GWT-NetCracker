@@ -79,7 +79,8 @@ public class BasicMapWidget extends Composite {
             @Override
             public void onClick(ClickEvent event) {
                 int indicator = 0;
-                if (!Checker.checkDate(addDialogBox.getDateInput().getText())) {
+                int fileIndex = 0;
+                if (Checker.checkDate(addDialogBox.getDateInput().getText()).equals("")) {
                     addDialogBox.getDateInput().getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
                     addDialogBox.getDateInput().getElement().getStyle().setBorderColor("#de3e50");
                     indicator++;
@@ -97,13 +98,14 @@ public class BasicMapWidget extends Composite {
                 if (addDialogBox.getFileUpload().getFilename().equals("")) {
                     Window.alert("Пожалуйста, выберите файл.");
                     indicator++;
+                    fileIndex++;
                 }
                 if ((!addDialogBox.getFileUpload().getFilename().endsWith(".jpg"))
-                       && !addDialogBox.getFileUpload().getFilename().endsWith(".png")) {
-                    String s = addDialogBox.getFileUpload().getFilename();
-                    boolean q = addDialogBox.getFileUpload().getFilename().endsWith(".jpg");
-                    Window.alert("Неверный формат файла");
-                    indicator++;
+                        && !addDialogBox.getFileUpload().getFilename().endsWith(".png")) {
+                    if(fileIndex>0) {
+                        Window.alert("Неверный формат файла");
+                        indicator++;
+                    }
                 }
                 if (addDialogBox.getTimeInput().getText().contains("h")) {
                     if (Checker.checkTime(addDialogBox.getTimeInput().getText()).equals("")) {
@@ -124,26 +126,19 @@ public class BasicMapWidget extends Composite {
 
                     presenter.createEvent(Factory.createEventDto(
                             0,
-                            addDialogBox.getDescriptionInput().getText(),
-                            addDialogBox.getDateInput().getText(),
-                            addDialogBox.getNameInput().getText(),
+                            addDialogBox.getDescriptionInput().getText().trim(),
+                            Checker.checkDate(addDialogBox.getDateInput().getText()),
+                            addDialogBox.getNameInput().getText().trim(),
                             Factory.createImageDto(0, " "),
-                            addDialogBox.getTimeInput().getText(),
+                            Checker.convertTime(addDialogBox.getTimeInput().getText()),
                             latitude,
                             longitude
                     ));
-
-                    addDialogBox.getDescriptionInput().setText("");
-                    addDialogBox.getDateInput().setText("");
-                    addDialogBox.getNameInput().setText("");
-                    addDialogBox.getTimeInput().setText("");
-
                     addDialogBox.hide();
                 }
             }
         });
     }
-
 
     public void stopAnimation() {
         for (Marker m : markers) {

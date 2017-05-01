@@ -6,7 +6,7 @@ public class Checker {
 
     private static int[] monthDay = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-    public static boolean checkDate(String date) {
+    public static String checkDate(String date) {
         if (date.length() == 10) {
             try {
                 char delimiter = chooseDelimiter(date);
@@ -16,24 +16,28 @@ public class Checker {
                 int month = Integer.parseInt(data[1]);
                 int year = Integer.parseInt(data[2]);
 
-                return checkDayMonthYear(day, month, year);
+                if (checkDayMonthYear(day, month, year)) {
+                    return data[0] + " " + data[1] + " " + data[2];
+                }
 
             } catch (Exception e) {
-                return false;
+                return "";
             }
         } else if (date.length() == 8) {
             try {
-                int day = Integer.parseInt(date.substring(0, 1));
-                int month = Integer.parseInt(date.substring(2, 3));
-                int year = Integer.parseInt(date.substring(2));
+                int day = Integer.parseInt(date.substring(0, 2));
+                int month = Integer.parseInt(date.substring(2, 4));
+                int year = Integer.parseInt(date.substring(4,8));
 
-                return checkDayMonthYear(day, month, year);
+                if (checkDayMonthYear(day, month, year)) {
+                    return date.substring(0, 2) + " " + date.substring(2, 4)
+                            + " " + date.substring(4,8);
+                }
             } catch (NumberFormatException e) {
-                return false;
+                return "";
             }
-        } else {
-            return false;
         }
+        return "";
     }
 
     public static String checkHourMinute(String time) {
@@ -50,8 +54,7 @@ public class Checker {
                     return time;
                 } else return "";
             } else return "";
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return "";
         }
     }
@@ -73,10 +76,7 @@ public class Checker {
             String hoursS = time.split("h")[0];
             String minutesS = time.split("h")[1].split("m")[0];
 
-            int hours = Integer.parseInt(hoursS);
-            int minutes = Integer.parseInt(minutesS);
-
-            String newTime = String.valueOf(hours) + ":" + String.valueOf(minutes);
+            String newTime = hoursS + ":" + minutesS;
 
             if (checkHourMinute(newTime).equals(newTime)) {
                 return newTime;
@@ -103,17 +103,21 @@ public class Checker {
     }
 
     public static boolean checkString(String string) {
-        if(string.length() == 0) {
+        if (string.length() == 0) {
             return false;
-        }
-        else if(string.trim().length() == 0) {
+        } else if (string.trim().length() == 0) {
             return false;
-        }
-        else if(string.length() > 25) {
-            Window.alert("Длина строки должна быть меньше 25 символов");
+        } else if (string.length() > 25) {
             return false;
-        }
-        else return true;
+        } else return true;
     }
 
+    public static String convertTime(String time) {
+        if(time.contains("h")){
+            return checkTime(time);
+        }
+        else {
+            return checkHourMinute(time);
+        }
+    }
 }

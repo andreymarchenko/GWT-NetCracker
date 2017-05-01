@@ -19,6 +19,4 @@ public class Queries {
 
     public static String UPLOAD_IMAGE = "INSERT INTO IMAGES (url)" +
             " VALUES (?); ";
-
-    public static String GET_EVENTS_NUMBER = "SELECT COUNT(id) FROM EVENTS; ";
 }

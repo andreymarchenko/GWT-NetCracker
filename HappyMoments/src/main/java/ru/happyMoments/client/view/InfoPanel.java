@@ -1,6 +1,8 @@
 package ru.happyMoments.client.view;
 
 import com.google.gwt.dom.client.Style;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 import com.google.gwt.user.client.ui.Image;
@@ -341,4 +343,10 @@ public class InfoPanel extends PopupPanel {
 
     }
 
+    public void setDefaultView() {
+        time.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
+        date.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
+        name.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
+        description.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
+    }
 }

@@ -127,16 +127,49 @@ public class View extends Composite {
         infoPanel.getAcceptImage().addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                infoPanel.setActive(false);
-                presenter.editEvent(Factory.createEventDto(
-                        presenter.getCurrentEventDto().getId(),
-                        infoPanel.getDescription().getText(),
-                        infoPanel.getDate().getText(),
-                        infoPanel.getName().getText(),
-                        presenter.getCurrentEventDto().getImage(),
-                        infoPanel.getTime().getText(),
-                        Double.parseDouble(infoPanel.getLatitude().getText()),
-                        Double.parseDouble(infoPanel.getLongitude().getText())));
+                infoPanel.setActive(true);
+                int indicator = 0;
+                if (Checker.checkDate(infoPanel.getDate().getText()).equals("")) {
+                    infoPanel.getDate().getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
+                    infoPanel.getDate().getElement().getStyle().setBorderColor("#de3e50");
+                    indicator++;
+                }
+                if (!Checker.checkString(infoPanel.getName().getText())) {
+                    infoPanel.getName().getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
+                    infoPanel.getName().getElement().getStyle().setBorderColor("#de3e50");
+                    indicator++;
+                }
+                if (!Checker.checkString(infoPanel.getDescription().getText())) {
+                    infoPanel.getDescription().getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
+                    infoPanel.getDescription().getElement().getStyle().setBorderColor("#de3e50");
+                    indicator++;
+                }
+                if (infoPanel.getTime().getText().contains("h")) {
+                    if (Checker.checkTime(infoPanel.getTime().getText()).equals("")) {
+                        infoPanel.getTime().getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
+                        infoPanel.getTime().getElement().getStyle().setBorderColor("#de3e50");
+                        indicator++;
+                    }
+                } else if (Checker.checkHourMinute(infoPanel.getTime().getText()).equals("")) {
+                    infoPanel.getTime().getElement().getStyle().setBorderStyle(Style.BorderStyle.SOLID);
+                    infoPanel.getTime().getElement().getStyle().setBorderColor("#de3e50");
+                    indicator++;
+                }
+                if (indicator == 0) {
+                    infoPanel.setActive(false);
+                    infoPanel.setDefaultView();
+                    presenter.editEvent(Factory.createEventDto(
+                            presenter.getCurrentEventDto().getId(),
+                            infoPanel.getDescription().getText().trim(),
+                            Checker.checkDate(infoPanel.getDate().getText()),
+                            infoPanel.getName().getText().trim(),
+                            presenter.getCurrentEventDto().getImage(),
+                            Checker.convertTime(infoPanel.getTime().getText()),
+                            Double.parseDouble(infoPanel.getLatitude().getText()),
+                            Double.parseDouble(infoPanel.getLongitude().getText())));
+                    infoPanel.getName().setText(infoPanel.getName().getText().trim());
+                    infoPanel.getDescription().setText(infoPanel.getDescription().getText().trim());
+                }
             }
         });
 
