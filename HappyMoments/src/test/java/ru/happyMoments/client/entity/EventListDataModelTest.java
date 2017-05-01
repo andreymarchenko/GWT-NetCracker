@@ -23,7 +23,6 @@ public class EventListDataModelTest {
         LIGHT_EVENTS.add(Factory.createLightEventDto(1.1, 1.1));
     }
 
-    //тест на одинаковые значения
 
     @Test
     public void testSetNotNullEvents() {

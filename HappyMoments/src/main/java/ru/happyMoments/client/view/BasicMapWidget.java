@@ -68,6 +68,8 @@ public class BasicMapWidget extends Composite {
             @Override
             public void onEvent(final DblClickMapEvent dblClickMapEvent) {
                 addDialogBox.show();
+                addDialogBox.restoreHints();
+
                 latitude = dblClickMapEvent.getMouseEvent().getLatLng().getLatitude();
                 longitude = dblClickMapEvent.getMouseEvent().getLatLng().getLongitude();
             }
@@ -136,6 +138,7 @@ public class BasicMapWidget extends Composite {
             @Override
             public void onEvent(ClickMapEvent event) {
                 stopAnimation();
+                infoPanel.setActive(false);
                 marker.setAnimation(Animation.BOUNCE);
 
                 presenter.loadEvent(Factory.createLightEventDto(marker.getPosition().getLatitude(),

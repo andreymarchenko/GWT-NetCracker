@@ -89,7 +89,7 @@ public class InfoPanel extends PopupPanel {
         textName.getElement().getStyle().setFontSize(15, Style.Unit.PX);
         textName.getElement().getStyle().setColor("White");
         textName.getElement().getStyle().setMarginLeft(25, Style.Unit.PX);
-        textName.getElement().getStyle().setMarginTop(30, Style.Unit.PX);
+        textName.getElement().getStyle().setMarginTop(Window.getClientHeight() / 50, Style.Unit.PX);
         textName.setText("Название события");
         nameContentPanel.add(textName);
 
@@ -97,8 +97,9 @@ public class InfoPanel extends PopupPanel {
         name.setEnabled(false);
         name.getElement().getStyle().setColor("White");
         name.getElement().getStyle().setFontSize(25, Style.Unit.PX);
+        name.getElement().getStyle().setWidth(Window.getClientWidth() / 5.5, Style.Unit.PX);
         name.getElement().getStyle().setMarginLeft(25, Style.Unit.PX);
-        name.getElement().getStyle().setMarginTop(-Window.getClientHeight() / 32, Style.Unit.PX);
+        name.getElement().getStyle().setMarginTop(-Window.getClientHeight() / 50, Style.Unit.PX);
         name.getElement().getStyle().setBackgroundColor("4285f4");
         name.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
         nameContentPanel.add(name);
@@ -145,18 +146,19 @@ public class InfoPanel extends PopupPanel {
         textDescription.getElement().getStyle().setColor("#757575");
         textDescription.getElement().getStyle().setFontSize(15, Style.Unit.PX);
         textDescription.getElement().getStyle().setMarginLeft(25, Style.Unit.PX);
-        textDescription.getElement().getStyle().setMarginTop(Window.getClientHeight() / 35, Style.Unit.PX);
+        textDescription.getElement().getStyle().setMarginTop(Window.getClientHeight() /50 , Style.Unit.PX);
         textDescription.setText("Описание события");
         descriptionPanel.add(textDescription);
 
         description = new TextBox();
         description.setEnabled(false);
         description.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
+        description.getElement().getStyle().setWidth(Window.getClientWidth() / 5.5, Style.Unit.PX);
+        description.getElement().getStyle().setMarginTop(-Window.getClientHeight() /70 , Style.Unit.PX);
         description.getElement().getStyle().setColor("#757575");
         description.getElement().getStyle().setBackgroundColor("White");
         description.getElement().getStyle().setFontSize(25, Style.Unit.PX);
         description.getElement().getStyle().setMarginLeft(25, Style.Unit.PX);
-        description.getElement().getStyle().setMarginTop(-Window.getClientHeight() / 45, Style.Unit.PX);
         descriptionPanel.add(description);
 
         timePanel = new VerticalPanel();
@@ -170,18 +172,19 @@ public class InfoPanel extends PopupPanel {
         textTime.getElement().getStyle().setColor("#757575");
         textTime.getElement().getStyle().setFontSize(15, Style.Unit.PX);
         textTime.getElement().getStyle().setMarginLeft(25, Style.Unit.PX);
-        textTime.getElement().getStyle().setMarginTop(Window.getClientHeight() / 35, Style.Unit.PX);
+        textTime.getElement().getStyle().setMarginTop(Window.getClientHeight() / 50, Style.Unit.PX);
         textTime.setText("Время события");
         timePanel.add(textTime);
 
         time = new TextBox();
         time.setEnabled(false);
         time.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
+        time.getElement().getStyle().setWidth(Window.getClientWidth() / 5.5, Style.Unit.PX);
         time.getElement().getStyle().setColor("#757575");
         time.getElement().getStyle().setBackgroundColor("White");
         time.getElement().getStyle().setFontSize(25, Style.Unit.PX);
         time.getElement().getStyle().setMarginLeft(25, Style.Unit.PX);
-        time.getElement().getStyle().setMarginTop(-Window.getClientHeight() / 45, Style.Unit.PX);
+        time.getElement().getStyle().setMarginTop(-Window.getClientHeight() /70 , Style.Unit.PX);
         timePanel.add(time);
 
         datePanel = new VerticalPanel();
@@ -195,18 +198,19 @@ public class InfoPanel extends PopupPanel {
         textDate.getElement().getStyle().setColor("#757575");
         textDate.getElement().getStyle().setFontSize(15, Style.Unit.PX);
         textDate.getElement().getStyle().setMarginLeft(25, Style.Unit.PX);
-        textDate.getElement().getStyle().setMarginTop(Window.getClientHeight() / 35, Style.Unit.PX);
+        textDate.getElement().getStyle().setMarginTop(Window.getClientHeight() / 50, Style.Unit.PX);
         textDate.setText("Дата события");
         datePanel.add(textDate);
 
         date = new TextBox();
         date.setEnabled(false);
         date.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
+        date.getElement().getStyle().setWidth(Window.getClientWidth() / 5.5, Style.Unit.PX);
         date.getElement().getStyle().setColor("#757575");
         date.getElement().getStyle().setBackgroundColor("White");
         date.getElement().getStyle().setFontSize(25, Style.Unit.PX);
         date.getElement().getStyle().setMarginLeft(25, Style.Unit.PX);
-        date.getElement().getStyle().setMarginTop(-Window.getClientHeight() / 45, Style.Unit.PX);
+        date.getElement().getStyle().setMarginTop(-Window.getClientHeight() /70 , Style.Unit.PX);
         datePanel.add(date);
 
         locationPanel = new VerticalPanel();
@@ -231,7 +235,6 @@ public class InfoPanel extends PopupPanel {
         longitudePanel.getElement().getStyle().setWidth(Window.getClientWidth() / 4.5 - 10, Style.Unit.PX);
         longitudePanel.getElement().getStyle().setHeight(Window.getClientHeight() / 24 - 8, Style.Unit.PX);
 
-
         textLatitude = new Label();
         textLatitude.getElement().getStyle().setColor("#757575");
         textLatitude.getElement().getStyle().setFontSize(15, Style.Unit.PX);
@@ -249,6 +252,7 @@ public class InfoPanel extends PopupPanel {
         latitude = new TextBox();
         latitude.setEnabled(false);
         latitude.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
+        latitude.getElement().getStyle().setWidth(Window.getClientWidth() / 8, Style.Unit.PX);
         latitude.getElement().getStyle().setColor("#757575");
         latitude.getElement().getStyle().setBackgroundColor("White");
         latitude.getElement().getStyle().setFontSize(17, Style.Unit.PX);
@@ -261,6 +265,7 @@ public class InfoPanel extends PopupPanel {
         longitude = new TextBox();
         longitude.setEnabled(false);
         longitude.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
+        longitude.getElement().getStyle().setWidth(Window.getClientWidth() / 8, Style.Unit.PX);
         longitude.getElement().getStyle().setColor("#757575");
         longitude.getElement().getStyle().setBackgroundColor("White");
         longitude.getElement().getStyle().setFontSize(17, Style.Unit.PX);
@@ -326,16 +331,12 @@ public class InfoPanel extends PopupPanel {
             this.description.setEnabled(true);
             this.time.setEnabled(true);
             this.date.setEnabled(true);
-            this.latitude.setEnabled(true);
-            this.longitude.setEnabled(true);
         }
         else {
             this.name.setEnabled(false);
             this.description.setEnabled(false);
             this.time.setEnabled(false);
             this.date.setEnabled(false);
-            this.latitude.setEnabled(false);
-            this.longitude.setEnabled(false);
         }
 
     }

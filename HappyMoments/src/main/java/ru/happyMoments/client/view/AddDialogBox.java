@@ -36,6 +36,7 @@ public class AddDialogBox extends DialogBox {
     public AddDialogBox() {
         createMarkup();
         bind(this);
+        bind();
         super.setAnimationEnabled(true);
         super.setGlassEnabled(true);
     }
@@ -155,6 +156,57 @@ public class AddDialogBox extends DialogBox {
 
         leftPanel.getElement().getStyle().setMarginTop(10, Style.Unit.PX);
         rightPanel.getElement().getStyle().setMarginTop(10, Style.Unit.PX);
+
+        restoreHints();
+
+    }
+
+    public void restoreHints() {
+        nameInput.setText("Прогулка");
+        nameInput.getElement().getStyle().setColor("adadad");
+
+        descriptionInput.setText("Гулял в парке");
+        descriptionInput.getElement().getStyle().setColor("adadad");
+
+        dateInput.setText("21 05 2016");
+        dateInput.getElement().getStyle().setColor("adadad");
+
+        timeInput.setText("16:55");
+        timeInput.getElement().getStyle().setColor("adadad");
+    }
+
+    private void bind() {
+        nameInput.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                nameInput.setText("");
+                nameInput.getElement().getStyle().setColor("000000");
+            }
+        });
+        descriptionInput.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                descriptionInput.setText("");
+                descriptionInput.getElement().getStyle().setColor("000000");
+            }
+        });
+
+        dateInput.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                dateInput.setText("");
+                dateInput.getElement().getStyle().setColor("000000");
+            }
+        });
+
+        timeInput.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                timeInput.setText("");
+                timeInput.getElement().getStyle().setColor("000000");
+            }
+        });
+
     }
 
     public Button getAddButton() {

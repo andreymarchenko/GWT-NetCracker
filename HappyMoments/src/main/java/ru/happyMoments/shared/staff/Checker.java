@@ -51,15 +51,4 @@ public class Checker {
         } else return false;
     }
 
-    /*public static boolean checkDate(String date) {
-        if (date.length() == 10) {
-            try {
-                boolean result = checkHourMinute(time);
-                return result;
-            } catch (Exception e) {
-                return false;
-            }
-        }
-        else if(date.length() == 8)
-    }*/
 }

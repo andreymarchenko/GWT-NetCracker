@@ -18,10 +18,12 @@ import com.google.web.bindery.event.shared.EventBus;
 import org.vectomatic.file.File;
 import org.vectomatic.file.FileList;
 import ru.happyMoments.client.presenter.Presenter;
+import ru.happyMoments.shared.constants.Paths;
 import ru.happyMoments.shared.staff.Checker;
 import ru.happyMoments.shared.dto.EventDto;
 import ru.happyMoments.shared.dto.LightEventDto;
 import ru.happyMoments.shared.factories.Factory;
+import ru.happyMoments.shared.staff.Creator;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -97,21 +99,21 @@ public class View extends Composite {
     public void updateFields(EventDto event) {
         infoPanel.show();
         infoPanel.getImage().setUrl(event.getImage().getUrl());
-        infoPanel.getEditImage().setUrl("http://127.0.0.1:8888/images/edit.png");
-        infoPanel.getDeleteImage().setUrl("http://127.0.0.1:8888/images/delete.png");
-        infoPanel.getAcceptImage().setUrl("http://127.0.0.1:8888/images/accept.png");
+        infoPanel.getEditImage().setUrl(Paths.EDIT_IMAGE_PATH);
+        infoPanel.getDeleteImage().setUrl(Paths.DELETE_IMAGE_PATH);
+        infoPanel.getAcceptImage().setUrl(Paths.ACCEPT_IMAGE_PATH);
         infoPanel.getName().setText(event.getName());
         infoPanel.getDescription().setText(event.getDescription());
         infoPanel.getTime().setText(event.getTime());
         infoPanel.getDate().setText(event.getDate());
-        infoPanel.getLatitude().setText(Double.toString(event.getLatitude()));
-        infoPanel.getLongitude().setText(Double.toString(event.getLongitude()));
+        infoPanel.getLatitude().setText(Double.toString(Creator.round(event.getLatitude(), 5)));
+        infoPanel.getLongitude().setText(Double.toString(Creator.round(event.getLongitude(), 5)));
+        bind();
     }
 
     public void setLightData(final List<LightEventDto> lightEventDtos) {
         lightEvents = lightEventDtos;
         prepareMap();
-        bind();
     }
 
     private void bind() {
@@ -158,6 +160,7 @@ public class View extends Composite {
                 @Override
                 public void onEvent(ClickMapEvent clickMapEvent) {
                     infoPanel.hide();
+                    infoPanel.setActive(false);
                     wMap.stopAnimation();
                 }
             });
