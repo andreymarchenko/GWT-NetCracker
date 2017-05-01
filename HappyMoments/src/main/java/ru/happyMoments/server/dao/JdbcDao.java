@@ -18,5 +18,5 @@ public interface JdbcDao {
 
     void deleteEvent(EventDto eventDto);
 
-    void upload(File file);
+    void upload(String image);
 }

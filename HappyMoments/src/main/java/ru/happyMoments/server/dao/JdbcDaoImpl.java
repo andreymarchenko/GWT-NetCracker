@@ -41,8 +41,9 @@ public class JdbcDaoImpl implements JdbcDao {
             while (receivedData.next()) {
                 lightEvents.add(Factory.createLightEventDto(receivedData.getDouble(1), receivedData.getDouble(2)));
             }
-            receivedData.close();
+
             data.close();
+            receivedData.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -81,10 +82,6 @@ public class JdbcDaoImpl implements JdbcDao {
                 imageId = receivedImage.getInt(1);
                 url = receivedImage.getString(2);
 
-                receivedImage.close();
-
-                ImageDto mg = Factory.createImageDto(imageId, url);
-
                 eventDto = Factory.createEventDto(
                         receivedData.getInt(1),
                         receivedData.getString(2),
@@ -113,13 +110,12 @@ public class JdbcDaoImpl implements JdbcDao {
         try {
             eventsData = getConnection().prepareStatement(Queries.CREATE_EVENT);
 
-            eventsData.setInt(1, eventDto.getId());
-            eventsData.setString(2, eventDto.getDescription());
-            eventsData.setString(3, eventDto.getDate());
-            eventsData.setString(4, eventDto.getName());
-            eventsData.setString(5, eventDto.getTime());
-            eventsData.setDouble(6, eventDto.getLatitude());
-            eventsData.setDouble(7, eventDto.getLongitude());
+            eventsData.setString(1, eventDto.getDescription());
+            eventsData.setString(2, eventDto.getDate());
+            eventsData.setString(3, eventDto.getName());
+            eventsData.setString(4, eventDto.getTime());
+            eventsData.setDouble(5, eventDto.getLatitude());
+            eventsData.setDouble(6, eventDto.getLongitude());
 
             eventsData.executeUpdate();
             eventsData.close();
@@ -177,27 +173,13 @@ public class JdbcDaoImpl implements JdbcDao {
     }
 
     @Override
-    public void upload(File file) {
+    public void upload(String image) {
         PreparedStatement fileData;
-        PreparedStatement numEventsData;
-        ResultSet receivedData;
-        int number = 0;
+
         try {
             fileData = getConnection().prepareStatement(Queries.UPLOAD_IMAGE);
-            numEventsData = getConnection().prepareStatement(Queries.GET_EVENTS_NUMBER);
-
-            receivedData = numEventsData.executeQuery();
-
-            number = receivedData.getInt(1);
-
-            receivedData.close();
-
-            fileData.setInt(1, number + 1);
-            fileData.setString(2, "http://127.0.0.1:8888/images/" + file.getName());
-
+            fileData.setString(1, image);
             fileData.executeUpdate();
-
-            numEventsData.close();
             fileData.close();
 
         } catch (SQLException e) {

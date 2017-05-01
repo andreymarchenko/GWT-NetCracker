@@ -29,7 +29,7 @@ public class AddDialogBox extends DialogBox {
     private Label timeInfo;
     private Button addButton;
     private Button closeButton;
-    private FormPanel fileUploadPanel;
+    private HorizontalPanel fileUploadPanel;
     private FileUploadExt fileUpload;
     private Label addingEvent;
 
@@ -43,7 +43,7 @@ public class AddDialogBox extends DialogBox {
     private void createMarkup() {
         addingEvent = new Label("Добавление события");
         fileUpload = new FileUploadExt();
-        fileUploadPanel = new FormPanel();
+        fileUploadPanel = new HorizontalPanel();
         fileUploadPanel.add(fileUpload);
         mainPanel = new VerticalPanel();
         horizontalPanel = new HorizontalPanel();
@@ -181,8 +181,28 @@ public class AddDialogBox extends DialogBox {
         return fileUpload;
     }
 
-    public FormPanel getForm() {
+    public HorizontalPanel getForm() {
         return fileUploadPanel;
+    }
+
+    public void setMainPanel(VerticalPanel mainPanel) {
+        this.mainPanel = mainPanel;
+    }
+
+    public void setNameInput(TextBox nameInput) {
+        this.nameInput = nameInput;
+    }
+
+    public void setDescriptionInput(TextBox descriptionInput) {
+        this.descriptionInput = descriptionInput;
+    }
+
+    public void setDateInput(TextBox dateInput) {
+        this.dateInput = dateInput;
+    }
+
+    public void setTimeInput(TextBox timeInput) {
+        this.timeInput = timeInput;
     }
 }
 

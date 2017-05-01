@@ -1,12 +1,9 @@
 package ru.happyMoments.client.view;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.event.dom.client.LoadEvent;
-import com.google.gwt.event.dom.client.LoadHandler;
 import com.google.gwt.maps.client.LoadApi;
 import com.google.gwt.maps.client.LoadApi.LoadLibrary;
 import com.google.gwt.maps.client.events.click.ClickMapEvent;
@@ -20,7 +17,6 @@ import com.google.gwt.user.client.ui.*;
 import com.google.web.bindery.event.shared.EventBus;
 import org.vectomatic.file.File;
 import org.vectomatic.file.FileList;
-import org.vectomatic.file.FileUtils;
 import ru.happyMoments.client.presenter.Presenter;
 import ru.happyMoments.shared.staff.Checker;
 import ru.happyMoments.shared.dto.EventDto;
@@ -46,7 +42,6 @@ public class View extends Composite {
     private BasicMapWidget wMap;
     private List<LightEventDto> lightEvents;
     private InfoPanel infoPanel;
-    private AddDialogBox addDialogBox;
 
     @Inject
     public View(EventBus eventBus) {
@@ -75,7 +70,7 @@ public class View extends Composite {
                 wMap = new BasicMapWidget();
                 wMap.setPresenter(presenter);
                 addMapWidget(wMap);
-                setMarkers();
+                prepareMap();
             }
         };
 
@@ -91,7 +86,6 @@ public class View extends Composite {
         setUI();
         loadMapApi();
         infoPanel = new InfoPanel();
-        addDialogBox = new AddDialogBox();
         RootPanel.get("root").add(this);
     }
 
@@ -116,7 +110,7 @@ public class View extends Composite {
 
     public void setLightData(final List<LightEventDto> lightEventDtos) {
         lightEvents = lightEventDtos;
-        setMarkers();
+        prepareMap();
         bind();
     }
 
@@ -154,10 +148,12 @@ public class View extends Composite {
         });
     }
 
-    private void setMarkers() {
-        if (wMap != null && lightEvents != null && !lightEvents.isEmpty()) {
-            wMap.launchApp(lightEvents);
-
+    private void prepareMap() {
+        if (wMap != null) {
+            if (lightEvents != null && !lightEvents.isEmpty()) {
+                wMap.launchApp(lightEvents);
+            }
+            infoPanel = wMap.getInfoPanel();
             wMap.getMapWidget().addClickHandler(new ClickMapHandler() {
                 @Override
                 public void onEvent(ClickMapEvent clickMapEvent) {
@@ -166,37 +162,6 @@ public class View extends Composite {
                 }
             });
 
-            wMap.getMapWidget().addDblClickHandler(new DblClickMapHandler() {
-                @Override
-                public void onEvent(final DblClickMapEvent dblClickMapEvent) {
-                    addDialogBox.show();
-                    addDialogBox.getAddButton().addClickHandler(new ClickHandler() {
-                        @Override
-                        public void onClick(ClickEvent event) {
-                            if (!Checker.checkTime(addDialogBox.getTimeInput().getText())) {
-                                Window.alert("Некорректный формат времени");
-                            } else {
-                                FileList files = addDialogBox.getFileUpload().getFiles();
-                                File file = files.getItem(0);
-
-                                presenter.uploadImage(file);
-                                presenter.createEvent(Factory.createEventDto(
-                                        wMap.getMarkers().size() + 1,
-                                        addDialogBox.getDescriptionInput().getText(),
-                                        addDialogBox.getDateInput().getText(),
-                                        addDialogBox.getNameInput().getText(),
-                                        Factory.createImageDto(wMap.getMarkers().size() + 1, " "),
-                                        addDialogBox.getTimeInput().getText(),
-                                        dblClickMapEvent.getMouseEvent().getLatLng().getLatitude(),
-                                        dblClickMapEvent.getMouseEvent().getLatLng().getLongitude()
-                                ));
-                                addDialogBox.hide();
-                                infoPanel.setActive(false);
-                            }
-                        }
-                    });
-                }
-            });
         }
     }
 }

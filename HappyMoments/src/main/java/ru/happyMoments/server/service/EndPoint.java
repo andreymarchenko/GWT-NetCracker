@@ -56,7 +56,7 @@ public class EndPoint {
     @POST
     @Consumes(MediaType.TEXT_PLAIN)
     public void uploadImage(String image) {
-        String encodingPrefix = "base64,";
+        /*String encodingPrefix = "base64,";
         int contentStartIndex = image.indexOf(encodingPrefix) + encodingPrefix.length();
         byte[] imageData = Base64.decodeBase64(image.substring(contentStartIndex));
         File file = new File("C:\\GWT-NetCracker\\HappyMoments\\war\\images\\" + Creator.createName() + ".jpg");
@@ -67,7 +67,7 @@ public class EndPoint {
             outputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        jdbcDao.upload(file);
+        }*/
+        jdbcDao.upload(image);
     }
 }

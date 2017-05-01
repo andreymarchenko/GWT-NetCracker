@@ -1,6 +1,8 @@
 package ru.happyMoments.client.view;
 
 import com.google.gwt.dom.client.Style;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.maps.client.MapOptions;
 import com.google.gwt.maps.client.MapTypeId;
 import com.google.gwt.maps.client.MapWidget;
@@ -13,6 +15,8 @@ import com.google.gwt.maps.client.events.channelnumber.ChannelNumberChangeMapEve
 import com.google.gwt.maps.client.events.channelnumber.ChannelNumberChangeMapHandler;
 import com.google.gwt.maps.client.events.click.ClickMapEvent;
 import com.google.gwt.maps.client.events.click.ClickMapHandler;
+import com.google.gwt.maps.client.events.dblclick.DblClickMapEvent;
+import com.google.gwt.maps.client.events.dblclick.DblClickMapHandler;
 import com.google.gwt.maps.client.events.format.FormatChangeMapEvent;
 import com.google.gwt.maps.client.events.format.FormatChangeMapHandler;
 import com.google.gwt.maps.client.events.mapchange.MapChangeMapEvent;
@@ -26,9 +30,12 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import org.vectomatic.file.File;
+import org.vectomatic.file.FileList;
 import ru.happyMoments.client.presenter.Presenter;
 import ru.happyMoments.shared.dto.LightEventDto;
 import ru.happyMoments.shared.factories.Factory;
+import ru.happyMoments.shared.staff.Checker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +45,11 @@ public class BasicMapWidget extends Composite {
     private final VerticalPanel pWidget;
     private MapWidget mapWidget;
     private List<Marker> markers;
+    private AddDialogBox addDialogBox;
     private Presenter presenter;
+    private double longitude;
+    private double latitude;
+    private InfoPanel infoPanel;
 
     public BasicMapWidget() {
         pWidget = new VerticalPanel();
@@ -46,7 +57,56 @@ public class BasicMapWidget extends Composite {
         initWidget(pWidget);
         drawMap();
         drawMapAds();
+        addDialogBox = new AddDialogBox();
+        bind();
+        infoPanel = new InfoPanel();
     }
+
+    private void bind() {
+
+        mapWidget.addDblClickHandler(new DblClickMapHandler() {
+            @Override
+            public void onEvent(final DblClickMapEvent dblClickMapEvent) {
+                addDialogBox.show();
+                latitude = dblClickMapEvent.getMouseEvent().getLatLng().getLatitude();
+                longitude = dblClickMapEvent.getMouseEvent().getLatLng().getLongitude();
+            }
+        });
+
+        addDialogBox.getAddButton().addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+
+                if (!Checker.checkTime(addDialogBox.getTimeInput().getText())) {
+                    Window.alert("Некорректный формат времени");
+                } else {
+                    FileList files = addDialogBox.getFileUpload().getFiles();
+                    File file = files.getItem(0);
+
+                    presenter.uploadImage(file);
+
+                    presenter.createEvent(Factory.createEventDto(
+                            0,
+                            addDialogBox.getDescriptionInput().getText(),
+                            addDialogBox.getDateInput().getText(),
+                            addDialogBox.getNameInput().getText(),
+                            Factory.createImageDto(0, " "),
+                            addDialogBox.getTimeInput().getText(),
+                            latitude,
+                            longitude
+                    ));
+
+                    addDialogBox.getDescriptionInput().setText("");
+                    addDialogBox.getDateInput().setText("");
+                    addDialogBox.getNameInput().setText("");
+                    addDialogBox.getTimeInput().setText("");
+
+                    addDialogBox.hide();
+                }
+            }
+        });
+    }
+
 
     public void stopAnimation() {
         for (Marker m : markers) {
@@ -81,11 +141,6 @@ public class BasicMapWidget extends Composite {
                 presenter.loadEvent(Factory.createLightEventDto(marker.getPosition().getLatitude(),
                         marker.getPosition().getLongitude()));
 
-                InfoPanel infoPanel = new InfoPanel();
-                infoPanel.getElement().getStyle().setBackgroundColor("White");
-                infoPanel.getElement().getStyle().setHeight(100, Style.Unit.PX);
-                infoPanel.getElement().getStyle().setWidth(100, Style.Unit.PX);
-                infoPanel.setPopupPosition(Window.getClientWidth() / 2, Window.getClientHeight() / 2);
                 infoPanel.setVisible(true);
             }
         });
@@ -107,10 +162,12 @@ public class BasicMapWidget extends Composite {
     }
 
     public void launchApp(List<LightEventDto> lightEventDtos) {
-        clearMap();
-        markers.clear();
-        for (int i = 0; i < lightEventDtos.size(); i++) {
-            drawMarkerWithDropAnimation(lightEventDtos.get(i).getLatitude(), lightEventDtos.get(i).getLongitude());
+        if (lightEventDtos.size() != 0) {
+            clearMap();
+            markers.clear();
+            for (int i = 0; i < lightEventDtos.size(); i++) {
+                drawMarkerWithDropAnimation(lightEventDtos.get(i).getLatitude(), lightEventDtos.get(i).getLongitude());
+            }
         }
     }
 
@@ -155,5 +212,9 @@ public class BasicMapWidget extends Composite {
 
     public List<Marker> getMarkers() {
         return markers;
+    }
+
+    public InfoPanel getInfoPanel() {
+        return infoPanel;
     }
 }

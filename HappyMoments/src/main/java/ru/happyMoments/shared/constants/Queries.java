@@ -8,8 +8,8 @@ public class Queries {
 
     public static final String GET_IMAGE = "SELECT event_id,url FROM IMAGES WHERE event_id=?; ";
 
-    public static String CREATE_EVENT = "INSERT INTO EVENTS (id, description, date, name, time, latitude, longitude)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?); ";
+    public static String CREATE_EVENT = "INSERT INTO EVENTS (description, date, name, time, latitude, longitude)" +
+                " VALUES (?, ?, ?, ?, ?, ?); ";
 
     public static String EDIT_EVENT = "UPDATE EVENTS SET description=?, date=?, name=?, time=?, latitude=?, longitude=? WHERE id=?;";
 
@@ -17,8 +17,8 @@ public class Queries {
 
     public static String DELETE_IMAGE = "DELETE FROM IMAGES WHERE event_id=?; ";
 
-    public static String UPLOAD_IMAGE = "INSERT INTO IMAGES (event_id, url)" +
-            " VALUES (?, ?); ";
+    public static String UPLOAD_IMAGE = "INSERT INTO IMAGES (url)" +
+            " VALUES (?); ";
 
     public static String GET_EVENTS_NUMBER = "SELECT COUNT(id) FROM EVENTS; ";
 }
