@@ -45,6 +45,7 @@ public class InfoPanel extends PopupPanel {
 
     public InfoPanel() {
         createMarkUp();
+        bind();
     }
 
     private void createSeparator() {
@@ -341,6 +342,33 @@ public class InfoPanel extends PopupPanel {
             this.date.setEnabled(false);
         }
 
+    }
+
+    private void bind() {
+        name.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                name.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
+            }
+        });
+        description.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                description.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
+            }
+        });
+        time.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                time.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
+            }
+        });
+        date.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                date.getElement().getStyle().setBorderStyle(Style.BorderStyle.NONE);
+            }
+        });
     }
 
     public void setDefaultView() {

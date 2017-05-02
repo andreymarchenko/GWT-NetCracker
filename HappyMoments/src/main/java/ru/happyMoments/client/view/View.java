@@ -169,6 +169,8 @@ public class View extends Composite {
                             Double.parseDouble(infoPanel.getLongitude().getText())));
                     infoPanel.getName().setText(infoPanel.getName().getText().trim());
                     infoPanel.getDescription().setText(infoPanel.getDescription().getText().trim());
+                    infoPanel.getTime().setText(Checker.convertTime(infoPanel.getTime().getText()));
+                    infoPanel.getDate().setText(Checker.checkDate(infoPanel.getDate().getText()));
                 }
             }
         });
